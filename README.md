@@ -7,5 +7,13 @@ I wanted to familiarize myself with ReactJS while showing some of my projects to
 ## Contributing
 As this is my personal website I do not see contributions from others necessary. If a project comes up that collaboration will be needed, an additional repository will be made to house the project. The reason I have this repository public is to display my code for people to view how I've developed one thing or another. All feedback is welcome. I can be reached at Telepjonathan@gmail.com or leave a message at www.JonathanTelep.com/contact , thanks!
 
+## Jon's todos:
+- Add context to root readme and give the ability to view the file with `cat` command
+- Add real projects; mines-swept, letstalkstatistics
+- Telep IO plug (future as sites not up yet)
+- Chess plug cuz i love chess
+- Twitter plug
+
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
