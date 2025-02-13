@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="terminal">
+        <div id="output"></div>
+        <div class="command-line">
+            <span class="prompt">~/content $</span>
+            <input type="text" id="command" autofocus>
+        </div>
+    </div>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <span class="close-button" id="closeGame">×</span>
+            <div id="game">
+                <div id="score">Score: 0</div>
+                <div id="dino"></div>
+                <div id="ground"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

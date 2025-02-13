@@ -1,0 +1,183 @@
+body, html {
+    background-color: #000;
+    color: #00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+#terminal {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#output {
+    font-size: 1.2em;
+    white-space: pre-wrap;
+}
+
+.command-line {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.prompt {
+    color: #00FF00;
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+#command {
+    background-color: transparent;
+    border: none;
+    color: #00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    outline: none;
+    flex-grow: 1;
+}
+
+/* Cursor effect */
+#command::after {
+    content: '_';
+    font-weight: bold;
+    animation: blink 1s step-end infinite;
+    font-size: 1.2em;  /* Increase cursor size */
+}
+
+@keyframes blink {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Error message color */
+.error {
+    color: #FF0000;
+}
+
+/* Command history */
+.history {
+    color: #00FFFF;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #000;
+    border: 2px solid #00FF00;
+    width: 800px;
+    height: 600px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #00FF00;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1001;
+}
+
+/* Dino Game Styles */
+#game {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #00FF00;
+    z-index: 10;
+}
+
+#dino {
+    width: 40px;
+    height: 60px;
+    background-color: #00FF00;
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    border-radius: 3px;
+}
+
+#ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #00FF00;
+    opacity: 0.3;
+}
+
+.obstacle {
+    width: 30px;
+    height: 70px;
+    background-color: #00FF00;
+    position: absolute;
+    bottom: 20px;
+    opacity: 0.8;
+    border-radius: 3px;
+}
+
+/* Animation for the dino jump */
+@keyframes jump {
+    0%, 100% { bottom: 0; }
+    50% { bottom: 100px; }
+}
+
+/* File listing styles */
+.directory {
+    color: #00FF00;  /* Bright green for directories */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.directory:hover {
+    text-decoration: underline;
+}
+
+.file {
+    color: #CCCCCC;  /* Light gray for files */
+}
+
+/* ASCII Banner */
+.banner {
+    color: #00FF00;
+    font-family: monospace;
+    white-space: pre;
+    line-height: 1.2;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+}
