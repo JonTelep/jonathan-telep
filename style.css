@@ -181,3 +181,53 @@ body, html {
     font-size: 14px;
     text-align: center;
 }
+
+/* Markdown content styles */
+.markdown-content {
+    color: #00FF00;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 2px solid #00FF00;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    color: #00FF00;
+    margin: 10px 0;
+}
+
+.markdown-content p {
+    margin: 10px 0;
+}
+
+.markdown-content a {
+    color: #00FFFF;
+    text-decoration: none;
+}
+
+.markdown-content a:hover {
+    text-decoration: underline;
+}
+
+.markdown-content code {
+    background-color: #003300;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.markdown-content pre {
+    background-color: #002200;
+    padding: 10px;
+    border-radius: 3px;
+    overflow-x: auto;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}

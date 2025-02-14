@@ -183,12 +183,17 @@ function handleCommand(command) {
     const output = document.getElementById('output');
     const [cmd, ...args] = command.split(' ');
     
+    // Show the command first
+    const promptText = document.querySelector('.prompt').textContent;
+    output.innerHTML += `${promptText} ${command}\n`;
+    
     switch (cmd) {
         case 'help':
             output.innerHTML += 'Available commands:\n';
             output.innerHTML += '- help: Show this help message\n';
             output.innerHTML += '- ls: List directory contents\n';
             output.innerHTML += '- cd [directory]: Change directory\n';
+            output.innerHTML += '- cat [file]: Display file contents (supports Markdown)\n';
             output.innerHTML += '- play dino: Start the dinosaur game\n';
             output.innerHTML += '- clear: Clear the terminal\n';
             output.innerHTML += '- history: Show command history\n';
@@ -199,7 +204,7 @@ function handleCommand(command) {
             const items = Object.entries(currentDir)
                 .map(([name, item]) => {
                     if (item.type === 'directory') {
-                        return `<span class="directory">${name}/</span>`;
+                        return `<span class="directory">${name}</span>`;
                     } else {
                         return `<span class="file">${name}</span>`;
                     }
@@ -207,6 +212,28 @@ function handleCommand(command) {
                 .sort()
                 .join('\n');
             output.innerHTML += items + '\n';
+            break;
+            
+        case 'cat':
+            const filename = args[0];
+            if (!filename) {
+                output.innerHTML += 'Usage: cat [filename]\n';
+                break;
+            }
+            
+            const currentDirForCat = getDirectoryContents(currentPath);
+            if (currentDirForCat[filename] && currentDirForCat[filename].type === 'file') {
+                const content = currentDirForCat[filename].content;
+                if (filename.endsWith('.md')) {
+                    // Render markdown
+                    output.innerHTML += `<div class="markdown-content">${marked.parse(content)}</div>\n`;
+                } else {
+                    // Display plain text
+                    output.innerHTML += content + '\n';
+                }
+            } else {
+                output.innerHTML += `cat: ${filename}: No such file\n`;
+            }
             break;
             
         case 'cd':
@@ -218,14 +245,16 @@ function handleCommand(command) {
                     currentPath.pop();
                 }
             } else {
+                // Remove trailing slash if present
+                const cleanTarget = target.endsWith('/') ? target.slice(0, -1) : target;
                 const currentDir = getDirectoryContents(currentPath);
-                if (currentDir[target] && currentDir[target].type === 'directory') {
-                    currentPath.push(target);
+                if (currentDir[cleanTarget] && currentDir[cleanTarget].type === 'directory') {
+                    currentPath.push(cleanTarget);
                 } else {
                     output.innerHTML += `cd: ${target}: No such directory\n`;
                 }
             }
-            updatePrompt();  // Update prompt immediately after changing directory
+            updatePrompt();
             break;
             
         case 'play':
@@ -260,13 +289,22 @@ function addNewPrompt() {
     const newInput = newPrompt.querySelector('#command');
     newInput.value = '';
     
-    // Move the current input to the output
-    const output = document.getElementById('output');
-    const oldPrompt = currentPrompt.querySelector('.prompt').outerHTML;
-    const oldCommand = currentPrompt.querySelector('#command').value;
-    if (oldCommand) {
-        output.innerHTML += oldPrompt + ' ' + oldCommand + '\n';
-    }
+    // Add event listeners to the new input
+    newInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const command = newInput.value.trim();
+            handleCommand(command);
+            newInput.value = '';
+            addNewPrompt();
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            event.preventDefault();
+            navigateHistory(event.key === 'ArrowUp' ? -1 : 1);
+        }
+    });
+    
+    // Add tab completion event listener
+    newInput.addEventListener('keydown', handleTabCompletion);
     
     // Replace the old command line with the new one
     terminal.replaceChild(newPrompt, currentPrompt);
@@ -300,41 +338,87 @@ function navigateHistory(direction) {
     }
 }
 
+// Function to get path suggestions based on partial input
+function getPathSuggestions(partial, includeFiles = true, includeDirs = true) {
+    const currentDir = getDirectoryContents(currentPath);
+    return Object.entries(currentDir)
+        .filter(([name, item]) => {
+            if (item.type === 'file' && includeFiles) {
+                return name.startsWith(partial);
+            }
+            if (item.type === 'directory' && includeDirs) {
+                return name.startsWith(partial);
+            }
+            return false;
+        })
+        .map(([name, item]) => item.type === 'directory' ? name + '/' : name);
+}
+
+// Function to handle tab completion
+function handleTabCompletion(event) {
+    if (event.key === 'Tab') {
+        event.preventDefault();
+        const commandInput = document.getElementById('command');
+        const inputText = commandInput.value.trim();
+        const parts = inputText.split(' ');
+        
+        if (parts.length === 2) {
+            const command = parts[0];
+            const partial = parts[1];
+            
+            let suggestions;
+            if (command === 'cat') {
+                // Only files for cat command
+                suggestions = getPathSuggestions(partial, true, false);
+            } else if (command === 'cd') {
+                // Only directories for cd command
+                suggestions = getPathSuggestions(partial, false, true);
+            } else {
+                // Both files and directories for other commands
+                suggestions = getPathSuggestions(partial, true, true);
+            }
+            
+            if (suggestions.length === 1) {
+                // If there's exactly one match, complete it
+                commandInput.value = `${command} ${suggestions[0]}`;
+            } else if (suggestions.length > 1) {
+                // Show all suggestions in the terminal
+                const output = document.getElementById('output');
+                const promptText = document.querySelector('.prompt').textContent;
+                output.innerHTML += `${promptText} ${inputText}\n`;
+                output.innerHTML += suggestions.join('  ') + '\n';
+                addNewPrompt();
+                commandInput.value = inputText;
+            }
+        }
+    }
+}
+
 function initializeTerminal() {
-    // Set initial prompt
-    updatePrompt();
-    
-    // Display welcome banner
+    const commandInput = document.getElementById('command');
     const output = document.getElementById('output');
-    output.innerHTML = `<pre class="banner">${BANNER}</pre>\n`;
-    output.innerHTML += 'Welcome to the Jon Archive! Type "help" for available commands.\n\n';
     
-    // Handle Enter key for command execution
-    document.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const commandInput = document.getElementById('command');
-            const command = commandInput.value.trim().toLowerCase();
-            
-            if (command) {
-                handleCommand(command);
-            }
-            
+    commandInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const command = commandInput.value.trim();
+            handleCommand(command);
+            commandInput.value = '';
             addNewPrompt();
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            event.preventDefault();
+            navigateHistory(event.key === 'ArrowUp' ? -1 : 1);
         }
     });
     
-    // Handle arrow keys for history navigation
-    document.addEventListener('keydown', function(e) {
-        if (!isGameActive) {  // Only handle arrow keys when not in game
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                navigateHistory('up');
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                navigateHistory('down');
-            }
-        }
-    });
+    // Add tab completion event listener
+    commandInput.addEventListener('keydown', handleTabCompletion);
+    
+    // Display banner and initial prompt
+    output.innerHTML = `<pre class="banner">${BANNER}</pre>`;
+    output.innerHTML += 'Welcome to my terminal! Type "help" for available commands.\n';
+    addNewPrompt();
+    updatePrompt();
 }
 
 // Initialize the terminal when the page loads
