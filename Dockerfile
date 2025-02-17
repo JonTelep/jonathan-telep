@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM node:22-alpine
 
 # Copy the custom nginx config
 COPY nginx.conf /etc/nginx/nginx.conf

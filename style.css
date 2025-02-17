@@ -6,6 +6,7 @@ body, html {
     padding: 0;
     height: 100vh;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 #terminal {
@@ -14,23 +15,27 @@ body, html {
     background-color: #000;
     padding: 20px;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 #output {
     font-size: 1.2em;
     white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .command-line {
     display: flex;
     align-items: center;
     margin: 5px 0;
+    width: 100%;
 }
 
 .prompt {
     color: #00FF00;
     margin-right: 10px;
     font-size: 1.2em;
+    white-space: nowrap;
 }
 
 #command {
@@ -41,6 +46,36 @@ body, html {
     font-size: 1.2em;
     outline: none;
     flex-grow: 1;
+    width: 100%;
+    padding: 5px 0;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    #terminal {
+        padding: 10px;
+    }
+
+    #output, #command, .prompt {
+        font-size: 16px; /* Better default size for mobile */
+    }
+
+    .command-line {
+        margin: 8px 0;
+    }
+
+    #command {
+        min-height: 24px; /* Ensure tap target is large enough */
+    }
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) { 
+    #command {
+        font-size: 16px;
+    }
 }
 
 /* Cursor effect */
