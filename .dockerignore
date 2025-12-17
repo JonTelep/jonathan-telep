@@ -3,6 +3,7 @@
 .dockerignore
 Dockerfile
 docker-compose.yml
+Makefile
 README.md
 node_modules/
 *.log 
