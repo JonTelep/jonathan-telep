@@ -35,7 +35,7 @@ http {
             return 301 /postgres-visualizer/;
         }
 
-        location /postgres-visualizer/ {
+        location ^~ /postgres-visualizer/ {
             proxy_pass http://${POSTGRES_HOST}:3005/;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
