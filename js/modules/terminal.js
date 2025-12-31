@@ -1,5 +1,4 @@
 import { currentPath, getDirectoryContents } from './filesystem.js';
-import { startGame } from './game.js';
 
 // Declare marked as global
 /* global marked */
@@ -43,7 +42,7 @@ export function handleCommand(command) {
             output.innerHTML += '- ls: List directory contents\n';
             output.innerHTML += '- cd [directory]: Change directory\n';
             output.innerHTML += '- cat [file]: Display file contents (supports Markdown)\n';
-            output.innerHTML += '- play dino: Start the dinosaur game\n';
+            output.innerHTML += '- launch [file]: Open the URL associated with a file\n';
             output.innerHTML += '- clear: Clear the terminal\n';
             output.innerHTML += '- history: Show command history\n';
             break;
@@ -69,14 +68,39 @@ export function handleCommand(command) {
                 output.innerHTML += 'Usage: cat [filename]\n';
                 break;
             }
-            
+
             const currentDirForCat = getDirectoryContents(currentPath);
             if (currentDirForCat[filename] && currentDirForCat[filename].type === 'file') {
-                const content = currentDirForCat[filename].content;
+                const fileObj = currentDirForCat[filename];
+                const content = fileObj.content;
+
+                // Display metadata header if url or github exists
+                if (fileObj.url || fileObj.github) {
+                    output.innerHTML += '<div class="file-metadata">';
+                    output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                    if (fileObj.url) {
+                        output.innerHTML += `Live: <a href="${fileObj.url}" target="_blank">${fileObj.url}</a>\n`;
+                    }
+                    if (fileObj.github) {
+                        output.innerHTML += `Source: <a href="${fileObj.github}" target="_blank">${fileObj.github}</a>\n`;
+                    }
+                    output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+                    output.innerHTML += '</div>';
+                }
+
                 if (filename.endsWith('.md')) {
                     output.innerHTML += `<div class="markdown-content">${marked.parse(content)}</div>\n`;
                 } else {
                     output.innerHTML += content + '\n';
+                }
+
+                // Display launch hint if url exists
+                if (fileObj.url) {
+                    output.innerHTML += '\n<div class="file-metadata">';
+                    output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                    output.innerHTML += `Commands: launch ${filename}\n`;
+                    output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+                    output.innerHTML += '</div>';
                 }
             } else {
                 output.innerHTML += `cat: ${filename}: No such file\n`;
@@ -102,15 +126,28 @@ export function handleCommand(command) {
             }
             updatePrompt();
             break;
-            
-        case 'play':
-            if (args[0] === 'dino') {
-                startGame();
+
+        case 'launch':
+            const launchFilename = args[0];
+            if (!launchFilename) {
+                output.innerHTML += 'Usage: launch [filename]\n';
+                break;
+            }
+
+            const currentDirForLaunch = getDirectoryContents(currentPath);
+            if (currentDirForLaunch[launchFilename] && currentDirForLaunch[launchFilename].type === 'file') {
+                const fileObj = currentDirForLaunch[launchFilename];
+                if (fileObj.url) {
+                    output.innerHTML += `Launching ${fileObj.url}...\n`;
+                    window.open(fileObj.url, '_blank');
+                } else {
+                    output.innerHTML += `launch: ${launchFilename}: No URL associated with this file\n`;
+                }
             } else {
-                output.innerHTML += `Command not found: ${command}\n`;
+                output.innerHTML += `launch: ${launchFilename}: No such file\n`;
             }
             break;
-            
+
         case 'clear':
             output.innerHTML = '';
             break;
@@ -251,6 +288,16 @@ export function initializeTerminal() {
     
     output.innerHTML = `<pre class="banner">${BANNER}</pre>`;
     output.innerHTML += 'Welcome to my terminal! Type "help" for available commands.\n';
+    output.innerHTML += 'Try: <span class="command-hint">cat README.md</span>\n\n';
     addNewPrompt();
     updatePrompt();
+
+    // Also add click handler to body for better UX
+    document.body.addEventListener('click', (e) => {
+        // Get the current active input (always the one with id="command")
+        const activeInput = document.getElementById('command');
+        if (activeInput) {
+            activeInput.focus();
+        }
+    });
 } 
