@@ -1,4 +1,4 @@
-.PHONY: build run stop clean all help
+.PHONY: build run stop clean all help logs
 
 IMAGE_NAME = jonathan-telep
 CONTAINER_NAME = jonathan-telep
@@ -12,6 +12,7 @@ help:
 	@echo "  make clean       - Stop and remove container and image"
 	@echo "  make all         - Build and run (default)"
 	@echo "  make restart     - Stop, build, and run"
+	@echo "  make logs        - Follow logs from the running container"
 
 all: build run
 
@@ -21,8 +22,10 @@ build:
 
 run:
 	@echo "Running container..."
-	podman run -d --name $(CONTAINER_NAME) -p $(PORT):80 $(IMAGE_NAME)
-	@echo "Container running at http://localhost:$(PORT)"
+	podman run -d --name $(CONTAINER_NAME) -p $(PORT):3000 \
+		-e POSTGRES_HOST=host.containers.internal \
+		$(IMAGE_NAME)
+	@echo "Container running at http://127.0.0.1:$(PORT)"
 
 stop:
 	@echo "Stopping container..."
@@ -34,3 +37,7 @@ clean: stop
 	-podman rmi $(IMAGE_NAME)
 
 restart: stop build run
+
+logs:
+	@echo "Following container logs (Ctrl+C to exit)..."
+	podman logs -f $(CONTAINER_NAME)
