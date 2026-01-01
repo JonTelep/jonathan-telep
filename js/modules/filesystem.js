@@ -32,6 +32,8 @@ If you are looking to work together on any project that is exciting, please feel
                 contents: {
                     'visualize-postgres.md': {
                         type: 'file',
+                        url: 'https://jonathantelep.com/postgres-visualizer/',
+                        github: 'https://github.com/JonTelep/visualize-postgres',
                         content: `# Visualize Postgres
 
 A web application that converts PostgreSQL CREATE SQL statements into Entity-Relationship (ER) Diagrams. This tool helps developers and database administrators visualize their database schema by parsing SQL CREATE TABLE statements and generating interactive ER diagrams.

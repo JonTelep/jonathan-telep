@@ -85,8 +85,7 @@ Required Node version: >=22.0.0
 │   ├── main.js            # Entry point
 │   └── modules/
 │       ├── terminal.js    # Command handling & terminal logic
-│       ├── filesystem.js  # Virtual filesystem data
-│       └── game.js        # Dino game logic
+│       └── filesystem.js  # Virtual filesystem data
 ├── content/               # Reference markdown files (not used at runtime)
 ├── Dockerfile             # Container build configuration
 ├── nginx.conf             # Nginx configuration for container

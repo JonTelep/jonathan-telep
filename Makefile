@@ -1,4 +1,4 @@
-.PHONY: build run stop clean all help logs
+.PHONY: build run stop clean all help terminal logs
 
 IMAGE_NAME = jonathan-telep
 CONTAINER_NAME = jonathan-telep
@@ -13,6 +13,7 @@ help:
 	@echo "  make all         - Build and run (default)"
 	@echo "  make restart     - Stop, build, and run"
 	@echo "  make logs        - Follow logs from the running container"
+	@echo "  make terminal    - Open terminal in container"
 
 all: build run
 
@@ -37,6 +38,10 @@ clean: stop
 	-podman rmi $(IMAGE_NAME)
 
 restart: stop build run
+
+terminal:
+	@echo "Opening terminal in container..."
+	podman exec -it $(CONTAINER_NAME) /bin/sh
 
 logs:
 	@echo "Following container logs (Ctrl+C to exit)..."
