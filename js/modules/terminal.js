@@ -43,6 +43,7 @@ export function handleCommand(command) {
             output.innerHTML += '- cd [directory]: Change directory\n';
             output.innerHTML += '- cat [file]: Display file contents (supports Markdown)\n';
             output.innerHTML += '- launch [file]: Open the URL associated with a file\n';
+            output.innerHTML += '- portfolio: Display portfolio projects\n';
             output.innerHTML += '- clear: Clear the terminal\n';
             output.innerHTML += '- history: Show command history\n';
             break;
@@ -125,6 +126,36 @@ export function handleCommand(command) {
                 }
             }
             updatePrompt();
+            break;
+
+        case 'portfolio':
+            output.innerHTML += '<div class="markdown-content">';
+            output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+            output.innerHTML += '<span style="color: #00FF00; font-weight: bold;">           PORTFOLIO</span>\n';
+            output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+            
+            output.innerHTML += '<span style="color: #00FFFF; font-weight: bold;">📊 Let\'s Talk Statistics</span>\n';
+            output.innerHTML += 'Interactive data visualization platform for exploring statistical concepts.\n';
+            output.innerHTML += 'Features real-time charts, data analysis tools, and educational content.\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Live:</span> <a href="https://letstalkstatistics.com" target="_blank">https://letstalkstatistics.com</a>\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Source:</span> <a href="https://github.com/JonTelep/lets-talk-statistics" target="_blank">GitHub</a>\n\n';
+            
+            output.innerHTML += '<span style="color: #00FFFF; font-weight: bold;">📈 Capitol Trades</span>\n';
+            output.innerHTML += 'Track congressional stock trades and market insights.\n';
+            output.innerHTML += 'Transparency tool for monitoring elected officials\' financial activities.\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Live:</span> <a href="https://capitoltrades.com" target="_blank">https://capitoltrades.com</a>\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Source:</span> <a href="https://github.com/JonTelep/capitol-trades" target="_blank">GitHub</a>\n\n';
+            
+            output.innerHTML += '<span style="color: #00FFFF; font-weight: bold;">🚀 Telep IO</span>\n';
+            output.innerHTML += 'SaaS solutions and software development company.\n';
+            output.innerHTML += 'Building tools for a better future, one application at a time.\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Live:</span> <a href="https://telep.io" target="_blank">https://telep.io</a>\n';
+            output.innerHTML += '<span style="color: #00FFFF;">➤ Source:</span> <a href="https://github.com/TalepIO" target="_blank">GitHub</a>\n\n';
+            
+            output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+            output.innerHTML += '<span style="color: #CCCCCC;">Commands: cd projects | cat [project-name].md</span>\n';
+            output.innerHTML += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+            output.innerHTML += '</div>';
             break;
 
         case 'launch':
