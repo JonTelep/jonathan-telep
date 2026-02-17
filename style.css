@@ -1,25 +1,469 @@
+/* ============================================
+   BASE
+   ============================================ */
+:root {
+    --hypr-gap: 6px;
+    --hypr-border: 2px;
+    --hypr-border-color: rgba(150, 150, 200, 0.4);
+    --hypr-border-active: rgba(180, 180, 255, 0.6);
+    --hypr-radius: 10px;
+    --hypr-bg: #11111b;
+}
+
 body, html {
-    background-color: #000;
-    color: #00FF00;
+    background-color: var(--hypr-bg);
+    color: #e0e0e0;
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
     -webkit-text-size-adjust: 100%;
 }
 
+/* ============================================
+   HYPRLAND DESKTOP LAYOUT
+   ============================================ */
+#desktop {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: var(--hypr-gap);
+    gap: var(--hypr-gap);
+    box-sizing: border-box;
+}
+
+/* ============================================
+   EDITOR PANEL (Notepad++ Style)
+   ============================================ */
+#editor-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    min-width: 0;
+    border: var(--hypr-border) solid var(--hypr-border-color);
+    border-radius: var(--hypr-radius);
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+}
+
+#editor-panel.focused {
+    border-color: var(--hypr-border-active);
+}
+
+/* Menu Bar */
+#editor-menubar {
+    display: flex;
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+    padding: 0;
+    height: 26px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.menu-item {
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #ccc;
+    cursor: default;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.menu-item:hover {
+    background: #094771;
+    color: #fff;
+}
+
+/* Toolbar */
+#editor-toolbar {
+    display: flex;
+    align-items: center;
+    background: #333;
+    border-bottom: 1px solid #404040;
+    padding: 2px 4px;
+    height: 28px;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    color: #aaa;
+    cursor: default;
+    border-radius: 3px;
+}
+
+.toolbar-btn:hover {
+    background: #4a4a4a;
+    color: #fff;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background: #555;
+    margin: 0 4px;
+}
+
+/* Tab Bar */
+#editor-tabs {
+    display: flex;
+    background: #252526;
+    border-bottom: 1px solid #404040;
+    min-height: 30px;
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+#editor-tabs::-webkit-scrollbar {
+    height: 3px;
+}
+
+#editor-tabs::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+.npp-tab {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 30px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #888;
+    background: #2d2d2d;
+    border-right: 1px solid #1e1e1e;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.npp-tab:hover {
+    color: #ccc;
+}
+
+.npp-tab.active {
+    background: #1e1e1e;
+    color: #fff;
+    border-bottom: 2px solid #007acc;
+}
+
+.npp-tab-name {
+    margin-right: 8px;
+}
+
+.npp-tab-close {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.npp-tab-close:hover {
+    color: #fff;
+}
+
+/* Editor Main (explorer + body wrapper) */
+#editor-main {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+/* File Explorer */
+#file-explorer {
+    width: 180px;
+    background: #252526;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: width 0.15s ease;
+}
+
+#file-explorer.collapsed {
+    width: 0;
+    border-right: none;
+}
+
+#explorer-header {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+}
+
+#explorer-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 0;
+}
+
+#explorer-tree::-webkit-scrollbar {
+    width: 6px;
+}
+
+#explorer-tree::-webkit-scrollbar-thumb {
+    background: #424242;
+}
+
+.explorer-item {
+    display: flex;
+    align-items: center;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #ccc;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.explorer-item:hover {
+    background: #2a2d2e;
+}
+
+.explorer-item.active {
+    background: #094771;
+    color: #fff;
+}
+
+.explorer-icon {
+    margin-right: 6px;
+    font-size: 13px;
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
+}
+
+.explorer-dir-icon {
+    color: #dcb67a;
+}
+
+.explorer-file-icon {
+    color: #519aba;
+}
+
+.explorer-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.explorer-children {
+    display: none;
+}
+
+.explorer-children.open {
+    display: block;
+}
+
+.explorer-chevron {
+    margin-right: 4px;
+    font-size: 10px;
+    flex-shrink: 0;
+    width: 12px;
+    text-align: center;
+    color: #888;
+    transition: transform 0.1s ease;
+}
+
+.explorer-chevron.open {
+    transform: rotate(90deg);
+}
+
+#toggle-explorer.active {
+    background: #4a4a4a;
+    color: #fff;
+}
+
+/* Editor Body */
+#editor-body {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    background: #1e1e1e;
+    min-height: 0;
+}
+
+#editor-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#editor-body::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+#editor-body::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 0;
+}
+
+#editor-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Line Numbers */
+#editor-line-numbers {
+    background: #1e1e1e;
+    color: #858585;
+    padding: 8px 12px 8px 8px;
+    text-align: right;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre;
+    user-select: none;
+    border-right: 1px solid #333;
+    flex-shrink: 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* Editor Content */
+#editor-content {
+    flex: 1;
+    padding: 8px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    margin: 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    min-width: 0;
+}
+
+/* Syntax Highlighting Colors (Notepad++ Obsidian Theme) */
+.npp-heading {
+    color: #569cd6;
+    font-weight: bold;
+}
+
+.npp-bold {
+    color: #ce9178;
+    font-weight: bold;
+}
+
+.npp-bracket,
+.npp-paren {
+    color: #808080;
+}
+
+.npp-link-text {
+    color: #4ec9b0;
+}
+
+.npp-link {
+    color: #4ec9b0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.npp-link:hover {
+    text-decoration: underline;
+    color: #6edcd0;
+}
+
+.npp-url {
+    color: #ce9178;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.npp-url:hover {
+    color: #e8b49e;
+}
+
+.npp-list {
+    color: #c586c0;
+}
+
+.npp-code {
+    color: #d7ba7d;
+    background: #2a2a2a;
+    border-radius: 2px;
+    padding: 0 3px;
+}
+
+.npp-comment {
+    color: #6a9955;
+    font-style: italic;
+}
+
+/* Status Bar */
+#editor-statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007acc;
+    color: #fff;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+#status-right {
+    display: flex;
+    gap: 16px;
+}
+
+#status-readonly {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   TERMINAL PANEL
+   ============================================ */
 #terminal {
-    width: 100%;
-    height: 100%;
+    width: 50%;
     background-color: #000;
     padding: 20px;
     overflow-y: auto;
     box-sizing: border-box;
+    color: #00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    border: var(--hypr-border) solid var(--hypr-border-color);
+    border-radius: var(--hypr-radius);
+    transition: border-color 0.15s ease;
+}
+
+#terminal.focused {
+    border-color: var(--hypr-border-active);
+}
+
+#terminal::-webkit-scrollbar {
+    width: 10px;
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: #111;
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: #333;
 }
 
 #output {
-    font-size: 1.2em;
+    font-size: 1.1em;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
@@ -34,7 +478,7 @@ body, html {
 .prompt {
     color: #00FF00;
     margin-right: 10px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     white-space: nowrap;
 }
 
@@ -43,7 +487,7 @@ body, html {
     border: none;
     color: #00FF00;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2em;
+    font-size: 1.1em;
     outline: none;
     flex-grow: 1;
     width: 100%;
@@ -52,38 +496,12 @@ body, html {
     border-radius: 0;
 }
 
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-    #terminal {
-        padding: 10px;
-    }
-
-    #output, #command, .prompt {
-        font-size: 16px; /* Better default size for mobile */
-    }
-
-    .command-line {
-        margin: 8px 0;
-    }
-
-    #command {
-        min-height: 24px; /* Ensure tap target is large enough */
-    }
-}
-
-/* Prevent zoom on input focus for iOS */
-@media screen and (-webkit-min-device-pixel-ratio: 0) { 
-    #command {
-        font-size: 16px;
-    }
-}
-
 /* Cursor effect */
 #command::after {
     content: '_';
     font-weight: bold;
     animation: blink 1s step-end infinite;
-    font-size: 1.2em;  /* Increase cursor size */
+    font-size: 1.1em;
 }
 
 @keyframes blink {
@@ -101,99 +519,9 @@ body, html {
     color: #00FFFF;
 }
 
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    background-color: #000;
-    border: 2px solid #00FF00;
-    width: 800px;
-    height: 600px;
-    position: relative;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #00FF00;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 1001;
-}
-
-/* Dino Game Styles */
-#game {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-color: #000;
-    overflow: hidden;
-}
-
-#score {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: #00FF00;
-    z-index: 10;
-}
-
-#dino {
-    width: 40px;
-    height: 60px;
-    background-color: #00FF00;
-    position: absolute;
-    bottom: 20px;
-    left: 50px;
-    border-radius: 3px;
-}
-
-#ground {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20px;
-    background-color: #00FF00;
-    opacity: 0.3;
-}
-
-.obstacle {
-    width: 30px;
-    height: 70px;
-    background-color: #00FF00;
-    position: absolute;
-    bottom: 20px;
-    opacity: 0.8;
-    border-radius: 3px;
-}
-
-/* Animation for the dino jump */
-@keyframes jump {
-    0%, 100% { bottom: 0; }
-    50% { bottom: 100px; }
-}
-
 /* File listing styles */
 .directory {
-    color: #00FF00;  /* Bright green for directories */
+    color: #00FF00;
     font-weight: bold;
     cursor: pointer;
 }
@@ -203,7 +531,12 @@ body, html {
 }
 
 .file {
-    color: #CCCCCC;  /* Light gray for files */
+    color: #CCCCCC;
+    cursor: pointer;
+}
+
+.file:hover {
+    text-decoration: underline;
 }
 
 /* ASCII Banner */
@@ -213,7 +546,7 @@ body, html {
     white-space: pre;
     line-height: 1.2;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -265,4 +598,53 @@ body, html {
 .markdown-content ol {
     margin: 10px 0;
     padding-left: 20px;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+    #desktop {
+        flex-direction: column;
+        padding: var(--hypr-gap);
+        gap: var(--hypr-gap);
+    }
+
+    #editor-panel {
+        width: 100%;
+        height: 45%;
+    }
+
+    #terminal {
+        width: 100%;
+        height: 55%;
+        padding: 10px;
+    }
+
+    #output, #command, .prompt {
+        font-size: 14px;
+    }
+
+    .command-line {
+        margin: 8px 0;
+    }
+
+    #command {
+        min-height: 24px;
+    }
+
+    .banner {
+        font-size: 8px;
+    }
+
+    #file-explorer {
+        display: none;
+    }
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    #command {
+        font-size: 16px;
+    }
 }

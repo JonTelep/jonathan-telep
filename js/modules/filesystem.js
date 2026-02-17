@@ -4,51 +4,190 @@ export const filesystem = {
     content: {
         type: 'directory',
         contents: {
-            'README.md': { 
+            'README.md': {
                 type: 'file',
+                url: 'https://jonathantelep.com',
+                github: 'https://github.com/JonTelep/jonathan-telep',
                 content: `# Hello! I am Jonathan Telep.
 
-I am a senior software engineer trying to escape the 9-5.I have lost my passion for engineering working on boring data sets at my employers and am now working to rejuvenate my passion. No more increasing shareholder value, but more increasing my independent value with hopes of being my own boss. This journey began by starting to be very active on X as [@telep_io](https://x.com/telep_io) where I (will) post my projects and interact with my interests including shitposting. 
+I am a senior software engineer at Red Hat that likes to build things that I needed or always wanted and created this site to share my projects and thoughts. Much of my random personal projects will be public on [github](https://github.com/JonTelep).
 
-My main goal is to try to build a following of like-minded people to interact with. As we can all benefit from each other's work as well as profit from eachothers engagement thanks to X's monetization share. 
+Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. Follow me in [Twitter/X](https://x.com/telep_io) to keep informed on what this may entail.
 
-You will find some of my projects are silly and just were built from an idea that popped into my head. Some will be more serious SaaS applications that I use myself. Just build and ship is what I've learned thus far and am going to abide by that lifestyle moving forward.
+If you are looking to work together on any project that is exciting, please feel free to reach me via a DM on twitter. I am always looking to get involved in interesting projects.
+
+## Socials:
+- [Twitter/X](https://x.com/telep_io)
+- [LinkedIn](https://www.linkedin.com/in/jonathan-telep-576750115)
+- [Github](https://github.com/JonTelep) 
 
 ## Current Projects:
-- The website you are reading this on; A website to share my projects and thoughts.
-- MinesSwept; A social experiment created on a single page app of a giant minesweeper game where everyone works together to solve the minesweeper board.
-## Future Projects:
-- LetsTalkStatistics; My personal collection of statistics I've found interesting. Around Finance, Economics, Politics
-
-## Interests:
-- Crypto
-- AI
-- Buzzword here
-- Politics
-- Buzzword there
-- Home lab haver
-- LLM Trainer
-- Video game player
-- 3d Printer`
+- The website you are reading this on ([jonathantelep.com](https://jonathantelep.com))
+- [Visualize Postgres](https://jonathantelep.com/postgres-visualizer/); A PostgreSQL CREATE SQL to ER Diagram web application.
+- [Business by Telegram](https://github.com/JonTelep/telegram); A service connecting a telegram channel to your database.
+`
             },
             'projects': {
                 type: 'directory',
                 contents: {
-                    'letstalkstatistics.md': { 
+                    'visualize-postgres.md': {
                         type: 'file',
-                        content: `# Let's Talk Statistics (To be shipped Q2 2025)
+                        url: 'https://jonathantelep.com/postgres-visualizer/',
+                        github: 'https://github.com/JonTelep/visualize-postgres',
+                        content: `# Visualize Postgres
 
-This is a project that is under development. It is a website that will display a wide range of statistics and why they are important; around Crypto, Finance, Economics, Politics, etc.
+A web application that converts PostgreSQL CREATE SQL statements into Entity-Relationship (ER) Diagrams. This tool helps developers and database administrators visualize their database schema by parsing SQL CREATE TABLE statements and generating interactive ER diagrams.
 
-The [site](https://letstalkstatistics.com) is not available at the moment but it will be when available.`
+## Features
+
+- Parse PostgreSQL CREATE TABLE statements
+- Generate interactive ER diagrams
+- Visualize table relationships and foreign keys
+- Modern web-based interface
+
+## Source Code
+
+The source code is available on GitHub: [https://github.com/JonTelep/visualize-postgres](https://github.com/JonTelep/visualize-postgres)
+
+## Tech Stack
+
+- Frontend: React with Vite
+- Backend: Python with FastAPI
+- Diagram Rendering: Custom visualization engine`
                     },
-                    'mineswept.md': {
+                    'lets-talk-statistics.md': {
                         type: 'file',
-                        content: `# Mineswept (To be shipped soon)
+                        url: 'https://letstalkstatistics.com',
+                        github: 'https://github.com/JonTelep/lets-talk-statistics',
+                        content: `# Let's Talk Statistics
 
-[Mines Swept](https://mineswept.com) is a social experience that I am working on. It is a simple mine-sweeper game on a single page wishing to be completed by various users. The game mine-sweeper is a game that I alwasy go back to generally on a flights and love the simplicty yet the complexity that it can have. Simple math to find the bombs as well as pure luck sometimes.
+An interactive data visualization platform designed to make statistical concepts accessible and engaging for students, researchers, and data enthusiasts.
 
-Mines Swept will be a single page application that will allow N number of users to join via webhooks and try to complete the game. The one that fails will be publicly shamed on an active leaderboard. `
+## About
+
+Let's Talk Statistics provides real-time, interactive charts and visualizations that help users explore and understand statistical concepts through hands-on experimentation. The platform combines educational content with practical tools for data analysis.
+
+## Key Features
+
+- **Interactive Visualizations**: Real-time charts that respond to user input
+- **Educational Content**: Comprehensive guides to statistical concepts
+- **Data Analysis Tools**: Built-in calculators and analysis functions
+- **Responsive Design**: Works seamlessly across desktop and mobile devices
+- **Open Source**: Full source code available for learning and contribution
+
+## Technologies Used
+
+- **Frontend**: Next.js with React
+- **Backend**: FastAPI with Python
+- **Data Visualization**: D3.js and Chart.js
+- **Statistics Engine**: NumPy and SciPy
+- **Database**: PostgreSQL
+
+## Mission
+
+To bridge the gap between theoretical statistics and practical application by providing accessible, interactive tools for learning and exploring data science concepts.
+
+Visit the live application at [letstalkstatistics.com](https://letstalkstatistics.com)`
+                    },
+                    'capitol-trades.md': {
+                        type: 'file',
+                        url: 'https://capitoltrades.com',
+                        github: 'https://github.com/JonTelep/capitol-trades',
+                        content: `# Capitol Trades
+
+A transparency platform that tracks and analyzes stock trades made by members of Congress, providing public access to elected officials' financial activities.
+
+## Mission Statement
+
+Capitol Trades promotes government transparency by making congressional financial disclosures easily accessible and searchable. We believe the public has a right to know about potential conflicts of interest among their elected representatives.
+
+## Features
+
+- **Real-time Trade Tracking**: Monitor congressional stock trades as they're disclosed
+- **Advanced Search & Filtering**: Find trades by representative, stock, date range, and more
+- **Market Analysis**: Analyze trading patterns and performance metrics
+- **Data Visualization**: Interactive charts showing trading trends and insights
+- **Mobile Responsive**: Full functionality on all devices
+- **API Access**: Programmatic access to trade data for researchers and journalists
+
+## How It Works
+
+1. **Data Collection**: Automated parsing of official congressional disclosure forms
+2. **Data Validation**: Cross-reference with multiple sources for accuracy
+3. **Real-time Updates**: New trades appear within hours of official filing
+4. **Public Access**: Free, unrestricted access to all data and visualizations
+
+## Technology Stack
+
+- **Backend**: Python with FastAPI
+- **Database**: PostgreSQL with time-series optimizations
+- **Frontend**: React with TypeScript
+- **Data Processing**: Pandas and NumPy
+- **Visualization**: D3.js and Recharts
+- **Infrastructure**: Docker containerization
+
+## Legal & Ethics
+
+All data is sourced from publicly available government disclosures. Capitol Trades operates in full compliance with transparency laws and ethical journalism standards.
+
+Explore the platform at [capitoltrades.com](https://capitoltrades.com)`
+                    },
+                    'telep-io.md': {
+                        type: 'file',
+                        url: 'https://telep.io',
+                        github: 'https://github.com/TalepIO',
+                        content: `# Telep IO LLC
+
+A software development company focused on building innovative SaaS solutions that solve real-world problems and create value for users and businesses.
+
+## Company Vision
+
+To build software that makes a meaningful difference in people's lives, focusing on quality, user experience, and sustainable business practices.
+
+## Core Values
+
+- **Innovation**: Embracing new technologies and creative solutions
+- **Quality**: Delivering robust, well-tested, maintainable software
+- **Transparency**: Open development practices and clear communication
+- **Sustainability**: Building for long-term value, not short-term gains
+- **User-Centric**: Every decision considers the end-user experience
+
+## Current Projects
+
+### Let's Talk Statistics
+Educational platform for interactive statistical learning and data visualization.
+
+### Capitol Trades
+Government transparency tool tracking congressional financial disclosures.
+
+### Visualize Postgres
+Database visualization tool for PostgreSQL schema management.
+
+## Services Offered
+
+- **Custom Software Development**: Full-stack web and mobile applications
+- **SaaS Product Development**: From concept to launch and scaling
+- **Database Design & Optimization**: PostgreSQL, MongoDB, Redis expertise
+- **API Development**: RESTful and GraphQL API design and implementation
+- **DevOps & Infrastructure**: Docker, Kubernetes, cloud deployment strategies
+
+## Technology Expertise
+
+- **Languages**: Python, JavaScript/TypeScript, Go, Rust
+- **Frameworks**: FastAPI, Next.js, React, Vue.js
+- **Databases**: PostgreSQL, MongoDB, Redis, ClickHouse
+- **Cloud**: AWS, Google Cloud, DigitalOcean
+- **Tools**: Docker, Kubernetes, GitHub Actions, Terraform
+
+## Get in Touch
+
+Interested in working together? Let's discuss your project.
+
+- **Website**: [telep.io](https://telep.io)
+- **Twitter**: [@telep_io](https://x.com/telep_io)
+- **Email**: hello@telep.io
+
+Ready to build something amazing? Let's talk.`
                     }
                 }
             }

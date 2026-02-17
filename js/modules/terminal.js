@@ -1,5 +1,5 @@
 import { currentPath, getDirectoryContents } from './filesystem.js';
-import { startGame } from './game.js';
+import { openFileInEditor } from './editor.js';
 
 // Declare marked as global
 /* global marked */
@@ -43,7 +43,6 @@ export function handleCommand(command) {
             output.innerHTML += '- ls: List directory contents\n';
             output.innerHTML += '- cd [directory]: Change directory\n';
             output.innerHTML += '- cat [file]: Display file contents (supports Markdown)\n';
-            output.innerHTML += '- play dino: Start the dinosaur game\n';
             output.innerHTML += '- clear: Clear the terminal\n';
             output.innerHTML += '- history: Show command history\n';
             break;
@@ -53,14 +52,28 @@ export function handleCommand(command) {
             const items = Object.entries(currentDir)
                 .map(([name, item]) => {
                     if (item.type === 'directory') {
-                        return `<span class="directory">${name}</span>`;
+                        return `<span class="directory" data-name="${name}">${name}</span>`;
                     } else {
-                        return `<span class="file">${name}</span>`;
+                        return `<span class="file" data-name="${name}">${name}</span>`;
                     }
                 })
                 .sort()
                 .join('\n');
             output.innerHTML += items + '\n';
+
+            // Attach click handlers for file entries to open in editor
+            output.querySelectorAll('.file[data-name]').forEach(el => {
+                if (!el.dataset.bound) {
+                    el.dataset.bound = 'true';
+                    el.addEventListener('click', () => {
+                        const fname = el.dataset.name;
+                        const dir = getDirectoryContents(currentPath);
+                        if (dir[fname] && dir[fname].type === 'file') {
+                            openFileInEditor(fname, dir[fname].content);
+                        }
+                    });
+                }
+            });
             break;
             
         case 'cat':
@@ -78,6 +91,7 @@ export function handleCommand(command) {
                 } else {
                     output.innerHTML += content + '\n';
                 }
+                openFileInEditor(filename, content);
             } else {
                 output.innerHTML += `cat: ${filename}: No such file\n`;
             }
@@ -101,14 +115,6 @@ export function handleCommand(command) {
                 }
             }
             updatePrompt();
-            break;
-            
-        case 'play':
-            if (args[0] === 'dino') {
-                startGame();
-            } else {
-                output.innerHTML += `Command not found: ${command}\n`;
-            }
             break;
             
         case 'clear':
@@ -231,7 +237,8 @@ export function initializeTerminal() {
     const terminal = document.getElementById('terminal');
     
     terminal.addEventListener('click', () => {
-        commandInput.focus();
+        const activeInput = terminal.querySelector('#command');
+        if (activeInput) activeInput.focus();
     });
     
     commandInput.addEventListener('keydown', (event) => {

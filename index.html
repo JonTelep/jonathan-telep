@@ -4,25 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jonathan Telep</title>
+    <link rel="icon" type="image/svg+xml" href="public/telep-io-logo-white.svg">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div id="terminal">
-        <div id="output"></div>
-        <div class="command-line">
-            <span class="prompt">~/content $</span>
-            <input type="text" id="command" autocomplete="off" autocapitalize="none">
+    <div id="desktop">
+        <!-- Left: Notepad++ Editor -->
+        <div id="editor-panel">
+            <div id="editor-menubar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">Search</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Encoding</span>
+                <span class="menu-item">Language</span>
+                <span class="menu-item">Settings</span>
+            </div>
+            <div id="editor-toolbar">
+                <span class="toolbar-btn" id="toggle-explorer" title="Toggle File Explorer">&#128193;</span>
+                <span class="toolbar-divider"></span>
+                <span class="toolbar-btn" title="New">&#128196;</span>
+                <span class="toolbar-btn" title="Open">&#128194;</span>
+                <span class="toolbar-btn" title="Save">&#128190;</span>
+                <span class="toolbar-divider"></span>
+                <span class="toolbar-btn" title="Cut">&#9986;</span>
+                <span class="toolbar-btn" title="Copy">&#128203;</span>
+                <span class="toolbar-btn" title="Paste">&#128195;</span>
+                <span class="toolbar-divider"></span>
+                <span class="toolbar-btn" title="Undo">&#8630;</span>
+                <span class="toolbar-btn" title="Redo">&#8631;</span>
+                <span class="toolbar-divider"></span>
+                <span class="toolbar-btn" title="Find">&#128269;</span>
+                <span class="toolbar-btn" title="Replace">&#128260;</span>
+            </div>
+            <div id="editor-tabs"></div>
+            <div id="editor-main">
+                <div id="file-explorer">
+                    <div id="explorer-header">
+                        <span>EXPLORER</span>
+                    </div>
+                    <div id="explorer-tree"></div>
+                </div>
+                <div id="editor-body">
+                    <div id="editor-line-numbers"></div>
+                    <pre id="editor-content"></pre>
+                </div>
+            </div>
+            <div id="editor-statusbar">
+                <span id="status-filename">new 1</span>
+                <span id="status-right">
+                    <span id="status-readonly">Read Only</span>
+                    <span id="status-lines">Ln 1, Col 1</span>
+                    <span id="status-encoding">UTF-8</span>
+                    <span id="status-lang">Markdown</span>
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div id="gameModal" class="modal">
-        <div class="modal-content">
-            <span id="closeGame" class="close-button">&times;</span>
-            <div id="game">
-                <div id="score">Score: 0</div>
-                <div id="dino"></div>
-                <div id="ground"></div>
+        <!-- Right: Terminal -->
+        <div id="terminal">
+            <div id="output"></div>
+            <div class="command-line">
+                <span class="prompt">~/content $</span>
+                <input type="text" id="command" autocomplete="off" autocapitalize="none">
             </div>
         </div>
     </div>
