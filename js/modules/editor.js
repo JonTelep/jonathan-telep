@@ -9,39 +9,55 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function generateLineNumbers(content) {
-    const lines = content.split('\n');
-    return lines.map((_, i) => i + 1).join('\n');
-}
+function highlightLine(line, filename) {
+    let escaped = escapeHtml(line);
 
-function highlightContent(content, filename) {
     if (!filename.endsWith('.md')) {
-        return escapeHtml(content);
+        return escaped;
     }
 
-    // Simple markdown syntax highlighting
+    // Headings
+    if (/^#{1,6}\s/.test(line)) {
+        return `<span class="npp-heading">${escaped}</span>`;
+    }
+    // Bold
+    escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<span class="npp-bold">**$1**</span>');
+    // Links [text](url) - make both the label and the raw URL clickable
+    escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
+        '<span class="npp-bracket">[</span><a class="npp-link" href="$2" target="_blank" rel="noopener noreferrer">$1</a><span class="npp-bracket">]</span><span class="npp-paren">(</span><a class="npp-url" href="$2" target="_blank" rel="noopener noreferrer">$2</a><span class="npp-paren">)</span>');
+    // List items
+    if (/^[-*]\s/.test(line)) {
+        return `<span class="npp-list">${escaped}</span>`;
+    }
+    // Inline code
+    escaped = escaped.replace(/`([^`]+)`/g, '<span class="npp-code">`$1`</span>');
+
+    return escaped;
+}
+
+function renderLines(content, filename) {
+    const editorBody = document.getElementById('editor-body');
+    if (!editorBody) return;
+
+    editorBody.innerHTML = '';
     const lines = content.split('\n');
-    return lines.map(line => {
-        let escaped = escapeHtml(line);
 
-        // Headings
-        if (/^#{1,6}\s/.test(line)) {
-            return `<span class="npp-heading">${escaped}</span>`;
-        }
-        // Bold
-        escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<span class="npp-bold">**$1**</span>');
-        // Links [text](url) - make both the label and the raw URL clickable
-        escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-            '<span class="npp-bracket">[</span><a class="npp-link" href="$2" target="_blank" rel="noopener noreferrer">$1</a><span class="npp-bracket">]</span><span class="npp-paren">(</span><a class="npp-url" href="$2" target="_blank" rel="noopener noreferrer">$2</a><span class="npp-paren">)</span>');
-        // List items
-        if (/^[-*]\s/.test(line)) {
-            return `<span class="npp-list">${escaped}</span>`;
-        }
-        // Inline code
-        escaped = escaped.replace(/`([^`]+)`/g, '<span class="npp-code">`$1`</span>');
+    lines.forEach((line, i) => {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'editor-line';
 
-        return escaped;
-    }).join('\n');
+        const numSpan = document.createElement('span');
+        numSpan.className = 'line-num';
+        numSpan.textContent = i + 1;
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'line-text';
+        textSpan.innerHTML = highlightLine(line, filename) || '\u00a0';
+
+        lineDiv.appendChild(numSpan);
+        lineDiv.appendChild(textSpan);
+        editorBody.appendChild(lineDiv);
+    });
 }
 
 export function openFileInEditor(filename, content) {
@@ -62,18 +78,13 @@ function switchToTab(index) {
     activeTabIndex = index;
 
     const tab = openTabs[index];
-    const lineNumbers = document.getElementById('editor-line-numbers');
-    const editorContent = document.getElementById('editor-content');
     const statusFilename = document.getElementById('status-filename');
     const statusLines = document.getElementById('status-lines');
 
-    if (lineNumbers && editorContent) {
-        lineNumbers.textContent = generateLineNumbers(tab.content);
-        editorContent.innerHTML = highlightContent(tab.content, tab.filename);
-        statusFilename.textContent = tab.filename;
-        const lineCount = tab.content.split('\n').length;
-        statusLines.textContent = `Ln 1, Col 1 | ${lineCount} lines`;
-    }
+    renderLines(tab.content, tab.filename);
+    statusFilename.textContent = tab.filename;
+    const lineCount = tab.content.split('\n').length;
+    statusLines.textContent = `Ln 1, Col 1 | ${lineCount} lines`;
 
     renderTabs();
 }
@@ -123,12 +134,11 @@ function renderTabs() {
 }
 
 function showWelcome() {
-    const lineNumbers = document.getElementById('editor-line-numbers');
-    const editorContent = document.getElementById('editor-content');
+    const editorBody = document.getElementById('editor-body');
     const statusFilename = document.getElementById('status-filename');
     const statusLines = document.getElementById('status-lines');
 
-    if (lineNumbers && editorContent) {
+    if (editorBody) {
         const welcomeText = `Welcome to Jonathan Telep's Portfolio
 
 Use the terminal on the right to explore:
@@ -138,8 +148,25 @@ Use the terminal on the right to explore:
 
 Files will open here automatically.`;
 
-        lineNumbers.textContent = generateLineNumbers(welcomeText);
-        editorContent.innerHTML = `<span class="npp-comment">${escapeHtml(welcomeText)}</span>`;
+        editorBody.innerHTML = '';
+        const lines = welcomeText.split('\n');
+        lines.forEach((line, i) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'editor-line';
+
+            const numSpan = document.createElement('span');
+            numSpan.className = 'line-num';
+            numSpan.textContent = i + 1;
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'line-text';
+            textSpan.innerHTML = `<span class="npp-comment">${escapeHtml(line) || '\u00a0'}</span>`;
+
+            lineDiv.appendChild(numSpan);
+            lineDiv.appendChild(textSpan);
+            editorBody.appendChild(lineDiv);
+        });
+
         statusFilename.textContent = 'new 1';
         statusLines.textContent = `Ln 1, Col 1`;
     }
@@ -232,8 +259,13 @@ function initToggle() {
     const explorer = document.getElementById('file-explorer');
     if (!btn || !explorer) return;
 
-    // Start visible
-    btn.classList.add('active');
+    // Start collapsed on mobile, visible on desktop
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (isMobile) {
+        explorer.classList.add('collapsed');
+    } else {
+        btn.classList.add('active');
+    }
 
     btn.addEventListener('click', () => {
         explorer.classList.toggle('collapsed');

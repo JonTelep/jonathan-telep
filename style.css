@@ -293,10 +293,10 @@ body, html {
 /* Editor Body */
 #editor-body {
     flex: 1;
-    display: flex;
     overflow: auto;
     background: #1e1e1e;
     min-height: 0;
+    padding: 8px 0;
 }
 
 #editor-body::-webkit-scrollbar {
@@ -317,33 +317,32 @@ body, html {
     background: #555;
 }
 
-/* Line Numbers */
-#editor-line-numbers {
-    background: #1e1e1e;
-    color: #858585;
-    padding: 8px 12px 8px 8px;
-    text-align: right;
-    font-size: 13px;
+/* Editor Lines (interleaved line numbers + content) */
+.editor-line {
+    display: flex;
     line-height: 1.5;
-    white-space: pre;
-    user-select: none;
-    border-right: 1px solid #333;
-    flex-shrink: 0;
+    font-size: 13px;
     font-family: 'Consolas', 'Courier New', monospace;
+    min-height: 1.5em;
 }
 
-/* Editor Content */
-#editor-content {
+.line-num {
+    color: #858585;
+    padding: 0 12px 0 8px;
+    text-align: right;
+    user-select: none;
+    flex-shrink: 0;
+    min-width: 40px;
+    border-right: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.line-text {
     flex: 1;
-    padding: 8px 16px;
-    font-size: 13px;
-    line-height: 1.5;
+    padding: 0 16px;
     color: #d4d4d4;
-    margin: 0;
-    font-family: 'Consolas', 'Courier New', monospace;
     white-space: pre-wrap;
     word-wrap: break-word;
-    overflow-x: auto;
     min-width: 0;
 }
 
@@ -641,8 +640,23 @@ body, html {
         font-size: 8px;
     }
 
+    #editor-main {
+        position: relative;
+    }
+
     #file-explorer {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 200px;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #file-explorer.collapsed {
+        width: 0;
+        box-shadow: none;
     }
 }
 
