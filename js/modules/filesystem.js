@@ -23,8 +23,9 @@ If you are looking to work together on any project that is exciting, please feel
 
 ## Current Projects:
 - The website you are reading this on ([jonathantelep.com](https://jonathantelep.com))
-- [Visualize Postgres](https://jonathantelep.com/postgres-visualizer/); A PostgreSQL CREATE SQL to ER Diagram web application.
-- [Business by Telegram](https://github.com/JonTelep/telegram); A service connecting a telegram channel to your database.
+- [Visualize Postgres](https://jonathantelep.com/postgres); A PostgreSQL CREATE SQL to ER Diagram web application.
+- [JSONIFY](https://jonathantelep.com/json); A JSON parser that can parse JSON files and return the data in a readable format.
+- [Let's Talk Statistics](https://letstalkstatistics.com); An interactive data visualization platform designed to make statistical concepts accessible and engaging for students, researchers, and data enthusiasts.
 `
             },
             'projects': {
@@ -32,7 +33,7 @@ If you are looking to work together on any project that is exciting, please feel
                 contents: {
                     'visualize-postgres.md': {
                         type: 'file',
-                        url: 'https://jonathantelep.com/postgres-visualizer/',
+                        url: 'https://jonathantelep.com/postgres',
                         github: 'https://github.com/JonTelep/visualize-postgres',
                         content: `# Visualize Postgres
 
@@ -54,6 +55,14 @@ The source code is available on GitHub: [https://github.com/JonTelep/visualize-p
 - Frontend: React with Vite
 - Backend: Python with FastAPI
 - Diagram Rendering: Custom visualization engine`
+                    },
+                    'json.md': {
+                        type: 'file',
+                        url: 'https://jonathantelep.com/json',
+                        github: 'https://github.com/JonTelep/jsonify',
+                        content: `# JSON Parser
+
+A JSON parser that can parse JSON files and return the data in a readable format.`
                     },
                     'lets-talk-statistics.md': {
                         type: 'file',
@@ -88,49 +97,6 @@ Let's Talk Statistics provides real-time, interactive charts and visualizations 
 To bridge the gap between theoretical statistics and practical application by providing accessible, interactive tools for learning and exploring data science concepts.
 
 Visit the live application at [letstalkstatistics.com](https://letstalkstatistics.com)`
-                    },
-                    'capitol-trades.md': {
-                        type: 'file',
-                        url: 'https://capitoltrades.com',
-                        github: 'https://github.com/JonTelep/capitol-trades',
-                        content: `# Capitol Trades
-
-A transparency platform that tracks and analyzes stock trades made by members of Congress, providing public access to elected officials' financial activities.
-
-## Mission Statement
-
-Capitol Trades promotes government transparency by making congressional financial disclosures easily accessible and searchable. We believe the public has a right to know about potential conflicts of interest among their elected representatives.
-
-## Features
-
-- **Real-time Trade Tracking**: Monitor congressional stock trades as they're disclosed
-- **Advanced Search & Filtering**: Find trades by representative, stock, date range, and more
-- **Market Analysis**: Analyze trading patterns and performance metrics
-- **Data Visualization**: Interactive charts showing trading trends and insights
-- **Mobile Responsive**: Full functionality on all devices
-- **API Access**: Programmatic access to trade data for researchers and journalists
-
-## How It Works
-
-1. **Data Collection**: Automated parsing of official congressional disclosure forms
-2. **Data Validation**: Cross-reference with multiple sources for accuracy
-3. **Real-time Updates**: New trades appear within hours of official filing
-4. **Public Access**: Free, unrestricted access to all data and visualizations
-
-## Technology Stack
-
-- **Backend**: Python with FastAPI
-- **Database**: PostgreSQL with time-series optimizations
-- **Frontend**: React with TypeScript
-- **Data Processing**: Pandas and NumPy
-- **Visualization**: D3.js and Recharts
-- **Infrastructure**: Docker containerization
-
-## Legal & Ethics
-
-All data is sourced from publicly available government disclosures. Capitol Trades operates in full compliance with transparency laws and ethical journalism standards.
-
-Explore the platform at [capitoltrades.com](https://capitoltrades.com)`
                     },
                     'telep-io.md': {
                         type: 'file',
@@ -185,7 +151,7 @@ Interested in working together? Let's discuss your project.
 
 - **Website**: [telep.io](https://telep.io)
 - **Twitter**: [@telep_io](https://x.com/telep_io)
-- **Email**: hello@telep.io
+- **Email**: jon@telep.io
 
 Ready to build something amazing? Let's talk.`
                     }

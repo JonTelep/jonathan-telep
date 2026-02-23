@@ -169,7 +169,7 @@ const PROJECTS = [
     { url: 'https://api.telep.io', description: 'Company API gateway', category: 'work' },
     { url: 'https://www.jonathantelep.com', description: 'Personal site', category: 'info' },
     { url: 'https://www.letstalkstatistics.com', description: 'Statistics site', category: 'info' },
-    { url: 'https://www.jonathantelep.com/postgres/', description: 'Postgres schema visualizer', category: 'dev' },
+    { url: 'https://www.jonathantelep.com/postgres', description: 'Postgres schema visualizer', category: 'dev' },
     { url: 'https://www.jonathantelep.com/json', description: 'JSON parser', category: 'dev' },
 ];
 
