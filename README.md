@@ -24,6 +24,10 @@ Type `help` in the terminal to see all commands:
 - `play dino` - Launch the dinosaur game
 - `clear` - Clear terminal output
 - `history` - Show command history
+- `weather` - Show 7-day weather forecast for your location (via NOAA API)
+- `mrate` - Show current 30-year fixed mortgage rate (via FRED API)
+- `space` - Show upcoming rocket launches (via The Space Devs Launch Library)
+- `list` - Show all projects and services
 
 Tab completion and arrow key navigation (up/down for history) are supported.
 
