@@ -465,4 +465,12 @@ export function initializeTerminal() {
     output.innerHTML += 'Welcome to my terminal! Type "help" for available commands.\n';
     addNewPrompt();
     updatePrompt();
+
+    // Execute command from ?prompt= query parameter
+    const params = new URLSearchParams(window.location.search);
+    const promptCmd = params.get('prompt');
+    if (promptCmd) {
+        handleCommand(promptCmd.trim());
+        addNewPrompt();
+    }
 } 

@@ -2,7 +2,7 @@
 
 IMAGE_NAME = jonathan-telep
 CONTAINER_NAME = jonathan-telep
-PORT = 8080
+PORT = 3000
 
 help:
 	@echo "Available targets:"
@@ -21,7 +21,7 @@ build:
 
 run:
 	@echo "Running container..."
-	podman run -d --name $(CONTAINER_NAME) -p $(PORT):80 $(IMAGE_NAME)
+	podman run -d --name $(CONTAINER_NAME) --env-file .env -p $(PORT):3000 $(IMAGE_NAME)
 	@echo "Container running at http://localhost:$(PORT)"
 
 stop:

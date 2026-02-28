@@ -1,6 +1,6 @@
 # Jonathan Telep - Personal Portfolio
 
-An interactive terminal-based portfolio website that showcases my projects and interests through a Unix-like command-line interface. Built as a single-page application with vanilla JavaScript, this site simulates a functional terminal where visitors can navigate a virtual filesystem, read project documentation, and even play a mini dino game.
+An interactive terminal-based portfolio website that showcases my projects and interests through a Unix-like command-line interface. Built as a single-page application with vanilla JavaScript, this site simulates a functional terminal where visitors can navigate a virtual filesystem, read project documentation, and explore live data integrations.
 
 ## About
 
@@ -11,7 +11,8 @@ I'm a senior software engineer on a journey to escape the 9-5 grind and build in
 - **Interactive Terminal**: Full-featured terminal emulation with command history, tab completion, and Unix-like commands
 - **Virtual Filesystem**: Navigate through projects and content using `cd`, `ls`, and `cat` commands
 - **Markdown Support**: Project documentation rendered beautifully in the terminal
-- **Easter Egg**: Hidden dino game accessible via `play dino` command
+- **Live Data**: Real-time weather forecasts, mortgage rates, and rocket launch schedules
+- **Integrated Services**: Links to self-hosted tools like Postgres schema visualizer and JSON parser
 - **Responsive Design**: Works on desktop and mobile devices
 
 ## Available Commands
@@ -21,13 +22,14 @@ Type `help` in the terminal to see all commands:
 - `ls` - List directory contents
 - `cd [directory]` - Change directory
 - `cat [file]` - Display file contents (Markdown files are rendered)
-- `play dino` - Launch the dinosaur game
 - `clear` - Clear terminal output
 - `history` - Show command history
 - `weather` - Show 7-day weather forecast for your location (via NOAA API)
 - `mrate` - Show current 30-year fixed mortgage rate (via FRED API)
 - `space` - Show upcoming rocket launches (via The Space Devs Launch Library)
 - `list` - Show all projects and services
+- `postgres` - Open Postgres schema visualizer
+- `json` - Open JSON parser
 
 Tab completion and arrow key navigation (up/down for history) are supported.
 
@@ -51,6 +53,13 @@ npx serve .
 
 ### Option 3: Container with Podman (Production-like)
 
+Create a `.env` file with required environment variables:
+
+```bash
+POSTGRES_HOST=host.containers.internal
+FRED_API_KEY=your_key_here
+```
+
 Using the included Makefile:
 
 ```bash
@@ -59,25 +68,20 @@ make
 
 # Or individual commands:
 make build          # Build container image
-make run            # Run container
+make run            # Run container (reads .env file)
 make stop           # Stop and remove container
 make clean          # Remove container and image
 make restart        # Rebuild and restart
 make help           # Show all available commands
 ```
 
-Manual Podman commands:
-```bash
-podman build -t jonathan-telep .
-podman run -d --name jonathan-telep -p 80:80 jonathan-telep
-```
-
-Visit `http://localhost` (or `http://localhost:80`)
+Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid IPv6 issues with Podman).
 
 ## Deployment
 
-to [JonathanTelep.com](www.jonathantelep.com)
-Required Node version: >=22.0.0
+- **Production URL**: [JonathanTelep.com](https://www.jonathantelep.com)
+- **Deployment platform**: Coolify on VPS
+- **Container port**: 3000
 
 ## Project Structure
 
@@ -86,19 +90,19 @@ Required Node version: >=22.0.0
 ├── index.html              # Main HTML shell
 ├── style.css               # Terminal and game styling
 ├── js/
-│   ├── main.js            # Entry point
+│   ├── main.js             # Entry point
 │   └── modules/
-│       ├── terminal.js    # Command handling & terminal logic
-│       ├── filesystem.js  # Virtual filesystem data
-│       └── game.js        # Dino game logic
-├── content/               # Reference markdown files (not used at runtime)
-├── Dockerfile             # Container build configuration
-├── nginx.conf             # Nginx configuration for container
-├── vercel.json            # Vercel deployment config
-└── Makefile              # Container build/run commands
+│       ├── terminal.js     # Command handling & terminal logic
+│       ├── filesystem.js   # Virtual filesystem data
+│       └── editor.js       # Editor functionality
+├── public/                 # Static assets (logos, SVGs)
+├── Dockerfile              # Container build (nginx:alpine)
+├── nginx.conf.template     # Nginx config with envsubst templating
+├── Makefile                # Container build/run commands
+└── .env                    # Environment variables (not committed)
 ```
 
-**Important**: Site content is embedded in `js/modules/filesystem.js`. The `content/` directory contains reference copies only.
+**Important**: Site content is embedded in `js/modules/filesystem.js`. There is no build process — this is intentionally vanilla JavaScript.
 
 ## Updating Content
 
@@ -107,16 +111,3 @@ To add or modify projects and content:
 1. Edit the filesystem object in `js/modules/filesystem.js`
 2. Add new directories/files following the existing structure
 3. Markdown files are automatically rendered when using the `cat` command
-
-## TODOs
-
-- Add context to root readme and give the ability to view the file with cat command
-- Add real projects: mines-swept, letstalkstatistics
-- Telep IO plug (future as sites not up yet)
-- Chess plug cuz i love chess
-- Twitter plug
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
