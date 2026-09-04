@@ -50,7 +50,9 @@ const server = createServer(async (req, res) => {
         return;
     }
 
-    let filePath = join(process.cwd(), req.url === '/' ? 'index.html' : req.url);
+    const pathname = req.url.split('?')[0];
+    const route = pathname === '/' ? 'index.html' : pathname === '/terminal' ? 'terminal.html' : pathname;
+    let filePath = join(process.cwd(), route);
     try {
         const data = await readFile(filePath);
         const ext = extname(filePath);

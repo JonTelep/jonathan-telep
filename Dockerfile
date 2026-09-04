@@ -4,7 +4,9 @@ COPY nginx.conf.template /etc/nginx/templates/nginx.conf.template
 
 ARG CACHEBUST=1
 COPY index.html /usr/share/nginx/html/
+COPY terminal.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
+COPY landing.css /usr/share/nginx/html/
 COPY js/ /usr/share/nginx/html/js/
 COPY public/ /usr/share/nginx/html/public/
 

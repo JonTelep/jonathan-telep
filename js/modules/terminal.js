@@ -45,12 +45,13 @@ export function handleCommand(command) {
             output.innerHTML += '- cat [file]: Display file contents (supports Markdown)\n';
             output.innerHTML += '- clear: Clear the terminal\n';
             output.innerHTML += '- history: Show command history\n';
-            output.innerHTML += '- weather: Show 7-day weather forecast for your location\n';
+            output.innerHTML += '- weather [cle]: 7-day forecast for your location (or Cleveland, OH)\n';
             output.innerHTML += '- mrate: Show current 30-year fixed mortgage rate\n';
             output.innerHTML += '- space: Show upcoming rocket launches\n';
             output.innerHTML += '- list: Show all projects and services\n';
             output.innerHTML += '- postgres: Open Postgres schema visualizer\n';
             output.innerHTML += '- json: Open JSON parser\n';
+            output.innerHTML += '- home: Back to jonathantelep.com landing page\n';
             break;
             
         case 'ls':
@@ -134,7 +135,12 @@ export function handleCommand(command) {
             break;
             
         case 'weather':
-            fetchWeather(output);
+            fetchWeather(output, args[0]);
+            break;
+
+        case 'home':
+            output.innerHTML += 'Heading home...\n';
+            window.location.href = '/';
             break;
 
         case 'mrate':
@@ -165,15 +171,20 @@ export function handleCommand(command) {
 }
 
 const PROJECTS = [
+    { url: 'https://sumvid.app', description: 'sumvid — video summarization (latest)', category: 'products' },
+    { url: 'https://telep.tools', description: 'telep.tools — building', category: 'products' },
+    { url: 'https://telep.io/contact', description: 'boards — image → video gen (building)', category: 'products' },
     { url: 'https://www.telep.io', description: "My company's site", category: 'work' },
     { url: 'https://api.telep.io', description: 'Company API gateway', category: 'work' },
-    { url: 'https://www.jonathantelep.com', description: 'Personal site', category: 'info' },
+    { url: 'https://www.jonathantelep.com', description: 'Personal site (v1)', category: 'info' },
+    { url: 'https://www.jonathantelep.com/terminal', description: 'This terminal', category: 'dev' },
     { url: 'https://www.letstalkstatistics.com', description: 'Statistics site', category: 'info' },
     { url: 'https://www.jonathantelep.com/postgres', description: 'Postgres schema visualizer', category: 'dev' },
     { url: 'https://www.jonathantelep.com/json', description: 'JSON parser', category: 'dev' },
 ];
 
 const CATEGORY_LABELS = {
+    products: '🚀 Products',
     work: '💼 Work',
     info: '📰 Info',
     dev: '🛠️  Dev',
@@ -187,7 +198,7 @@ function displayProjects(output) {
         (grouped[p.category] ??= []).push(p);
     }
 
-    for (const cat of ['work', 'info', 'dev']) {
+    for (const cat of ['products', 'work', 'info', 'dev']) {
         const items = grouped[cat];
         if (!items) continue;
 
@@ -195,7 +206,7 @@ function displayProjects(output) {
         display += '─────────────────────────────────────────────────────────────────\n';
 
         for (const p of items) {
-            const desc = p.description.padEnd(30);
+            const desc = p.description.padEnd(40);
             display += `${desc} <a href="${p.url}" target="_blank">${p.url}</a>\n`;
         }
     }
@@ -203,23 +214,40 @@ function displayProjects(output) {
     output.innerHTML += display;
 }
 
-async function fetchWeather(output) {
+const CLEVELAND = { latitude: 41.4993, longitude: -81.6944 };
+
+function getPosition() {
+    return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) {
+            reject(new Error('Geolocation is not supported by your browser'));
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(resolve, (err) => {
+            if (err.code === 1) reject(new Error('Location permission denied'));
+            else if (err.code === 2) reject(new Error('Location unavailable'));
+            else reject(new Error('Location request timed out'));
+        }, { timeout: 10000 });
+    });
+}
+
+async function fetchWeather(output, where) {
     output.innerHTML += 'Loading weather data...\n';
 
     try {
-        const position = await new Promise((resolve, reject) => {
-            if (!navigator.geolocation) {
-                reject(new Error('Geolocation is not supported by your browser'));
-                return;
+        let coords;
+        let note = '';
+        if (where && /^(cle|cleveland|home)$/i.test(where)) {
+            coords = CLEVELAND;
+        } else {
+            try {
+                const position = await getPosition();
+                coords = position.coords;
+            } catch (err) {
+                coords = CLEVELAND;
+                note = `(${err.message.toLowerCase()} — showing Cleveland, OH instead)\n`;
             }
-            navigator.geolocation.getCurrentPosition(resolve, (err) => {
-                if (err.code === 1) reject(new Error('Location permission denied'));
-                else if (err.code === 2) reject(new Error('Location unavailable'));
-                else reject(new Error('Location request timed out'));
-            }, { timeout: 10000 });
-        });
-
-        const { latitude, longitude } = position.coords;
+        }
+        const { latitude, longitude } = coords;
         const lat = latitude.toFixed(4);
         const lon = longitude.toFixed(4);
 
@@ -253,7 +281,7 @@ async function fetchWeather(output) {
             }
         }
 
-        let table = `\n📍 Forecast for ${locationName}\n\n`;
+        let table = `\n📍 Forecast for ${locationName}\n${note}\n`;
         table += 'Day            High   Low   Precip   Conditions\n';
         table += '─────────────────────────────────────────────────────────\n';
 
@@ -362,7 +390,7 @@ export function addNewPrompt() {
     
     terminal.replaceChild(newPrompt, currentPrompt);
     updatePrompt();
-    newInput.focus();
+    newInput.focus({ preventScroll: true });
 }
 
 function navigateHistory(direction) {

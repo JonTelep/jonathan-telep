@@ -61,6 +61,8 @@ function renderLines(content, filename) {
 }
 
 export function openFileInEditor(filename, content) {
+    // No editor on this page (e.g. embedded terminal) — nothing to do
+    if (!document.getElementById('editor-body')) return;
     // Check if already open
     const existingIndex = openTabs.findIndex(t => t.filename === filename);
     if (existingIndex !== -1) {
@@ -274,6 +276,7 @@ function initToggle() {
 }
 
 export function initializeEditor() {
+    if (!document.getElementById('editor-panel')) return;
     showWelcome();
     renderFileExplorer();
     initToggle();

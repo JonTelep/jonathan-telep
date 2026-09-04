@@ -10,11 +10,11 @@ export const filesystem = {
                 github: 'https://github.com/JonTelep/jonathan-telep',
                 content: `# Hello! I am Jonathan Telep.
 
-I am a senior software engineer at Red Hat that likes to build things that I needed or always wanted and created this site to share my projects and thoughts. Much of my random personal projects will be public on [github](https://github.com/JonTelep).
+I am a software engineer in Cleveland, Ohio who likes to build things that I needed or always wanted, and I created this site to share my projects and thoughts. Much of my random personal projects will be public on [github](https://github.com/JonTelep).
 
-Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. Follow me in [Twitter/X](https://x.com/telep_io) to keep informed on what this may entail.
+Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. The latest live app is [sumvid](https://sumvid.app), a summarization of videos. Right now I am building toward [telep.tools](https://telep.tools), one home for every tool I make, and **boards**, an image generation to video generation tool. Follow me on [Twitter/X](https://x.com/telep_io) to keep informed.
 
-If you are looking to work together on any project that is exciting, please feel free to reach me via a DM on twitter. I am always looking to get involved in interesting projects.
+If you are looking to work together on any project that is exciting, reach me at [telep.io/contact](https://telep.io/contact) or via a DM on [X](https://x.com/telep_io). I am always looking to get involved in interesting projects.
 
 ## Socials:
 - [Twitter/X](https://x.com/telep_io)

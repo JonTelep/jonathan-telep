@@ -1,6 +1,15 @@
-# Jonathan Telep - Personal Portfolio
+# Jonathan Telep - Personal Site (v1)
 
-An interactive terminal-based portfolio website that showcases my projects and interests through a Unix-like command-line interface. Built as a single-page application with vanilla JavaScript, this site simulates a functional terminal where visitors can navigate a virtual filesystem, read project documentation, and explore live data integrations.
+Personal site for Jonathan Telep, senior software engineer in Cleveland, Ohio.
+
+- `/` — the v1 landing page (`index.html`, `landing.css`, `js/landing.js`): hero, about (with a live embedded terminal), what I build, projects, a **Systems** directory of everything online, and contact. Live Cleveland weather, mortgage rate, and next-launch ticker.
+- `/terminal` — the full terminal + Notepad++-style editor desktop (`terminal.html`, `style.css`, `js/main.js`). Same virtual filesystem and commands as before.
+
+Both pages share `js/modules/terminal.js` and `js/modules/filesystem.js`.
+
+## Terminal
+
+An interactive terminal that showcases my projects and interests through a Unix-like command-line interface. Built with vanilla JavaScript, it simulates a functional terminal where visitors can navigate a virtual filesystem, read project documentation, and even play a mini dino game.
 
 ## About
 
@@ -24,18 +33,27 @@ Type `help` in the terminal to see all commands:
 - `cat [file]` - Display file contents (Markdown files are rendered)
 - `clear` - Clear terminal output
 - `history` - Show command history
-- `weather` - Show 7-day weather forecast for your location (via NOAA API)
+- `weather [cle]` - Show 7-day weather forecast for your location, or Cleveland, OH (via NOAA API). Falls back to Cleveland if location is unavailable.
 - `mrate` - Show current 30-year fixed mortgage rate (via FRED API)
 - `space` - Show upcoming rocket launches (via The Space Devs Launch Library)
 - `list` - Show all projects and services
 - `postgres` - Open Postgres schema visualizer
 - `json` - Open JSON parser
+- `home` - Back to the landing page
 
 Tab completion and arrow key navigation (up/down for history) are supported.
 
 ## Development
 
-This is a pure static website with no build process required. Choose your preferred development method:
+No build step. The quickest way to run everything (including the live `mrate` and `space` feeds) is:
+
+```bash
+make dev        # http://localhost:8000
+```
+
+This runs `node server.js` (Node 22+), which serves the static files and proxies `/api/mrate` and `/api/space`. Put your FRED key in `.env` as `FRED_API_KEY=...` and `make dev` will load it. Without a key, everything works except the mortgage rate.
+
+Other options (static only, no API proxies):
 
 ### Option 1: Local Development with Python
 

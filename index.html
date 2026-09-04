@@ -2,115 +2,403 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Jonathan Telep — Senior Software Engineer & Founder</title>
-    <meta name="description" content="Jonathan Telep — Senior Software Engineer at Red Hat and Founder of Telep IO. Building government data transparency tools, APIs, and AI-powered intelligence platforms.">
-    <meta name="keywords" content="Jonathan Telep, software engineer, Red Hat, Telep IO, web developer, API developer, government data, Ohio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jon telep — software engineer, cleveland</title>
+    <meta name="description" content="Jonathan Telep. Software engineer in Cleveland, Ohio. The universe is possible, let me help you achieve it. Telep IO, sumvid, telep.tools, boards and a set of live systems.">
+    <meta name="keywords" content="Jonathan Telep, software engineer, Cleveland, Ohio, Telep IO, sumvid, telep.tools, boards, web developer, API developer">
     <meta name="author" content="Jonathan Telep">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Jonathan Telep — Software Engineer & Founder">
-    <meta property="og:description" content="Senior Software Engineer at Red Hat. Founder of Telep IO. Building tools for government data transparency.">
+    <meta property="og:title" content="jon telep — software engineer, cleveland">
+    <meta property="og:description" content="The universe is possible, let me help you achieve it. Founder of Telep IO. Building sumvid, telep.tools and boards from Cleveland, Ohio.">
     <meta property="og:url" content="https://jonathantelep.com">
     <meta property="og:site_name" content="Jonathan Telep">
-    
+    <meta property="og:image" content="https://jonathantelep.com/public/jon.png">
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Jonathan Telep — Software Engineer & Founder">
-    <meta name="twitter:description" content="Senior Software Engineer at Red Hat. Founder of Telep IO.">
+    <meta name="twitter:title" content="jon telep — software engineer, cleveland">
+    <meta name="twitter:description" content="The universe is possible, let me help you achieve it. Founder of Telep IO. Building sumvid, telep.tools and boards.">
     <meta name="twitter:creator" content="@telep_io">
-    
+    <meta name="twitter:image" content="https://jonathantelep.com/public/jon.png">
+
     <!-- Canonical -->
     <link rel="canonical" href="https://jonathantelep.com">
-    
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Jonathan Telep",
-      "jobTitle": "Senior Software Engineer",
+      "jobTitle": "Software Engineer",
       "worksFor": [
-        { "@type": "Organization", "name": "Red Hat", "url": "https://redhat.com" },
         { "@type": "Organization", "name": "Telep IO", "url": "https://telep.io" }
       ],
       "url": "https://jonathantelep.com",
+      "image": "https://jonathantelep.com/public/jon.png",
       "sameAs": [
-        "https://twitter.com/telep_io",
+        "https://x.com/telep_io",
         "https://github.com/JonTelep",
-        "https://telep.io"
+        "https://telep.io",
+        "https://sumvid.app"
       ],
-      "knowsAbout": ["Software Engineering", "API Development", "Data Analytics", "Government Data", "AI/ML"],
-      "address": { "@type": "PostalAddress", "addressRegion": "Ohio", "addressCountry": "US" }
+      "knowsAbout": ["Software Engineering", "API Development", "Web Development", "AI/ML", "Video Summarization"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Cleveland", "addressRegion": "Ohio", "addressCountry": "US" }
     }
     </script>
-    
     <link rel="icon" type="image/svg+xml" href="public/telep-io-logo-white.svg">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css?v=3">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div id="desktop">
-        <!-- Left: Notepad++ Editor -->
-        <div id="editor-panel">
-            <div id="editor-menubar">
-                <span class="menu-item">File</span>
-                <span class="menu-item">Edit</span>
-                <span class="menu-item">Search</span>
-                <span class="menu-item">View</span>
-                <span class="menu-item">Encoding</span>
-                <span class="menu-item">Language</span>
-                <span class="menu-item">Settings</span>
-            </div>
-            <div id="editor-toolbar">
-                <span class="toolbar-btn" id="toggle-explorer" title="Toggle File Explorer">&#128193;</span>
-                <span class="toolbar-divider"></span>
-                <span class="toolbar-btn" title="New">&#128196;</span>
-                <span class="toolbar-btn" title="Open">&#128194;</span>
-                <span class="toolbar-btn" title="Save">&#128190;</span>
-                <span class="toolbar-divider"></span>
-                <span class="toolbar-btn" title="Cut">&#9986;</span>
-                <span class="toolbar-btn" title="Copy">&#128203;</span>
-                <span class="toolbar-btn" title="Paste">&#128195;</span>
-                <span class="toolbar-divider"></span>
-                <span class="toolbar-btn" title="Undo">&#8630;</span>
-                <span class="toolbar-btn" title="Redo">&#8631;</span>
-                <span class="toolbar-divider"></span>
-                <span class="toolbar-btn" title="Find">&#128269;</span>
-                <span class="toolbar-btn" title="Replace">&#128260;</span>
-            </div>
-            <div id="editor-tabs"></div>
-            <div id="editor-main">
-                <div id="file-explorer">
-                    <div id="explorer-header">
-                        <span>EXPLORER</span>
-                    </div>
-                    <div id="explorer-tree"></div>
-                </div>
-                <div id="editor-body"></div>
-            </div>
-            <div id="editor-statusbar">
-                <span id="status-filename">new 1</span>
-                <span id="status-right">
-                    <span id="status-readonly">Read Only</span>
-                    <span id="status-lines">Ln 1, Col 1</span>
-                    <span id="status-encoding">UTF-8</span>
-                    <span id="status-lang">Markdown</span>
-                </span>
-            </div>
-        </div>
-
-        <!-- Right: Terminal -->
-        <div id="terminal">
-            <div id="output"></div>
-            <div class="command-line">
-                <span class="prompt">~/content $</span>
-                <input type="text" id="command" autocomplete="off" autocapitalize="none">
-            </div>
-        </div>
+    <!-- deep space + the sun (fixed, driven by scroll) -->
+    <div id="space" aria-hidden="true"></div>
+    <div id="sun" aria-hidden="true">
+        <div class="corona"></div>
+        <div class="core"></div>
     </div>
 
-    <script type="module" src="js/main.js?v=4"></script>
+    <a class="skip" href="#hello">skip to content</a>
+
+    <!-- ================= sidebar ================= -->
+    <aside id="side">
+        <a class="brand" href="/">jon telep</a>
+
+        <dl class="meta">
+            <div><dt>build:</dt><dd>v1</dd></div>
+            <div><dt>focus:</dt><dd><a href="https://telep.tools" target="_blank" rel="noopener">telep.tools</a></dd></div>
+            <div><dt>latest:</dt><dd><a href="https://sumvid.app" target="_blank" rel="noopener">sumvid</a></dd></div>
+            <div><dt>base:</dt><dd>cleveland, oh</dd></div>
+            <div><dt>clock:</dt><dd id="clock">--:--:--</dd></div>
+            <div><dt>sun:</dt><dd id="au">0.00 au</dd></div>
+        </dl>
+
+        <nav class="sidenav" aria-label="sections">
+            <a href="#hello"><span>01</span>hello</a>
+            <a href="#sun-section"><span>02</span>the sun</a>
+            <a href="#build"><span>03</span>what i build</a>
+            <a href="#projects"><span>04</span>projects</a>
+            <a href="#systems"><span>05</span>systems</a>
+            <a href="#contact"><span>06</span>contact</a>
+        </nav>
+
+        <div class="signals" aria-label="live signals">
+            <p class="sig-head">signals <i class="live"></i></p>
+            <div class="sig"><span>cle wx</span><b data-tick="weather">…</b></div>
+            <div class="sig"><span>30y rate</span><b data-tick="mrate">…</b></div>
+            <div class="sig"><span>launch</span><b data-tick="space">…</b></div>
+        </div>
+
+        <div class="side-foot">
+            <a href="https://x.com/telep_io" target="_blank" rel="noopener">x</a>
+            <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github</a>
+            <a href="https://telep.io" target="_blank" rel="noopener">telep.io</a>
+            <a href="/terminal">terminal</a>
+        </div>
+    </aside>
+
+    <!-- ================= content ================= -->
+    <main id="content">
+
+        <!-- 01 hello: face first -->
+        <section id="hello" class="sec">
+            <div class="hello-grid">
+                <div class="portrait-wrap">
+                    <canvas id="portrait" width="343" height="343" aria-label="Portrait of Jonathan Telep"></canvas>
+                    <div class="portrait-frame" aria-hidden="true">
+                        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+                        <span class="scanline"></span>
+                    </div>
+                    <p class="plate">plate 00 — jon — 41.4993° n, 81.6944° w</p>
+                </div>
+
+                <div class="hello-copy">
+                    <p class="kicker"><i class="live"></i> online from cleveland, ohio</p>
+                    <h1 class="h1"><span class="typed" data-text="hi, i'm jon."></span><span class="caret"></span></h1>
+                    <p class="lede">
+                        i build software on the side, ship it on the open internet, and leave the source on
+                        <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github</a>.
+                        through <a href="https://telep.io" target="_blank" rel="noopener">telep io</a> i do the same for other people.
+                    </p>
+                    <p class="lede dim">
+                        the latest thing live is <a href="https://sumvid.app" target="_blank" rel="noopener">sumvid</a>.
+                        the thing i'm building toward right now is <a href="https://telep.tools" target="_blank" rel="noopener">telep.tools</a>.
+                    </p>
+                    <div class="cta-row">
+                        <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">work with me <span>↗</span></a>
+                        <a class="btn ghost" href="#sun-section">keep scrolling <span>↓</span></a>
+                    </div>
+                    <ul class="facts">
+                        <li><b data-count="4">0</b><span>apps online</span></li>
+                        <li><b data-count="3">0</b><span>live feeds</span></li>
+                        <li><b data-count="12" data-suffix="+">0</b><span>terminal cmds</span></li>
+                        <li><b data-count="216">0</b><span>area code</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="scroll-cue" aria-hidden="true"><span></span>the sun is below</div>
+        </section>
+
+        <!-- 02 the sun: the pitch -->
+        <section id="sun-section" class="sec sun-sec">
+            <div class="sun-copy">
+                <p class="orbit-tag"><i></i>sol · 0.00 au</p>
+                <h2 class="h-big"><span class="line">the universe</span><span class="line">is possible.</span></h2>
+                <p class="h-sub">let me help you achieve it.</p>
+                <p class="lede">
+                    every project starts as a bright idea you keep circling back to. i take that idea and turn it into
+                    something that runs: an app people can open, an api you can call, a pipeline that quietly does the job.
+                    this is my side gig, which means you get me, not a ticket queue.
+                </p>
+                <div class="pitch">
+                    <div class="pitch-item">
+                        <span class="pi-num">i.</span>
+                        <h3>shape it</h3>
+                        <p>a call, a sketch, a scope. we figure out the smallest version that's real.</p>
+                    </div>
+                    <div class="pitch-item">
+                        <span class="pi-num">ii.</span>
+                        <h3>build it</h3>
+                        <p>web apps, apis, data tools, the boring glue. built fast, kept simple.</p>
+                    </div>
+                    <div class="pitch-item">
+                        <span class="pi-num">iii.</span>
+                        <h3>launch it</h3>
+                        <p>deployed, monitored, and handed over with the keys. then we go further out.</p>
+                    </div>
+                </div>
+                <div class="cta-row">
+                    <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">start something <span>↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 what i build -->
+        <section id="build" class="sec">
+            <p class="orbit-tag"><i></i>earth · 1.00 au</p>
+            <h2 class="h2">what i build</h2>
+            <p class="sec-sub">three kinds of things, all of them running somewhere right now.</p>
+
+            <div class="build-grid">
+                <article class="build-card">
+                    <div class="viz viz-products" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <h3>products</h3>
+                    <p>small apps with one job. sumvid summarizes videos. boards turns generated images into generated video. telep.tools is where they'll all live.</p>
+                    <a href="#projects" class="more">see projects →</a>
+                </article>
+                <article class="build-card">
+                    <div class="viz viz-tools" aria-hidden="true">
+                        <em>{</em><em>"schema"</em><em>:</em><em>[</em><em>…</em><em>]</em><em>}</em>
+                    </div>
+                    <h3>developer tools</h3>
+                    <p>paste something in, get something useful out. no sign-up, no tracking. a postgres visualizer and a json formatter so far.</p>
+                    <a href="/postgres" class="more">open visualize postgres →</a>
+                </article>
+                <article class="build-card">
+                    <div class="viz viz-signals" aria-hidden="true">
+                        <svg viewBox="0 0 200 60" preserveAspectRatio="none"><polyline class="wave" points="0,30 10,28 20,34 30,20 40,36 50,30 60,26 70,40 80,22 90,30 100,32 110,18 120,38 130,28 140,30 150,24 160,36 170,30 180,26 190,34 200,30"/></svg>
+                    </div>
+                    <h3>live data</h3>
+                    <p>weather from noaa, mortgage rates from fred, launches from the space devs. pulled live, proxied through nginx, printed in a terminal.</p>
+                    <a href="#systems" class="more" data-cmd="space">run space →</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- 04 projects -->
+        <section id="projects" class="sec">
+            <p class="orbit-tag"><i></i>mars · 1.52 au</p>
+            <h2 class="h2">projects</h2>
+            <p class="sec-sub">newest first. green is live, amber is being built.</p>
+
+            <div class="cards">
+                <a class="card" href="https://sumvid.app" target="_blank" rel="noopener">
+                    <div class="card-art art-sumvid" aria-hidden="true">
+                        <div class="film"><i></i><i></i><i></i><i></i><i></i></div>
+                        <div class="lines"><i></i><i></i><i></i></div>
+                        <span class="stamp shipped">shipped</span>
+                    </div>
+                    <p class="plate">plate 01 — sumvid-app — 2026 — latest</p>
+                    <h3>sumvid</h3>
+                    <p>a summarization of videos. paste a link, get the point.</p>
+                    <div class="tags"><span>ai</span><span>video</span><span>summarization</span></div>
+                    <span class="open">open ↗</span>
+                </a>
+
+                <a class="card" href="https://telep.tools" target="_blank" rel="noopener">
+                    <div class="card-art art-tools" aria-hidden="true">
+                        <div class="tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <span class="stamp building">building</span>
+                    </div>
+                    <p class="plate">plate 02 — telep-tools — 2026 — in progress</p>
+                    <h3>telep.tools</h3>
+                    <p>one home for every tool i make. nothing deployed yet. this is what i'm building toward right now.</p>
+                    <div class="tags"><span>platform</span><span>tools</span><span>saas</span></div>
+                    <span class="open">follow along ↗</span>
+                </a>
+
+                <a class="card" href="https://telep.io/contact" target="_blank" rel="noopener">
+                    <div class="card-art art-boards" aria-hidden="true">
+                        <div class="frames"><i></i><i></i><i></i><i></i></div>
+                        <div class="play"></div>
+                        <span class="stamp building">building</span>
+                    </div>
+                    <p class="plate">plate 03 — boards — 2026 — in progress</p>
+                    <h3>boards</h3>
+                    <p>image generation to video generation. lay out the frames on a board, then let it move.</p>
+                    <div class="tags"><span>ai</span><span>image</span><span>video</span></div>
+                    <span class="open">ask about it ↗</span>
+                </a>
+
+                <a class="card" href="/postgres">
+                    <div class="card-art art-postgres" aria-hidden="true">
+                        <svg viewBox="0 0 200 110"><g class="edges"><line x1="40" y1="30" x2="100" y2="55"/><line x1="160" y1="30" x2="100" y2="55"/><line x1="100" y1="55" x2="60" y2="90"/><line x1="100" y1="55" x2="150" y2="90"/></g><g class="nodes"><rect x="20" y="18" width="40" height="24" rx="3"/><rect x="140" y="18" width="40" height="24" rx="3"/><rect x="80" y="43" width="40" height="24" rx="3"/><rect x="40" y="78" width="40" height="24" rx="3"/><rect x="130" y="78" width="40" height="24" rx="3"/></g></svg>
+                        <span class="stamp shipped">live</span>
+                    </div>
+                    <p class="plate">plate 04 — visualize-postgres — 2025</p>
+                    <h3>visualize postgres</h3>
+                    <p>point it at a schema, see the tables and how they connect.</p>
+                    <div class="tags"><span>postgres</span><span>schema</span><span>graph</span></div>
+                    <span class="open">open ↗</span>
+                </a>
+
+                <a class="card" href="/json">
+                    <div class="card-art art-json" aria-hidden="true">
+                        <pre>{
+  <b>"in"</b>: <i>"one long line"</i>,
+  <b>"out"</b>: [ <i>"pretty"</i>, <i>"valid"</i> ]
+}</pre>
+                        <span class="stamp shipped">live</span>
+                    </div>
+                    <p class="plate">plate 05 — jsonify — 2025</p>
+                    <h3>jsonify</h3>
+                    <p>paste json, get it formatted and validated. that's it.</p>
+                    <div class="tags"><span>json</span><span>formatter</span></div>
+                    <span class="open">open ↗</span>
+                </a>
+
+                <a class="card" href="/terminal">
+                    <div class="card-art art-term" aria-hidden="true">
+                        <pre><span class="g">~/content $</span> weather cle
+<span class="g">~/content $</span> space
+<span class="g">~/content $</span> play dino<span class="cur">▍</span></pre>
+                        <span class="stamp shipped">live</span>
+                    </div>
+                    <p class="plate">plate 06 — terminal — 2025</p>
+                    <h3>terminal</h3>
+                    <p>the full desktop: terminal, notepad, a file tree, and a dinosaur.</p>
+                    <div class="tags"><span>vanilla js</span><span>no build</span></div>
+                    <span class="open">open ↗</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 05 systems: terminal + directory -->
+        <section id="systems" class="sec">
+            <p class="orbit-tag"><i></i>jupiter · 5.20 au</p>
+            <h2 class="h2">systems</h2>
+            <p class="sec-sub">everything online right now. the terminal is real, type in it.</p>
+
+            <div class="term-window">
+                <div class="term-titlebar">
+                    <span class="tl red"></span><span class="tl yellow"></span><span class="tl green"></span>
+                    <span class="term-title">jon@cleveland : bash</span>
+                    <a class="term-full" href="/terminal" title="open the full terminal">⤢ full</a>
+                </div>
+                <div id="terminal">
+                    <div id="output"></div>
+                    <div class="command-line">
+                        <span class="prompt">~/content $</span>
+                        <input type="text" id="command" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="terminal command">
+                    </div>
+                </div>
+                <div class="term-hints">
+                    <span>try:</span>
+                    <button data-cmd="cat README.md">cat README.md</button>
+                    <button data-cmd="weather cle">weather cle</button>
+                    <button data-cmd="mrate">mrate</button>
+                    <button data-cmd="space">space</button>
+                    <button data-cmd="list">list</button>
+                </div>
+            </div>
+
+            <div class="sys-groups">
+                <div class="sys-group">
+                    <div class="sys-head"><span>products</span><span id="cnt-products">00</span></div>
+                    <a class="sys" href="https://sumvid.app" target="_blank" rel="noopener" data-group="products">
+                        <span class="sys-led"></span><span class="sys-name">sumvid</span><span class="sys-url">sumvid.app</span><span class="sys-desc">video summarization. latest live app.</span>
+                    </a>
+                    <a class="sys" href="https://telep.tools" target="_blank" rel="noopener" data-group="products" data-state="building">
+                        <span class="sys-led"></span><span class="sys-name">telep.tools</span><span class="sys-url">telep.tools</span><span class="sys-desc">home for all the tools. building.</span>
+                    </a>
+                    <a class="sys" href="https://telep.io/contact" target="_blank" rel="noopener" data-group="products" data-state="building">
+                        <span class="sys-led"></span><span class="sys-name">boards</span><span class="sys-url">soon</span><span class="sys-desc">image generation → video generation. building.</span>
+                    </a>
+                </div>
+                <div class="sys-group">
+                    <div class="sys-head"><span>company</span><span id="cnt-company">00</span></div>
+                    <a class="sys" href="https://telep.io" target="_blank" rel="noopener" data-group="company">
+                        <span class="sys-led"></span><span class="sys-name">telep io</span><span class="sys-url">telep.io</span><span class="sys-desc">the studio site</span>
+                    </a>
+                    <a class="sys" href="https://api.telep.io" target="_blank" rel="noopener" data-group="company">
+                        <span class="sys-led"></span><span class="sys-name">api gateway</span><span class="sys-url">api.telep.io</span><span class="sys-desc">api gateway</span>
+                    </a>
+                </div>
+                <div class="sys-group">
+                    <div class="sys-head"><span>dev</span><span id="cnt-dev">00</span></div>
+                    <a class="sys" href="/postgres" data-group="dev">
+                        <span class="sys-led"></span><span class="sys-name">visualize postgres</span><span class="sys-url">/postgres</span><span class="sys-desc">postgres schema visualizer</span>
+                    </a>
+                    <a class="sys" href="/json" data-group="dev">
+                        <span class="sys-led"></span><span class="sys-name">jsonify</span><span class="sys-url">/json</span><span class="sys-desc">json parser</span>
+                    </a>
+                    <a class="sys" href="/terminal" data-group="dev">
+                        <span class="sys-led"></span><span class="sys-name">terminal</span><span class="sys-url">/terminal</span><span class="sys-desc">full terminal + editor desktop</span>
+                    </a>
+                    <a class="sys" href="https://letstalkstatistics.com" target="_blank" rel="noopener" data-group="dev">
+                        <span class="sys-led"></span><span class="sys-name">let's talk statistics</span><span class="sys-url">letstalkstatistics.com</span><span class="sys-desc">statistics site</span>
+                    </a>
+                </div>
+                <div class="sys-group">
+                    <div class="sys-head"><span>signals</span><span id="cnt-signals">00</span></div>
+                    <a class="sys" href="#systems" data-cmd="weather cle" data-group="signals">
+                        <span class="sys-led"></span><span class="sys-name">weather</span><span class="sys-url">api.weather.gov</span><span class="sys-desc">noaa forecast. your location, or cleveland.</span>
+                    </a>
+                    <a class="sys" href="#systems" data-cmd="mrate" data-group="signals">
+                        <span class="sys-led"></span><span class="sys-name">mrate</span><span class="sys-url">/api/mrate</span><span class="sys-desc">30-year fixed rate, freddie mac via fred</span>
+                    </a>
+                    <a class="sys" href="#systems" data-cmd="space" data-group="signals">
+                        <span class="sys-led"></span><span class="sys-name">space</span><span class="sys-url">/api/space</span><span class="sys-desc">upcoming launches, the space devs</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 contact -->
+        <section id="contact" class="sec">
+            <p class="orbit-tag"><i></i>neptune · 30.1 au</p>
+            <h2 class="h-big"><span class="line">still</span><span class="line">in range.</span></h2>
+            <p class="lede">thirty au out and the signal still reaches. tell me what you're building and let me help you achieve it.</p>
+            <div class="cta-row">
+                <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact <span>↗</span></a>
+                <a class="btn ghost" href="https://x.com/telep_io" target="_blank" rel="noopener">dm me on x <span>↗</span></a>
+            </div>
+            <p class="contact-foot">or where the code lives: <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github.com/JonTelep</a></p>
+        </section>
+
+        <footer>
+            <span>jonathan telep · cleveland, oh · v1</span>
+            <span><a href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact</a> · <a href="https://x.com/telep_io" target="_blank" rel="noopener">@telep_io</a></span>
+        </footer>
+    </main>
+
+    <script type="module" src="js/landing.js?v=3"></script>
 </body>
 </html>
