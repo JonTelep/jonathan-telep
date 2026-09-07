@@ -6,4 +6,10 @@ docker-compose.yml
 Makefile
 README.md
 node_modules/
-*.log 
+*.log
+**/node_modules/
+**/dist/
+**/__pycache__/
+**/.pytest_cache/
+.env
+.env.*

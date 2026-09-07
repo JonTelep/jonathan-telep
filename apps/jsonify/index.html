@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonify</title>
+    <!-- social-preview:start -->
+    <meta name="description" content="Format, inspect, and explore JSON in a clean, collapsible tree. Private by design: your data stays in your browser.">
+    <link rel="canonical" href="https://jonathantelep.com/jsonify/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jonathan Telep">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Jsonify — Make sense of your JSON">
+    <meta property="og:description" content="Format, inspect, and explore JSON in a clean, collapsible tree. Private by design: your data stays in your browser.">
+    <meta property="og:url" content="https://jonathantelep.com/jsonify/">
+    <meta property="og:image" content="https://jonathantelep.com/public/social/jsonify-v1.png">
+    <meta property="og:image:secure_url" content="https://jonathantelep.com/public/social/jsonify-v1.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="JSONIFY / JSON EXPLORER: a little order. a lot of clarity.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@telep_io">
+    <meta name="twitter:title" content="Jsonify — Make sense of your JSON">
+    <meta name="twitter:description" content="Format, inspect, and explore JSON in a clean, collapsible tree. Private by design: your data stays in your browser.">
+    <meta name="twitter:image" content="https://jonathantelep.com/public/social/jsonify-v1.png">
+    <meta name="twitter:image:alt" content="JSONIFY / JSON EXPLORER: a little order. a lot of clarity.">
+    <!-- social-preview:end -->
+  <link rel="icon" type="image/png" href="public/grapevine.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="public/grapevine-white.png" media="(prefers-color-scheme: dark)">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #1a1a2e;
+      --panel: #16213e;
+      --border: #0f3460;
+      --text: #e0e0e0;
+      --muted: #7a7a8e;
+      --accent: #e94560;
+      --string: #a8e6cf;
+      --number: #ffd3a5;
+      --bool: #ff8a80;
+      --null: #7a7a8e;
+      --key: #82b1ff;
+      --bracket: #c792ea;
+      --toggle: #555;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    header h1 span { color: var(--accent); }
+
+    header a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+
+    header a:hover { opacity: 1; }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    button:hover {
+      background: var(--border);
+      border-color: var(--accent);
+    }
+
+    button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .panel-header {
+      padding: 8px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .divider {
+      width: 1px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .editor-wrap {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .line-numbers {
+      padding: 16px 0;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+      overflow: hidden;
+      flex-shrink: 0;
+      user-select: none;
+      min-width: 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .line-numbers .line-num {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 8px 0 12px;
+    }
+
+    .input-area {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .input-highlight {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      padding: 16px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      color: transparent;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .error-mark {
+      background: rgba(233, 69, 96, 0.2);
+      text-decoration: wavy underline;
+      text-decoration-color: var(--accent);
+      text-decoration-skip-ink: none;
+    }
+
+    #input {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      color: var(--text);
+      border: none;
+      padding: 16px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      resize: none;
+      outline: none;
+      tab-size: 2;
+    }
+
+    #input::placeholder { color: var(--muted); }
+
+    #output {
+      flex: 1;
+      overflow: auto;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .output-table {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    .output-line {
+      display: contents;
+    }
+
+    .output-line-num {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 8px 0 12px;
+      color: var(--muted);
+      user-select: none;
+      white-space: nowrap;
+      min-width: 40px;
+      height: 20.8px;
+      position: relative;
+    }
+
+    .output-line-num .gutter-toggle {
+      cursor: pointer;
+      font-size: 8px;
+      color: var(--muted);
+      line-height: 1;
+      margin-right: 4px;
+    }
+
+    .output-line-num .gutter-toggle:hover {
+      color: var(--accent);
+    }
+
+    .output-line-content {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      height: 20.8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .output-table { padding: 16px 0; }
+
+    .error {
+      color: var(--accent);
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+
+    .error-pos {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* Syntax colors */
+    .json-key { color: var(--key); }
+    .json-string { color: var(--string); }
+    .json-number { color: var(--number); }
+    .json-bool { color: var(--bool); }
+    .json-null { color: var(--null); font-style: italic; }
+    .json-bracket { color: var(--bracket); }
+
+    /* Collapsible */
+    .json-toggle {
+      display: none;
+    }
+
+    .json-ellipsis { display: none; color: var(--muted); cursor: pointer; }
+    .json-ellipsis:hover { color: var(--accent); }
+    .json-toggle.collapsed ~ .json-ellipsis { display: inline; }
+
+    .json-lines { display: contents; }
+    .json-lines.hidden { display: none; }
+    .json-lines.hidden > .output-line { display: none; }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      overflow-x: auto;
+      padding: 0 8px;
+      gap: 2px;
+      scrollbar-width: none;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+      top: 1px;
+    }
+
+    .tab:not(.active):hover { color: var(--text); background: rgba(255,255,255,0.03); }
+
+    .tab.active {
+      color: var(--text);
+      background: var(--panel);
+      border-color: var(--border);
+    }
+
+    .tab:not(.active) {
+      opacity: 0.7;
+    }
+
+    .tab:not(.active):hover {
+      opacity: 1;
+    }
+
+    .tab-name {
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tab-name[contenteditable] {
+      outline: none;
+      border-bottom: 1px solid var(--accent);
+      max-width: none;
+    }
+
+    .tab-close {
+      font-size: 14px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 3px;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .tab-close:hover { background: var(--accent); color: #fff; }
+
+    .tab-add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      padding: 0;
+    }
+
+    .tab-add:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border);
+    }
+
+    /* Hidden indent spaces - visually hidden but selectable for copy/paste */
+    .indent-spaces {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
+      white-space: pre;
+    }
+
+    @media (max-width: 700px) {
+      .container { flex-direction: column; }
+      .divider { width: auto; height: 1px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span>{</span> jsonify <span>}</span> <a href="https://telep.io" target="_blank">by telep.io</a></h1>
+    <div class="header-actions">
+      <button id="btn-indent" title="Toggle indent size">2 spaces</button>
+      <button id="btn-expand" title="Expand all">Expand All</button>
+      <button id="btn-collapse" title="Collapse all">Collapse All</button>
+      <button id="btn-copy" title="Copy beautified JSON">Copy</button>
+      <button id="btn-clear" title="Clear input">Clear</button>
+    </div>
+  </header>
+
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-add" id="btn-add-tab" title="New file (Ctrl+N)">+</button>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <div class="panel-header">Input</div>
+      <div class="editor-wrap">
+        <div class="line-numbers" id="input-lines">1</div>
+        <div class="input-area">
+          <div class="input-highlight" id="input-highlight"></div>
+          <textarea id="input" placeholder="Paste your JSON here..." spellcheck="false"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="panel">
+      <div class="panel-header">
+        <span>Output</span>
+        <span id="status"></span>
+      </div>
+      <div class="editor-wrap">
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const status = document.getElementById('status');
+    const toast = document.getElementById('toast');
+    const tabBar = document.getElementById('tab-bar');
+    const btnAddTab = document.getElementById('btn-add-tab');
+    const btnIndent = document.getElementById('btn-indent');
+    let debounceTimer;
+    let parsedJSON = null;
+    let indentSize = 2; // Default indent size (2 or 4 spaces)
+    const inputLines = document.getElementById('input-lines');
+    const inputHighlight = document.getElementById('input-highlight');
+
+    // --- Tab state ---
+    let tabIdCounter = 0;
+    let tabs = [];
+    let activeTabId = null;
+
+    function createTab(name) {
+      saveCurrentTab();
+      const id = ++tabIdCounter;
+      const tab = { id, name: name || `File ${id}`, content: '', outputHtml: '', statusText: '', parsedJSON: null };
+      tabs.push(tab);
+      activeTabId = id;
+      clearTimeout(debounceTimer);
+      input.value = '';
+      output.innerHTML = '';
+      output.style.backgroundImage = 'none';
+      status.textContent = '';
+      parsedJSON = null;
+      clearInputHighlight();
+      updateInputLineNumbers();
+      renderTabs();
+      input.focus();
+      return tab;
+    }
+
+    function saveCurrentTab() {
+      const tab = tabs.find(t => t.id === activeTabId);
+      if (!tab) return;
+      tab.content = input.value;
+      tab.outputHtml = output.innerHTML;
+      tab.statusText = status.textContent;
+      tab.parsedJSON = parsedJSON;
+    }
+
+    function switchTab(id) {
+      if (activeTabId === id) return;
+      saveCurrentTab();
+      clearTimeout(debounceTimer);
+      activeTabId = id;
+      const tab = tabs.find(t => t.id === id);
+      if (!tab) return;
+      input.value = tab.content;
+      clearInputHighlight();
+      if (tab.outputHtml) {
+        output.innerHTML = tab.outputHtml;
+        bindToggles();
+        updateOutputBorder();
+      } else if (tab.content.trim()) {
+        render();
+      } else {
+        output.innerHTML = '';
+        output.style.backgroundImage = 'none';
+      }
+      status.textContent = tab.statusText;
+      parsedJSON = tab.parsedJSON;
+      updateInputLineNumbers();
+      renderTabs();
+      input.focus();
+    }
+
+    function closeTab(id) {
+      if (tabs.length <= 1) return;
+      const idx = tabs.findIndex(t => t.id === id);
+      if (idx === -1) return;
+      tabs.splice(idx, 1);
+      if (activeTabId === id) {
+        clearTimeout(debounceTimer);
+        const newIdx = Math.min(idx, tabs.length - 1);
+        const tab = tabs[newIdx];
+        activeTabId = tab.id;
+        input.value = tab.content;
+        clearInputHighlight();
+        if (tab.outputHtml) {
+          output.innerHTML = tab.outputHtml;
+          bindToggles();
+          updateOutputBorder();
+        } else if (tab.content.trim()) {
+          render();
+        } else {
+          output.innerHTML = '';
+          output.style.backgroundImage = 'none';
+        }
+        status.textContent = tab.statusText;
+        parsedJSON = tab.parsedJSON;
+        updateInputLineNumbers();
+      }
+      renderTabs();
+    }
+
+    function renderTabs() {
+      // Remove all tab elements but keep the add button
+      tabBar.querySelectorAll('.tab').forEach(el => el.remove());
+
+      tabs.forEach(tab => {
+        const el = document.createElement('div');
+        el.className = 'tab' + (tab.id === activeTabId ? ' active' : '');
+        el.dataset.tabId = tab.id;
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'tab-name';
+        nameSpan.textContent = tab.name;
+        nameSpan.addEventListener('dblclick', (e) => {
+          e.stopPropagation();
+          nameSpan.contentEditable = 'true';
+          nameSpan.focus();
+          // Select all text
+          const range = document.createRange();
+          range.selectNodeContents(nameSpan);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
+        nameSpan.addEventListener('blur', () => {
+          nameSpan.contentEditable = 'false';
+          const newName = nameSpan.textContent.trim();
+          if (newName) tab.name = newName;
+          else nameSpan.textContent = tab.name;
+        });
+        nameSpan.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); nameSpan.blur(); }
+          if (e.key === 'Escape') { nameSpan.textContent = tab.name; nameSpan.blur(); }
+        });
+
+        el.appendChild(nameSpan);
+
+        if (tabs.length > 1) {
+          const closeBtn = document.createElement('span');
+          closeBtn.className = 'tab-close';
+          closeBtn.innerHTML = '&times;';
+          closeBtn.title = 'Close tab';
+          closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeTab(tab.id);
+          });
+          el.appendChild(closeBtn);
+        }
+
+        el.addEventListener('click', () => switchTab(tab.id));
+        tabBar.insertBefore(el, btnAddTab);
+      });
+    }
+
+    btnAddTab.addEventListener('click', () => createTab());
+
+    // Ctrl+N to add new tab
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        createTab();
+      }
+    });
+
+    function highlightInputError(pos) {
+      const text = input.value;
+      if (pos == null || pos < 0 || pos > text.length) {
+        inputHighlight.innerHTML = '';
+        return;
+      }
+      // Underline a small range around the error for visibility
+      const start = pos;
+      const nlPos = text.indexOf('\n', start);
+      const end = Math.min(text.length, nlPos >= 0 ? Math.min(nlPos, start + 10) : start + 10);
+      const actualEnd = Math.max(end, start + 1);
+
+      const before = escapeHtml(text.substring(0, start));
+      const err = escapeHtml(text.substring(start, actualEnd)) || ' ';
+      const after = escapeHtml(text.substring(actualEnd));
+      inputHighlight.innerHTML = before + '<mark class="error-mark">' + err + '</mark>' + after;
+      // Sync scroll
+      inputHighlight.scrollTop = input.scrollTop;
+      inputHighlight.scrollLeft = input.scrollLeft;
+    }
+
+    function clearInputHighlight() {
+      inputHighlight.innerHTML = '';
+    }
+
+    // Hidden mirror to measure wrapped line heights in the textarea
+    const inputMirror = document.createElement('div');
+    inputMirror.style.cssText = 'position:absolute;visibility:hidden;overflow:hidden;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;';
+    // Copy textarea font styles
+    inputMirror.style.fontFamily = "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace";
+    inputMirror.style.fontSize = '13px';
+    inputMirror.style.lineHeight = '1.6';
+    inputMirror.style.padding = '0 16px';
+    inputMirror.style.boxSizing = 'border-box';
+    document.body.appendChild(inputMirror);
+
+    function updateInputLineNumbers() {
+      const lines = input.value ? input.value.split('\n') : [''];
+      // Match mirror width to textarea content area
+      inputMirror.style.width = input.clientWidth + 'px';
+
+      // Build measurement divs
+      inputMirror.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      const measureDivs = [];
+      for (const line of lines) {
+        const div = document.createElement('div');
+        div.textContent = line || '\u00a0';
+        frag.appendChild(div);
+        measureDivs.push(div);
+      }
+      inputMirror.appendChild(frag);
+
+      // Read all heights in one reflow
+      const heights = measureDivs.map(d => d.offsetHeight);
+
+      // Build line number elements
+      const scrollTop = inputLines.scrollTop;
+      inputLines.innerHTML = '';
+      const numFrag = document.createDocumentFragment();
+      for (let i = 0; i < lines.length; i++) {
+        const div = document.createElement('div');
+        div.className = 'line-num';
+        div.textContent = i + 1;
+        div.style.height = heights[i] + 'px';
+        numFrag.appendChild(div);
+      }
+      inputLines.appendChild(numFrag);
+      inputLines.scrollTop = scrollTop;
+    }
+
+    function updateOutputBorder() {
+      requestAnimationFrame(() => {
+        const firstNum = output.querySelector('.output-line-num');
+        if (firstNum) {
+          const w = firstNum.offsetWidth;
+          const borderColor = getComputedStyle(document.documentElement).getPropertyValue('--border').trim();
+          output.style.backgroundImage = `linear-gradient(${borderColor}, ${borderColor})`;
+          output.style.backgroundSize = '1px 100%';
+          output.style.backgroundRepeat = 'no-repeat';
+          output.style.backgroundPosition = `${w}px 0`;
+        } else {
+          output.style.backgroundImage = 'none';
+        }
+      });
+    }
+
+    // Update output border after collapse/expand (no renumbering - keep original line numbers)
+    function renumberOutputLines() {
+      updateOutputBorder();
+    }
+
+    input.addEventListener('scroll', () => {
+      inputLines.scrollTop = input.scrollTop;
+      inputHighlight.scrollTop = input.scrollTop;
+      inputHighlight.scrollLeft = input.scrollLeft;
+    });
+
+    // Re-sync line numbers when textarea resizes (e.g. window resize)
+    new ResizeObserver(() => updateInputLineNumbers()).observe(input);
+
+    input.addEventListener('input', () => {
+      updateInputLineNumbers();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(render, 150);
+    });
+
+    document.getElementById('btn-copy').addEventListener('click', () => {
+      if (parsedJSON !== null) {
+        navigator.clipboard.writeText(JSON.stringify(parsedJSON, null, indentSize))
+          .then(() => showToast('Copied!'));
+      }
+    });
+
+    btnIndent.addEventListener('click', () => {
+      indentSize = indentSize === 2 ? 4 : 2;
+      btnIndent.textContent = indentSize + ' spaces';
+      if (parsedJSON !== null) {
+        render();
+      }
+    });
+
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      input.value = '';
+      output.innerHTML = '';
+      output.style.backgroundImage = 'none';
+      status.textContent = '';
+      parsedJSON = null;
+      updateInputLineNumbers();
+      clearInputHighlight();
+    });
+
+    document.getElementById('btn-expand').addEventListener('click', () => {
+      output.querySelectorAll('.json-toggle.collapsed').forEach(el => {
+        el.classList.remove('collapsed');
+      });
+      output.querySelectorAll('.json-lines.hidden').forEach(el => {
+        el.classList.remove('hidden');
+      });
+      output.querySelectorAll('.gutter-toggle.collapsed').forEach(el => {
+        el.classList.remove('collapsed');
+        el.innerHTML = '&#9660;';
+      });
+      renumberOutputLines();
+    });
+
+    document.getElementById('btn-collapse').addEventListener('click', () => {
+      output.querySelectorAll('.json-toggle:not(.collapsed)').forEach(el => {
+        el.classList.add('collapsed');
+      });
+      output.querySelectorAll('.json-lines:not(.hidden)').forEach(el => {
+        el.classList.add('hidden');
+      });
+      output.querySelectorAll('.gutter-toggle:not(.collapsed)').forEach(el => {
+        el.classList.add('collapsed');
+        el.innerHTML = '&#9654;';
+      });
+      renumberOutputLines();
+    });
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+
+    // renderValue returns an array of {html, indent} line objects
+    function renderValue(val, indent) {
+      if (val === null) return [{html: `<span class="json-null">null</span>`, indent}];
+      if (typeof val === 'boolean') return [{html: `<span class="json-bool">${val}</span>`, indent}];
+      if (typeof val === 'number') return [{html: `<span class="json-number">${val}</span>`, indent}];
+      if (typeof val === 'string') return [{html: `<span class="json-string">"${escapeHtml(val)}"</span>`, indent}];
+
+      if (Array.isArray(val)) {
+        if (val.length === 0) return [{html: `<span class="json-bracket">[]</span>`, indent}];
+        return renderCollection(val, null, indent, '[', ']', `${val.length} items`);
+      }
+
+      if (typeof val === 'object') {
+        const keys = Object.keys(val);
+        if (keys.length === 0) return [{html: `<span class="json-bracket">{}</span>`, indent}];
+        return renderCollection(val, keys, indent, '{', '}', `${keys.length} keys`);
+      }
+
+      return [{html: escapeHtml(String(val)), indent}];
+    }
+
+    function renderCollection(val, keys, indent, openBracket, closeBracket, summary) {
+      const isArray = keys === null;
+      const entries = isArray ? val : keys;
+      const id = 'c' + Math.random().toString(36).slice(2, 9);
+
+      // Build inner lines
+      const innerLines = [];
+      entries.forEach((entry, i) => {
+        const key = isArray ? null : entry;
+        const value = isArray ? entry : val[entry];
+        const comma = i < entries.length - 1 ? ',' : '';
+        const childLines = renderValue(value, indent + 1);
+
+        if (childLines.length === 1) {
+          // Single-line value
+          const prefix = key !== null
+            ? `<span class="json-key">"${escapeHtml(key)}"</span>: `
+            : '';
+          innerLines.push({html: prefix + childLines[0].html + comma, indent: indent + 1});
+        } else {
+          // Multi-line value (nested object/array) — first line gets the key prefix
+          const prefix = key !== null
+            ? `<span class="json-key">"${escapeHtml(key)}"</span>: `
+            : '';
+          innerLines.push({html: prefix + childLines[0].html, indent: indent + 1});
+          for (let j = 1; j < childLines.length - 1; j++) {
+            innerLines.push(childLines[j]);
+          }
+          const last = childLines[childLines.length - 1];
+          innerLines.push({html: last.html + comma, indent: last.indent});
+        }
+      });
+
+      const openLine = {
+        html: `<span class="json-toggle" data-target="${id}"></span><span class="json-bracket">${openBracket}</span><span class="json-ellipsis" data-target="${id}"> ${summary} ${closeBracket}</span>`,
+        indent
+      };
+
+      const closeLine = {html: `<span class="json-bracket">${closeBracket}</span>`, indent};
+
+      const result = [openLine];
+      innerLines._collapseId = id;
+      innerLines._isCollapsible = true;
+      result.push(innerLines);
+      result.push(closeLine);
+
+      return result;
+    }
+
+    function render() {
+      const raw = input.value.trim();
+      if (!raw) {
+        output.innerHTML = '';
+        output.style.backgroundImage = 'none';
+        status.textContent = '';
+        parsedJSON = null;
+        clearInputHighlight();
+        return;
+      }
+
+      try {
+        parsedJSON = JSON.parse(raw);
+        clearInputHighlight();
+        const tree = renderValue(parsedJSON, 0);
+        lineCounter = 0;
+        const html = buildOutputHtml(tree);
+        output.innerHTML = '<div class="output-table">' + html + '</div>';
+        bindToggles();
+        updateOutputBorder();
+
+        const size = new Blob([raw]).size;
+        status.textContent = formatSize(size);
+      } catch (e) {
+        parsedJSON = null;
+        const match = e.message.match(/position (\d+)/);
+        let posInfo = '';
+        let errorPos = null;
+        if (match) {
+          const pos = parseInt(match[1]);
+          const lines = raw.substring(0, pos).split('\n');
+          const line = lines.length;
+          const col = lines[lines.length - 1].length + 1;
+          posInfo = `<div class="error-pos">Line ${line}, Column ${col}</div>`;
+          // Map position from trimmed string back to original input
+          const leadingSpaces = input.value.match(/^\s*/)[0].length;
+          errorPos = pos + leadingSpaces;
+        }
+        highlightInputError(errorPos);
+        output.innerHTML = `<div class="error">${escapeHtml(e.message)}${posInfo}</div>`;
+        output.style.backgroundImage = 'none';
+        status.textContent = 'Error';
+      }
+    }
+
+    let lineCounter = 0;
+
+    function buildOutputHtml(items) {
+      let html = '';
+      for (const item of items) {
+        if (Array.isArray(item) && item._isCollapsible) {
+          html += `<div class="json-lines" data-collapse-id="${item._collapseId}">`;
+          html += buildOutputHtml(item);
+          html += '</div>';
+        } else if (Array.isArray(item)) {
+          html += buildOutputHtml(item);
+        } else {
+          lineCounter++;
+          // Use actual spaces for indentation so copy/paste preserves it
+          const indentSpaces = ' '.repeat(item.indent * indentSize);
+          const pad = item.indent > 0 ? `calc(16px + ${item.indent * indentSize}ch)` : '16px';
+          // Check if this line has a toggle (collapsible root)
+          const hasToggle = item.html.includes('json-toggle');
+          let gutterHtml = '';
+          if (hasToggle) {
+            // Extract the data-target id from the toggle span
+            const match = item.html.match(/data-target="([^"]+)"/);
+            if (match) {
+              gutterHtml = `<span class="gutter-toggle" data-target="${match[1]}">&#9660;</span>`;
+            }
+          }
+          const numAttr = hasToggle && gutterHtml ? ` data-toggle-target="${gutterHtml.match(/data-target="([^"]+)"/)[1]}" style="cursor:pointer"` : '';
+          html += `<div class="output-line"><div class="output-line-num"${numAttr}>${gutterHtml}${lineCounter}</div><div class="output-line-content" style="padding-left:${pad}"><span class="indent-spaces">${indentSpaces}</span>${item.html}</div></div>`;
+        }
+      }
+      return html;
+    }
+
+    function toggleCollapse(id) {
+      const toggle = output.querySelector(`.json-toggle[data-target="${id}"]`);
+      const gutter = output.querySelector(`.gutter-toggle[data-target="${id}"]`);
+      const group = output.querySelector(`.json-lines[data-collapse-id="${id}"]`);
+      if (!toggle) return;
+      const isCollapsed = toggle.classList.toggle('collapsed');
+      if (gutter) {
+        gutter.classList.toggle('collapsed', isCollapsed);
+        gutter.innerHTML = isCollapsed ? '&#9654;' : '&#9660;';
+      }
+      if (group) group.classList.toggle('hidden', isCollapsed);
+      renumberOutputLines();
+    }
+
+    function bindToggles() {
+      output.querySelectorAll('.json-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => toggleCollapse(toggle.dataset.target));
+      });
+
+      output.querySelectorAll('.gutter-toggle').forEach(gutter => {
+        gutter.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleCollapse(gutter.dataset.target);
+        });
+      });
+
+      output.querySelectorAll('.output-line-num[data-toggle-target]').forEach(numEl => {
+        numEl.addEventListener('click', () => {
+          toggleCollapse(numEl.dataset.toggleTarget);
+        });
+      });
+
+      output.querySelectorAll('.json-ellipsis').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.dataset.target;
+          const toggle = output.querySelector(`.json-toggle[data-target="${id}"]`);
+          const gutter = output.querySelector(`.gutter-toggle[data-target="${id}"]`);
+          if (toggle) {
+            toggle.classList.remove('collapsed');
+            if (gutter) {
+              gutter.classList.remove('collapsed');
+              gutter.innerHTML = '&#9660;';
+            }
+            const group = output.querySelector(`.json-lines[data-collapse-id="${id}"]`);
+            if (group) group.classList.remove('hidden');
+            renumberOutputLines();
+          }
+        });
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    // Auto-parse on paste
+    input.addEventListener('paste', () => {
+      setTimeout(() => { updateInputLineNumbers(); render(); }, 0);
+    });
+
+    // Initialize first tab (must be after all const declarations like inputMirror)
+    createTab();
+  </script>
+</body>
+</html>

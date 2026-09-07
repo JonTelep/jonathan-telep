@@ -16,20 +16,19 @@ help:
 
 all: build run
 
-# Local dev: node server.js serves the site and proxies /api/mrate and /api/space.
-# Loads FRED_API_KEY from .env if present (needed for the mrate command / ticker).
+# Node 22+; use an installed mise Node when the shell has no configured version.
 dev:
-	@if [ -f .env ]; then set -a; . ./.env; set +a; fi; \
-	echo "Dev server at http://localhost:8000  (landing)  http://localhost:8000/terminal  (terminal)"; \
-	node server.js
+	@if node --version >/dev/null 2>&1 && npm --version >/dev/null 2>&1; then npm run dev; \
+	elif command -v mise >/dev/null 2>&1; then mise exec node@26.7.0 -- npm run dev; \
+	else echo "Install Node.js 22+ to run make dev"; exit 1; fi
 
 build:
 	@echo "Building container image..."
-	podman build -t $(IMAGE_NAME) .
+	podman build --format docker -t $(IMAGE_NAME) .
 
 run:
 	@echo "Running container..."
-	podman run -d --name $(CONTAINER_NAME) --env-file .env -p $(PORT):3000 $(IMAGE_NAME)
+	podman run -d --name $(CONTAINER_NAME) $(if $(wildcard .env),--env-file .env,) -p $(PORT):3000 $(IMAGE_NAME)
 	@echo "Container running at http://localhost:$(PORT)"
 
 stop:

@@ -45,13 +45,30 @@ Tab completion and arrow key navigation (up/down for history) are supported.
 
 ## Development
 
-No build step. The quickest way to run everything (including the live `mrate` and `space` feeds) is:
+Run the personal site and both embedded tools together:
 
 ```bash
 make dev        # http://localhost:8000
 ```
 
-This runs `node server.js` (Node 22+), which serves the static files and proxies `/api/mrate` and `/api/space`. Put your FRED key in `.env` as `FRED_API_KEY=...` and `make dev` will load it. Without a key, everything works except the mortgage rate.
+`make dev` serves:
+
+- http://localhost:8000/ — personal site
+- http://localhost:8000/terminal — terminal
+- http://localhost:8000/postgres/ — SQL editor and working parser
+- http://localhost:8000/jsonify/ — JSON formatter (`/json` redirects here)
+
+Requires Node.js 22+ and Podman or Docker. If Node is installed with mise but not selected, the Makefile uses Node 26.7.0 through mise. On first launch, the runner installs JavaScript dependencies from the root lockfile and builds the Python parser image. Subsequent launches reuse dependencies and container build caches. No PostgreSQL database or sibling repository is needed.
+
+The site proxies Vite, its hot-reload WebSocket, and the parser through one origin. The parser runs in a container with source mounted for reload; Ctrl+C stops the site, Vite, and that container. Startup fails clearly if a required port is occupied. Set `PORT` (default 8000), `POSTGRES_API_PORT` (6005), or `CONTAINER_ENGINE` (`podman` or `docker`) to override defaults.
+
+Optional `.env` values are loaded by Node. `FRED_API_KEY` enables the mortgage-rate feed; it is not required for either embedded tool. `POSTGRES_HOST` is no longer used; production runs its own parser.
+
+Postgres diagrams default to aligned dependency columns. Use **Auto-arrange** to reset dragged tables or switch between horizontal and vertical layouts. **Export PDF document** opens a separate report with an editable title, vector overview, relationship register, and full data dictionary. Click **Print / Save PDF**, select landscape paper, and disable browser headers/footers. Large dictionaries continue across pages with repeated column headings.
+
+Source lives under `apps/`; see [import notes](apps/README.md). The production image builds and serves both embedded tool frontends. The same image includes the Python parser, listening internally on port 6005. Nginx proxies it through `/postgres/api/`. The former standalone frontend and parser services are no longer needed by this site.
+
+Run routing checks with `node --test tests/routes.test.mjs`, frontend checks with `npm run build --workspace=@telep/postgres` and `npm run lint --workspace=@telep/postgres`.
 
 Other options (static only, no API proxies):
 
@@ -71,10 +88,9 @@ npx serve .
 
 ### Option 3: Container with Podman (Production-like)
 
-Create a `.env` file with required environment variables:
+Optionally create a `.env` file for the mortgage-rate feed:
 
 ```bash
-POSTGRES_HOST=host.containers.internal
 FRED_API_KEY=your_key_here
 ```
 
@@ -101,6 +117,13 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 - **Deployment platform**: Coolify on VPS
 - **Container port**: 3000
 
+Coolify should use the **Dockerfile** build pack, the repository root as its base directory, `/Dockerfile` as the Dockerfile location, and port **3000**. A push to its configured deployment branch rebuilds all frontends and the Python parser together. No new Coolify service or port is required. Existing `POSTGRES_HOST` values can be removed; they are ignored.
+
+The image waits for the parser before starting Nginx. If either process exits, the container exits rather than silently leaving a broken tool online. The Docker health check exercises `/postgres/api/health` through Nginx. Only `FRED_API_KEY` is optional runtime configuration; no secrets belong in Git.
+
+Before pushing, run `npm run lint --workspace=@telep/postgres`, `node --test tests/*.test.mjs`, and `podman build --format docker -t jonathan-telep .`. For a production smoke test, run that image and confirm `/`, `/jsonify/`, `/postgres/`, and `/postgres/api/health`.
+
+
 ## Project Structure
 
 ```
@@ -114,8 +137,8 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 │       ├── filesystem.js   # Virtual filesystem data
 │       └── editor.js       # Editor functionality
 ├── public/                 # Static assets (logos, SVGs)
-├── Dockerfile              # Container build (nginx:alpine)
-├── nginx.conf.template     # Nginx config with envsubst templating
+├── Dockerfile              # Builds frontends, Nginx, and Python parser
+├── nginx.conf.template     # Nginx config with optional FRED key templating
 ├── Makefile                # Container build/run commands
 └── .env                    # Environment variables (not committed)
 ```
@@ -129,3 +152,11 @@ To add or modify projects and content:
 1. Edit the filesystem object in `js/modules/filesystem.js`
 2. Add new directories/files following the existing structure
 3. Markdown files are automatically rendered when using the `cat` command
+
+## Social previews
+
+The homepage, `/terminal`, `/postgres/`, and `/jsonify/` have distinct, static Open Graph and Twitter large-image cards. `/json` redirects to Jsonify. Metadata is in the initial HTML, so link unfurlers do not need JavaScript. Card URLs are absolute HTTPS URLs on `jonathantelep.com`.
+
+The 1200×630 PNGs are committed under `public/social/`. Update the page definitions and artwork in `scripts/social-cards.mjs`, then run `npm run social:build` (requires Chromium, or set `CHROMIUM` to its executable). The command regenerates the images and metadata together. Change the image version in the generator when replacing published art to avoid stale image caches.
+
+Deploy the updated site image to publish the cards. Social platforms may retain previously fetched previews; their refresh timing and final card presentation are outside the site's control. Private SQL/JSON editor contents are never included in previews; links identify the tool, not the local document. URL fragments such as `/#about` use the homepage card.

@@ -1,5 +1,14 @@
 .env
+.env.*
+!.env.example
 
 
 
 CLAUDE.md
+
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+*.tsbuildinfo
