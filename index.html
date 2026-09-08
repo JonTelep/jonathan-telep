@@ -28,27 +28,82 @@
     <!-- social-preview:end -->
     <meta name="keywords" content="Jonathan Telep, software engineer, Cleveland, Ohio, Telep IO, sumvid, telep.tools, boards, web developer, API developer">
     <meta name="author" content="Jonathan Telep">
+    <link rel="describedby" href="https://jonathantelep.com/llms.txt" type="text/plain">
+    <link rel="alternate" type="text/markdown" href="https://jonathantelep.com/about.md" title="Plain-text profile">
+    <link rel="alternate" type="text/plain" href="https://jonathantelep.com/llms-full.txt" title="Full hireable profile">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jonathan Telep",
-      "jobTitle": "Software Engineer",
-      "worksFor": [
-        { "@type": "Organization", "name": "Telep IO", "url": "https://telep.io" }
-      ],
-      "url": "https://jonathantelep.com",
-      "image": "https://jonathantelep.com/public/jon.png",
-      "sameAs": [
-        "https://x.com/telep_io",
-        "https://github.com/JonTelep",
-        "https://telep.io",
-        "https://sumvid.app"
-      ],
-      "knowsAbout": ["Software Engineering", "API Development", "Web Development", "AI/ML", "Video Summarization"],
-      "address": { "@type": "PostalAddress", "addressLocality": "Cleveland", "addressRegion": "Ohio", "addressCountry": "US" }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jonathantelep.com/#person",
+          "name": "Jonathan Telep",
+          "alternateName": ["Jon Telep", "jon telep"],
+          "jobTitle": "Software Engineer",
+          "description": "Software engineer in Cleveland, Ohio. Founder of Telep IO. Builds and ships independent products including sumvid, telep.tools, boards, Easy Data Quality, seploy, and agent skills.",
+          "url": "https://jonathantelep.com",
+          "image": "https://jonathantelep.com/public/jon.png",
+          "worksFor": { "@id": "https://telep.io/#organization" },
+          "founder": { "@id": "https://telep.io/#organization" },
+          "sameAs": [
+            "https://github.com/JonTelep",
+            "https://x.com/telep_io",
+            "https://telep.io",
+            "https://sumvid.app",
+            "https://telep.tools"
+          ],
+          "knowsAbout": [
+            "Software Engineering",
+            "Web Development",
+            "API Development",
+            "AI/ML",
+            "Video Summarization",
+            "Image-to-Video Generation",
+            "Developer Tools",
+            "PostgreSQL",
+            "JSON",
+            "Data Quality",
+            "Deployment Tooling",
+            "Agent Skills",
+            "SaaS",
+            "Live Data APIs"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cleveland",
+            "addressRegion": "Ohio",
+            "addressCountry": "US"
+          },
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Cleveland, Ohio",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 41.4993,
+              "longitude": -81.6944
+            }
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "professional",
+            "url": "https://telep.io/contact"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://telep.io/#organization",
+          "name": "Telep IO",
+          "url": "https://telep.io",
+          "founder": { "@id": "https://jonathantelep.com/#person" },
+          "sameAs": [
+            "https://x.com/telep_io",
+            "https://telep.tools"
+          ]
+        }
+      ]
     }
     </script>
     <link rel="icon" type="image/png" href="public/grapevine.png" media="(prefers-color-scheme: light)">

@@ -26,6 +26,14 @@ http {
         server_name  localhost;
         absolute_redirect off;
 
+        # Static LLM / crawler files: never fall through to the SPA HTML.
+        location ~ ^/(llms\.txt|llms-full\.txt|robots\.txt|about\.md)$ {
+            root /usr/share/nginx/html;
+            default_type text/plain;
+            charset utf-8;
+            try_files $uri =404;
+        }
+
         location / {
             root   /usr/share/nginx/html;
             index  index.html;

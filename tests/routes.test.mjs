@@ -26,6 +26,14 @@ test('local app routes, proxy requests, redirects and missing assets', async (t)
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get('content-type'), /text\/html/);
   }
+  for (const path of ['/llms.txt', '/llms-full.txt', '/robots.txt', '/about.md']) {
+    const response = await fetch(base + path);
+    assert.equal(response.status, 200, path);
+    assert.match(response.headers.get('content-type'), /text\/plain/, path);
+    const body = await response.text();
+    assert.doesNotMatch(body, /<!DOCTYPE html>/i, path);
+    assert.match(body, /^# /m, path);
+  }
   for (const [path, destination] of [['/postgres', '/postgres/'], ['/jsonify', '/jsonify/'], ['/json', '/jsonify/'], ['/json/public/logo.svg?v=1', '/jsonify/public/logo.svg?v=1']]) {
     const response = await fetch(base + path, { redirect: 'manual' });
     assert.equal(response.status, 308);

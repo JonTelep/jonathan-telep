@@ -1,0 +1,35 @@
+# Jonathan Telep
+
+> Software engineer in Cleveland, Ohio. Founder of Telep IO. Builds and ships independent products on the open internet.
+
+Jonathan Telep (Jon) builds software on the side, ships it publicly, and leaves the source on GitHub. Through Telep IO he does the same for other people. The latest live product is sumvid. The thing he is building toward is telep.tools.
+
+Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](https://x.com/telep_io) on X.
+
+## Profile
+
+- [Full hireable profile](https://jonathantelep.com/llms-full.txt): complete markdown profile for recruiting, RAG, and LLM applicants
+- [About](https://jonathantelep.com/about.md): plain-text biography
+- [Homepage](https://jonathantelep.com/): personal site, Cleveland, Ohio
+
+## Work and products
+
+- [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [sumvid](https://sumvid.app): video summarization — paste a link, get the point (live)
+- [telep.tools](https://telep.tools): one home for every tool he makes (in progress)
+- [Easy Data Quality](https://easydataquality.com): data quality checks (live)
+- [seploy](https://github.com/Telep-IO/seploy): deploy utility from local to live (live)
+- [skills](https://github.com/JonTelep/skills): agent skills that make Claude better at specific jobs (live)
+- [boards](https://telep.io/contact): image generation to video generation (in progress)
+
+## Developer tools
+
+- [Visualize Postgres](https://jonathantelep.com/postgres): PostgreSQL schema visualizer
+- [Jsonify](https://jonathantelep.com/json): JSON formatter
+- [Terminal](https://jonathantelep.com/terminal): interactive terminal and editor
+
+## Contact and code
+
+- [Contact](https://telep.io/contact): professional inquiries
+- [X / @telep_io](https://x.com/telep_io): DMs
+- [GitHub / JonTelep](https://github.com/JonTelep): source
