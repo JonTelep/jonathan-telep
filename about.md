@@ -1,8 +1,8 @@
 # Jonathan Telep
 
-Software engineer in Cleveland, Ohio. Founder of Telep IO.
+Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio — not a full-time employer.
 
-I build software on the side, ship it on the open internet, and leave the source on GitHub. Through Telep IO I do the same for other people. The latest thing live is [sumvid](https://sumvid.app). The thing I am building toward right now is [telep.tools](https://telep.tools).
+Day job is Red Hat (team absorbing into IBM on 2026-10-01). On the side I build software, ship it on the open internet, and leave the source on GitHub. Through Telep IO I do the same for other people. The latest thing live is [sumvid](https://sumvid.app). The thing I am building toward right now is [telep.tools](https://telep.tools).
 
 This is a side gig, which means you get me, not a ticket queue. We figure out the smallest version that is real, build it, deploy it, and hand over the keys.
 
@@ -12,10 +12,12 @@ Cleveland, Ohio, United States.
 
 ## Contact
 
+- jon@telep.io
 - https://telep.io/contact
 - https://x.com/telep_io (@telep_io)
 - https://github.com/JonTelep
 - https://www.linkedin.com/in/jonathan-telep-576750115/
+- Resume: https://jonathantelep.com/resume.md
 
 ## What I build
 

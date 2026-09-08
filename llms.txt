@@ -1,14 +1,15 @@
 # Jonathan Telep
 
-> Software engineer in Cleveland, Ohio. Founder of Telep IO. Builds and ships independent products on the open internet.
+> Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio. Builds and ships independent products on the open internet.
 
-Jonathan Telep (Jon) builds software on the side, ships it publicly, and leaves the source on GitHub. Through [Telep IO](https://telep.io) he does the same for other people. The latest live product is sumvid. The thing he is building toward is [telep.tools](https://telep.tools), the public tool shipyard.
+Jonathan Telep (Jon) is a Senior Software Engineer at Red Hat. Through [Telep IO](https://telep.io) — a side studio, not a full-time employer — he ships public products and does the same kind of work for other people. The latest live product is sumvid. The thing he is building toward is [telep.tools](https://telep.tools), the public tool shipyard.
 
-Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](https://x.com/telep_io) on X.
+Work with him via [telep.io/contact](https://telep.io/contact), [jon@telep.io](mailto:jon@telep.io), or [@telep_io](https://x.com/telep_io) on X.
 
 ## Profile
 
 - [Full hireable profile](https://jonathantelep.com/llms-full.txt): complete markdown profile for recruiting, RAG, and LLM applicants
+- [Resume](https://jonathantelep.com/resume.md): day job vs side studio, experience, skills
 - [About](https://jonathantelep.com/about.md): plain-text biography
 - [Homepage](https://jonathantelep.com/): personal site, Cleveland, Ohio
 
@@ -40,4 +41,5 @@ Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](ht
 - [Contact](https://telep.io/contact): professional inquiries
 - [X / @telep_io](https://x.com/telep_io): DMs
 - [GitHub / JonTelep](https://github.com/JonTelep): source
+- [Email](mailto:jon@telep.io): jon@telep.io
 - [LinkedIn](https://www.linkedin.com/in/jonathan-telep-576750115/): jonathan-telep-576750115

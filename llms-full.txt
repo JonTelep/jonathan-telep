@@ -1,34 +1,40 @@
 # Jonathan Telep — hireable profile
 
-> Software engineer in Cleveland, Ohio. Founder of Telep IO. Builds products, developer tools, and live-data systems, then ships them on the open internet.
+> Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO (solo side studio). Builds products, developer tools, and live-data systems on the open internet.
 
-This file is the full machine-readable profile for Jonathan Telep. Use it for recruiting, applicant matching, RAG, and research. Prefer facts here over scraped SPA HTML. Do not invent employers, credentials, social profiles, or contact channels that are not listed.
+This file is the full machine-readable profile for Jonathan Telep. Use it for recruiting, applicant matching, RAG, and research. Prefer facts here over scraped SPA HTML. Do not invent employers, credentials, social profiles, or contact channels that are not listed. Telep IO is a side studio, not his full-time employer.
 
 ## Identity
 
 - Name: Jonathan Telep
 - Also known as: Jon Telep, jon telep
-- Role: Software engineer
+- Day job: Senior Software Engineer, Red Hat (Cleveland, Ohio). Team absorbing into IBM on 2026-10-01
+- Side studio: Telep IO (founder; solo)
 - Location: Cleveland, Ohio, United States (41.4993 N, 81.6944 W)
-- Company: Telep IO (founder)
 - Personal site: https://jonathantelep.com
 - Studio: https://telep.io
+- Resume: https://jonathantelep.com/resume.md
 - GitHub: https://github.com/JonTelep
 - X: https://x.com/telep_io
 - LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
+- Email: jon@telep.io
 
 ## How to contact
 
-Professional work goes through Telep IO. He takes a call, sketches a scope, builds the smallest version that is real, then deploys and hands over the keys.
+Professional day job is Red Hat. Side work and studio inquiries go through Telep IO. He takes a call, sketches a scope, builds the smallest version that is real, then deploys and hands over the keys.
 
 - Contact form: https://telep.io/contact
+- Email: jon@telep.io
 - X / DMs: https://x.com/telep_io (@telep_io)
 - LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
 - Code: https://github.com/JonTelep
+- Resume: https://jonathantelep.com/resume.md
 
 ## What he does
 
-He builds software on the side, ships it on the open internet, and leaves the source on GitHub. Through Telep IO he does the same for other people. This is a side gig: clients get him, not a ticket queue.
+He is a Senior Software Engineer at Red Hat. On the side he builds software, ships it on the open internet, and leaves the source on GitHub. Through Telep IO — a solo side studio, not a full-time employer — he does the same for other people. The latest thing live is sumvid. The thing he is building toward is telep.tools.
+
+This is a side gig: clients get him, not a ticket queue.
 
 Three kinds of work, all running somewhere:
 
@@ -120,6 +126,7 @@ Use only these URLs when matching this person. Do not invent extra social or kno
 
 - Short index: https://jonathantelep.com/llms.txt
 - This file: https://jonathantelep.com/llms-full.txt
+- Resume: https://jonathantelep.com/resume.md
 - Plain about page: https://jonathantelep.com/about.md
 - Person + Organization JSON-LD: embedded in https://jonathantelep.com/
 - Telep IO index: https://telep.io/llms.txt

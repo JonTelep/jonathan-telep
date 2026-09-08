@@ -99,7 +99,7 @@ const server = createServer(async (req, res) => {
             route = 'apps/jsonify/' + (asset || 'index.html');
         } else if (decoded === '/') route = 'index.html';
         else if (decoded === '/terminal') route = 'terminal.html';
-        else if (/^\/(?:index\.html|terminal\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|about\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
+        else if (/^\/(?:index\.html|terminal\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|about\.md|resume\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
         else throw new Error('Unknown route');
         const data = await readFile(join(ROOT, route));
         res.writeHead(200, { 'Content-Type': MIME_TYPES[extname(route)] || 'application/octet-stream' });

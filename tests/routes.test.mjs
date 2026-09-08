@@ -26,7 +26,7 @@ test('local app routes, proxy requests, redirects and missing assets', async (t)
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get('content-type'), /text\/html/);
   }
-  for (const path of ['/llms.txt', '/llms-full.txt', '/robots.txt', '/about.md']) {
+  for (const path of ['/llms.txt', '/llms-full.txt', '/robots.txt', '/about.md', '/resume.md']) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get('content-type'), /text\/plain/, path);
