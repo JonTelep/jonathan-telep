@@ -102,7 +102,7 @@ Software engineering, web development, API development, AI/ML, video summarizati
 
 ## Same-as identifiers
 
-Use these URLs when matching this person. Do not add LinkedIn, Wikidata, or other profiles unless they appear here.
+Use only these URLs when matching this person. Do not invent extra social or knowledge-base identifiers.
 
 - https://jonathantelep.com
 - https://github.com/JonTelep

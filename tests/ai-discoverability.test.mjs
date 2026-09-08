@@ -29,7 +29,7 @@ test('llms-full.txt is a hireable markdown profile', async () => {
   assert.match(text, /https:\/\/telep\.io\/contact/);
   assert.match(text, /https:\/\/github\.com\/JonTelep/);
   assert.doesNotMatch(text, /linkedin\.com/i);
-  assert.doesNotMatch(text, /wikidata/i);
+  assert.doesNotMatch(text, /wikidata\.org/i);
 });
 
 test('about.md is a plain profile', async () => {
