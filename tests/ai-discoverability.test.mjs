@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const sameAs = [
   'https://github.com/JonTelep',
   'https://x.com/telep_io',
+  'https://www.linkedin.com/in/jonathan-telep-576750115/',
   'https://telep.io',
   'https://sumvid.app',
   'https://telep.tools',
@@ -16,6 +17,8 @@ test('llms.txt is a short markdown index, not HTML', async () => {
   assert.match(text, /^> Software engineer in Cleveland/m);
   assert.match(text, /\[Full hireable profile\]\(https:\/\/jonathantelep\.com\/llms-full\.txt\)/);
   assert.match(text, /\[About\]\(https:\/\/jonathantelep\.com\/about\.md\)/);
+  assert.match(text, /\[Telep IO llms\.txt\]\(https:\/\/telep\.io\/llms\.txt\)/);
+  assert.match(text, /\[telep\.tools llms\.txt\]\(https:\/\/telep\.tools\/llms\.txt\)/);
   assert.doesNotMatch(text, /<!DOCTYPE html>/i);
 });
 
@@ -28,7 +31,9 @@ test('llms-full.txt is a hireable markdown profile', async () => {
   assert.match(text, /telep\.tools/);
   assert.match(text, /https:\/\/telep\.io\/contact/);
   assert.match(text, /https:\/\/github\.com\/JonTelep/);
-  assert.doesNotMatch(text, /linkedin\.com/i);
+  assert.match(text, /https:\/\/www\.linkedin\.com\/in\/jonathan-telep-576750115\//);
+  assert.match(text, /https:\/\/telep\.io\/llms\.txt/);
+  assert.match(text, /https:\/\/telep\.tools\/llms\.txt/);
   assert.doesNotMatch(text, /wikidata\.org/i);
 });
 
@@ -72,7 +77,6 @@ test('homepage JSON-LD is a Person + Organization graph', async () => {
   assert.equal(org.url, 'https://telep.io');
   for (const url of sameAs) assert.ok(person.sameAs.includes(url), url);
   const serialized = JSON.stringify(data).toLowerCase();
-  assert.doesNotMatch(serialized, /linkedin/);
   assert.doesNotMatch(serialized, /wikidata/);
   assert.ok(person.knowsAbout.length >= 8);
   assert.match(html, /rel="describedby" href="https:\/\/jonathantelep\.com\/llms\.txt"/);

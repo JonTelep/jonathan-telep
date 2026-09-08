@@ -2,7 +2,7 @@
 
 > Software engineer in Cleveland, Ohio. Founder of Telep IO. Builds and ships independent products on the open internet.
 
-Jonathan Telep (Jon) builds software on the side, ships it publicly, and leaves the source on GitHub. Through Telep IO he does the same for other people. The latest live product is sumvid. The thing he is building toward is telep.tools.
+Jonathan Telep (Jon) builds software on the side, ships it publicly, and leaves the source on GitHub. Through [Telep IO](https://telep.io) he does the same for other people. The latest live product is sumvid. The thing he is building toward is [telep.tools](https://telep.tools), the public tool shipyard.
 
 Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](https://x.com/telep_io) on X.
 
@@ -11,6 +11,13 @@ Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](ht
 - [Full hireable profile](https://jonathantelep.com/llms-full.txt): complete markdown profile for recruiting, RAG, and LLM applicants
 - [About](https://jonathantelep.com/about.md): plain-text biography
 - [Homepage](https://jonathantelep.com/): personal site, Cleveland, Ohio
+
+## Related sites
+
+- [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [Telep IO llms.txt](https://telep.io/llms.txt): studio index for AI crawlers (sibling)
+- [telep.tools](https://telep.tools): tool shipyard / launcher
+- [telep.tools llms.txt](https://telep.tools/llms.txt): tools index for AI crawlers (sibling)
 
 ## Work and products
 
@@ -33,3 +40,4 @@ Work with him via [telep.io/contact](https://telep.io/contact) or [@telep_io](ht
 - [Contact](https://telep.io/contact): professional inquiries
 - [X / @telep_io](https://x.com/telep_io): DMs
 - [GitHub / JonTelep](https://github.com/JonTelep): source
+- [LinkedIn](https://www.linkedin.com/in/jonathan-telep-576750115/): jonathan-telep-576750115

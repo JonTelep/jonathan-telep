@@ -15,6 +15,7 @@ This file is the full machine-readable profile for Jonathan Telep. Use it for re
 - Studio: https://telep.io
 - GitHub: https://github.com/JonTelep
 - X: https://x.com/telep_io
+- LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
 
 ## How to contact
 
@@ -22,6 +23,7 @@ Professional work goes through Telep IO. He takes a call, sketches a scope, buil
 
 - Contact form: https://telep.io/contact
 - X / DMs: https://x.com/telep_io (@telep_io)
+- LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
 - Code: https://github.com/JonTelep
 
 ## What he does
@@ -107,9 +109,12 @@ Use only these URLs when matching this person. Do not invent extra social or kno
 - https://jonathantelep.com
 - https://github.com/JonTelep
 - https://x.com/telep_io
+- https://www.linkedin.com/in/jonathan-telep-576750115/
 - https://telep.io
+- https://telep.io/llms.txt
 - https://sumvid.app
 - https://telep.tools
+- https://telep.tools/llms.txt
 
 ## Machine-readable copies
 
@@ -117,3 +122,5 @@ Use only these URLs when matching this person. Do not invent extra social or kno
 - This file: https://jonathantelep.com/llms-full.txt
 - Plain about page: https://jonathantelep.com/about.md
 - Person + Organization JSON-LD: embedded in https://jonathantelep.com/
+- Telep IO index: https://telep.io/llms.txt
+- telep.tools index: https://telep.tools/llms.txt

@@ -15,6 +15,7 @@ Cleveland, Ohio, United States.
 - https://telep.io/contact
 - https://x.com/telep_io (@telep_io)
 - https://github.com/JonTelep
+- https://www.linkedin.com/in/jonathan-telep-576750115/
 
 ## What I build
 
@@ -35,6 +36,10 @@ Cleveland, Ohio, United States.
 ## Also online
 
 - https://jonathantelep.com
+- https://telep.io
+- https://telep.io/llms.txt
+- https://telep.tools
+- https://telep.tools/llms.txt
 - https://jonathantelep.com/postgres
 - https://jonathantelep.com/json
 - https://jonathantelep.com/terminal
