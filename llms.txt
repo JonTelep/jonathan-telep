@@ -4,7 +4,7 @@
 
 Jonathan Telep (Jon) is a Senior Software Engineer at Red Hat. Through [Telep IO](https://telep.io) — a side studio, not a full-time employer — he ships public products and does the same kind of work for other people. The latest live product is sumvid. The thing he is building toward is [telep.tools](https://telep.tools), the public tool shipyard.
 
-Work with him via [telep.io/contact](https://telep.io/contact), [jon@telep.io](mailto:jon@telep.io), or [@telep_io](https://x.com/telep_io) on X.
+Work with him via [jonathantelep.com/request](https://jonathantelep.com/request), [telep.io/contact](https://telep.io/contact) (studio), [jon@telep.io](mailto:jon@telep.io), or [@telep_io](https://x.com/telep_io) on X.
 
 ## Profile
 
@@ -43,7 +43,8 @@ Work with him via [telep.io/contact](https://telep.io/contact), [jon@telep.io](m
 
 ## Contact and code
 
-- [Contact](https://telep.io/contact): professional inquiries
+- [Request time](https://jonathantelep.com/request): business inquiry form (same inbox as the studio)
+- [Studio contact](https://telep.io/contact): telep.io/contact
 - [X / @telep_io](https://x.com/telep_io): DMs
 - [GitHub / JonTelep](https://github.com/JonTelep): source
 - [Email](mailto:jon@telep.io): jon@telep.io

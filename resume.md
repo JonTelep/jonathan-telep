@@ -6,7 +6,8 @@ Enterprise integration and data quality engineer who also ships small, public pr
 
 - Email: [jon@telep.io](mailto:jon@telep.io)
 - Site: [jonathantelep.com](https://jonathantelep.com)
-- Contact: [telep.io/contact](https://telep.io/contact)
+- Request time: [jonathantelep.com/request](https://jonathantelep.com/request)
+- Studio contact: [telep.io/contact](https://telep.io/contact)
 - GitHub: [github.com/JonTelep](https://github.com/JonTelep)
 - X: [@telep_io](https://x.com/telep_io)
 - LinkedIn: [linkedin.com/in/jonathan-telep-576750115](https://www.linkedin.com/in/jonathan-telep-576750115/)

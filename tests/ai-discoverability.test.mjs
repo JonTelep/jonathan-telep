@@ -20,6 +20,7 @@ test('llms.txt is a short markdown index, not HTML', async () => {
   assert.match(text, /\[About\]\(https:\/\/jonathantelep\.com\/about\.md\)/);
   assert.match(text, /\[Telep IO llms\.txt\]\(https:\/\/telep\.io\/llms\.txt\)/);
   assert.match(text, /\[telep\.tools llms\.txt\]\(https:\/\/telep\.tools\/llms\.txt\)/);
+  assert.match(text, /\[Request time\]\(https:\/\/jonathantelep\.com\/request\)/);
   assert.doesNotMatch(text, /<!DOCTYPE html>/i);
 });
 
@@ -30,6 +31,7 @@ test('llms-full.txt is a hireable markdown profile', async () => {
   assert.match(text, /Telep IO/);
   assert.match(text, /sumvid/);
   assert.match(text, /telep\.tools/);
+  assert.match(text, /https:\/\/jonathantelep\.com\/request/);
   assert.match(text, /https:\/\/telep\.io\/contact/);
   assert.match(text, /https:\/\/github\.com\/JonTelep/);
   assert.match(text, /https:\/\/www\.linkedin\.com\/in\/jonathan-telep-576750115\//);
@@ -44,6 +46,7 @@ test('about.md is a plain profile', async () => {
   const text = await readFile('about.md', 'utf8');
   assert.match(text, /^# Jonathan Telep\n/);
   assert.match(text, /Cleveland, Ohio/);
+  assert.match(text, /https:\/\/jonathantelep\.com\/request/);
   assert.match(text, /https:\/\/telep\.io\/contact/);
   assert.match(text, /https:\/\/jonathantelep\.com\/resume\.md/);
   assert.match(text, /Red Hat/);
@@ -61,6 +64,7 @@ test('resume.md frames Red Hat as day job and Telep IO as side studio', async ()
   assert.match(text, /The Provato Group/);
   assert.match(text, /jon@telep\.io/);
   assert.match(text, /https:\/\/www\.linkedin\.com\/in\/jonathan-telep-576750115\//);
+  assert.match(text, /https:\/\/jonathantelep\.com\/request/);
   assert.match(text, /Ohio University/);
   assert.doesNotMatch(text, /Huron/i);
   assert.doesNotMatch(text, /Andrew Mitchell/i);
@@ -105,7 +109,7 @@ test('homepage JSON-LD is a Person + Organization graph', async () => {
   assert.equal(person.jobTitle, 'Senior Software Engineer');
   assert.equal(person.address.addressLocality, 'Cleveland');
   assert.equal(person.address.addressRegion, 'Ohio');
-  assert.equal(person.contactPoint.url, 'https://telep.io/contact');
+  assert.equal(person.contactPoint.url, 'https://jonathantelep.com/request');
   assert.equal(person.worksFor['@id'], redHat['@id']);
   assert.equal(person.founder['@id'], telep['@id']);
   assert.equal(telep.url, 'https://telep.io');
@@ -114,6 +118,8 @@ test('homepage JSON-LD is a Person + Organization graph', async () => {
   assert.doesNotMatch(serialized, /wikidata/);
   assert.ok(person.knowsAbout.length >= 8);
   assert.match(html, /rel="describedby" href="https:\/\/jonathantelep\.com\/llms\.txt"/);
+  assert.match(html, /<a class="btn" href="\/request">work with me/);
+  assert.match(html, /or studio contact/);
 });
 
 test('nginx serves crawler files as text/plain without SPA fallback', async () => {
@@ -121,4 +127,8 @@ test('nginx serves crawler files as text/plain without SPA fallback', async () =
   assert.match(conf, /llms\\\.txt\|llms-full\\\.txt\|robots\\\.txt\|about\\\.md\|resume\\\.md/);
   assert.match(conf, /default_type text\/plain;/);
   assert.match(conf, /try_files \$uri =404;/);
+  assert.match(conf, /location = \/request/);
+  assert.match(conf, /try_files \/request\.html =404;/);
+  assert.match(conf, /location = \/api\/request/);
+  assert.match(conf, /proxy_pass http:\/\/127\.0\.0\.1:6006\/api\/request/);
 });

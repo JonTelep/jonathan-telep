@@ -3,6 +3,7 @@ import { connect } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
 import { join, extname } from 'node:path';
+import { handleInquiryBody } from './scripts/inquiry-lib.mjs';
 
 const PORT = Number(process.env.PORT || 8000);
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
@@ -56,6 +57,21 @@ const server = createServer(async (req, res) => {
     if (pathname.startsWith('/postgres/api/')) return proxy(req, res, API, req.url.slice('/postgres'.length));
     if (pathname.startsWith('/postgres/')) return proxy(req, res, FRONTEND, req.url);
 
+    if (pathname === '/api/request') {
+        if (req.method !== 'POST') {
+            res.writeHead(405, { 'Content-Type': 'application/json', Allow: 'POST' });
+            res.end(JSON.stringify({ error: 'method not allowed' }));
+            return;
+        }
+        const chunks = [];
+        for await (const chunk of req) chunks.push(chunk);
+        const raw = Buffer.concat(chunks).toString('utf8');
+        const result = await handleInquiryBody(raw);
+        res.writeHead(result.status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+        res.end(JSON.stringify(result.payload));
+        return;
+    }
+
     if (req.url === '/api/mrate') {
         if (!FRED_API_KEY) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -99,7 +115,8 @@ const server = createServer(async (req, res) => {
             route = 'apps/jsonify/' + (asset || 'index.html');
         } else if (decoded === '/') route = 'index.html';
         else if (decoded === '/terminal') route = 'terminal.html';
-        else if (/^\/(?:index\.html|terminal\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|about\.md|resume\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
+        else if (decoded === '/request') route = 'request.html';
+        else if (/^\/(?:index\.html|terminal\.html|request\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|about\.md|resume\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
         else throw new Error('Unknown route');
         const data = await readFile(join(ROOT, route));
         res.writeHead(200, { 'Content-Type': MIME_TYPES[extname(route)] || 'application/octet-stream' });

@@ -29,26 +29,35 @@ def main():
             cwd='/app/backend',
         )
         children.append(parser)
-        deadline = time.monotonic() + 30
-        while not stopping:
-            if parser.poll() is not None:
-                raise RuntimeError('SQL parser exited during startup')
-            try:
-                with urllib.request.urlopen('http://127.0.0.1:6005/api/health', timeout=1) as response:
-                    if response.status == 200:
-                        break
-            except OSError:
-                pass
-            if time.monotonic() > deadline:
-                raise RuntimeError('SQL parser did not become ready within 30 seconds')
-            time.sleep(0.2)
+        inquiry = subprocess.Popen(
+            [sys.executable, '/app/inquiry.py'],
+        )
+        children.append(inquiry)
+
+        def wait_ready(url, name, child, timeout=30):
+            deadline = time.monotonic() + timeout
+            while not stopping:
+                if child.poll() is not None:
+                    raise RuntimeError(f'{name} exited during startup ({child.returncode})')
+                try:
+                    with urllib.request.urlopen(url, timeout=1) as response:
+                        if response.status == 200:
+                            return
+                except OSError:
+                    pass
+                if time.monotonic() > deadline:
+                    raise RuntimeError(f'{name} did not become ready within {timeout} seconds')
+                time.sleep(0.2)
+
+        wait_ready('http://127.0.0.1:6005/api/health', 'SQL parser', parser)
+        wait_ready('http://127.0.0.1:6006/health', 'Inquiry service', inquiry)
         if stopping:
             return 0
         web = subprocess.Popen(['nginx', '-g', 'daemon off;'])
         children.append(web)
-        print('Site and SQL parser ready; listening on port 3000.', flush=True)
+        print('Site, SQL parser, and inquiry form ready; listening on port 3000.', flush=True)
         while not stopping:
-            for name, child in [('SQL parser', parser), ('Nginx', web)]:
+            for name, child in [('SQL parser', parser), ('Inquiry', inquiry), ('Nginx', web)]:
                 if child.poll() is not None:
                     raise RuntimeError(f'{name} exited unexpectedly ({child.returncode})')
             time.sleep(0.2)

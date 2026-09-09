@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>request time — jon telep</title>
+    <meta name="description" content="Request time with Jonathan Telep. Short form for site/IT, custom software, or data work. Same inbox as telep.io/contact.">
+    <link rel="canonical" href="https://jonathantelep.com/request">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jonathan Telep">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Request time — Jonathan Telep">
+    <meta property="og:description" content="Short inquiry form. Site/IT for a business, custom software, data/integration. Same inbox as telep.io/contact.">
+    <meta property="og:url" content="https://jonathantelep.com/request">
+    <meta property="og:image" content="https://jonathantelep.com/public/social/home-v1.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@telep_io">
+    <meta name="twitter:title" content="Request time — Jonathan Telep">
+    <meta name="twitter:description" content="Short inquiry form. Site/IT for a business, custom software, data/integration.">
+    <meta name="twitter:image" content="https://jonathantelep.com/public/social/home-v1.png">
+    <link rel="icon" type="image/png" href="public/grapevine.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="public/grapevine-white.png" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css?v=4">
+</head>
+<body class="request-page">
+    <div id="space" aria-hidden="true"></div>
+    <div id="sun" aria-hidden="true">
+        <div class="corona"></div>
+        <div class="core"></div>
+    </div>
+
+    <a class="skip" href="#request">skip to form</a>
+
+    <aside id="side">
+        <a class="brand" href="/">jon telep</a>
+
+        <dl class="meta">
+            <div><dt>build:</dt><dd>v1</dd></div>
+            <div><dt>focus:</dt><dd><a href="https://telep.tools" target="_blank" rel="noopener">telep.tools</a></dd></div>
+            <div><dt>latest:</dt><dd><a href="https://sumvid.app" target="_blank" rel="noopener">sumvid</a></dd></div>
+            <div><dt>base:</dt><dd>cleveland, oh</dd></div>
+            <div><dt>clock:</dt><dd id="clock">--:--:--</dd></div>
+            <div><dt>path:</dt><dd>/request</dd></div>
+        </dl>
+
+        <nav class="sidenav" aria-label="sections">
+            <a href="/#hello"><span>01</span>hello</a>
+            <a href="/#sun-section"><span>02</span>the sun</a>
+            <a href="/#build"><span>03</span>what i build</a>
+            <a href="/#projects"><span>04</span>projects</a>
+            <a href="/#systems"><span>05</span>systems</a>
+            <a href="/#contact"><span>06</span>contact</a>
+            <a href="/request" aria-current="page"><span>07</span>request</a>
+        </nav>
+
+        <div class="side-foot">
+            <a href="https://x.com/telep_io" target="_blank" rel="noopener">x</a>
+            <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github</a>
+            <a href="https://telep.io" target="_blank" rel="noopener">telep.io</a>
+            <a href="/terminal">terminal</a>
+        </div>
+    </aside>
+
+    <main id="content">
+        <section id="request" class="sec request-sec">
+            <p class="orbit-tag"><i></i>inquiry · in range</p>
+            <h1 class="h-big"><span class="line">request</span><span class="line">time.</span></h1>
+            <p class="lede">tell me what you need. i read everything. this is the shortest path — not a calendar, not a bounce to the studio site.</p>
+
+            <div id="request-success" class="request-success" hidden>
+                <p class="kicker"><i class="live"></i> signal received</p>
+                <h2 class="h2">message received.</h2>
+                <p class="lede">i'll follow up at the email you left. same inbox as telep.io/contact — jon@telep.io.</p>
+                <div class="cta-row">
+                    <a class="btn" href="/">back home <span>←</span></a>
+                    <a class="btn ghost" href="https://x.com/telep_io" target="_blank" rel="noopener">or dm on x <span>↗</span></a>
+                </div>
+            </div>
+
+            <form id="request-form" class="request-form" novalidate>
+                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+
+                <label>
+                    <span>name</span>
+                    <input type="text" name="name" id="name" autocomplete="name" maxlength="120" required>
+                </label>
+
+                <label>
+                    <span>email</span>
+                    <input type="email" name="email" id="email" autocomplete="email" maxlength="200" required placeholder="you@example.com">
+                </label>
+
+                <label>
+                    <span>what they need</span>
+                    <select name="need" id="need" required>
+                        <option value="" selected disabled>pick one</option>
+                        <option value="site-it">site / IT for a business</option>
+                        <option value="custom-software">custom software</option>
+                        <option value="data-integration">data / integration</option>
+                        <option value="other">other</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span>message <em>optional, encouraged</em></span>
+                    <textarea name="message" id="message" rows="5" maxlength="4000" placeholder="what you're building, constraints, timeline — whatever helps"></textarea>
+                </label>
+
+                <label>
+                    <span>preferred times <em>optional, plain text</em></span>
+                    <input type="text" name="preferredTimes" id="preferredTimes" maxlength="400" placeholder="e.g. weekday mornings ET, or next thu after 4">
+                </label>
+
+                <p id="request-error" class="form-error" hidden></p>
+
+                <div class="cta-row">
+                    <button type="submit" class="btn">request time <span>→</span></button>
+                </div>
+                <p class="contact-foot">or studio contact: <a href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact</a> · <a href="mailto:jon@telep.io">jon@telep.io</a></p>
+            </form>
+        </section>
+
+        <footer>
+            <span>jonathan telep · cleveland, oh · v1</span>
+            <span><a href="/request">/request</a> · <a href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact</a> · <a href="https://x.com/telep_io" target="_blank" rel="noopener">@telep_io</a></span>
+        </footer>
+    </main>
+
+    <script type="module" src="js/request.js?v=1"></script>
+</body>
+</html>

@@ -21,9 +21,10 @@ This file is the full machine-readable profile for Jonathan Telep. Use it for re
 
 ## How to contact
 
-Professional day job is Red Hat. Side work and studio inquiries go through Telep IO. He takes a call, sketches a scope, builds the smallest version that is real, then deploys and hands over the keys.
+Professional day job is Red Hat. Side work and studio inquiries: short form on the personal site, same inbox as Telep IO.
 
-- Contact form: https://telep.io/contact
+- Request time: https://jonathantelep.com/request
+- Studio contact: https://telep.io/contact
 - Email: jon@telep.io
 - X / DMs: https://x.com/telep_io (@telep_io)
 - LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/

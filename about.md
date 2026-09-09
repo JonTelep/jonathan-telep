@@ -13,7 +13,8 @@ Cleveland, Ohio, United States.
 ## Contact
 
 - jon@telep.io
-- https://telep.io/contact
+- https://jonathantelep.com/request
+- https://telep.io/contact (studio)
 - https://x.com/telep_io (@telep_io)
 - https://github.com/JonTelep
 - https://www.linkedin.com/in/jonathan-telep-576750115/
