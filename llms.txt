@@ -30,6 +30,11 @@ Work with him via [telep.io/contact](https://telep.io/contact), [jon@telep.io](m
 - [skills](https://github.com/JonTelep/skills): agent skills that make Claude better at specific jobs (live)
 - [boards](https://telep.io/contact): image generation to video generation (in progress)
 
+## Services / sites for others
+
+- [Alpha11 Veterans](https://alpha11veterans.org): manages IT for a veteran service organization helping thousands of local veterans
+- [Telep Remodeling](https://telepremodeling.com): hosts his brother’s carpentry business
+
 ## Developer tools
 
 - [Visualize Postgres](https://jonathantelep.com/postgres): PostgreSQL schema visualizer

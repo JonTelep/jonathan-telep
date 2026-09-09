@@ -24,6 +24,7 @@ Cleveland, Ohio, United States.
 - Products: small apps with one job (sumvid, boards, telep.tools, Easy Data Quality)
 - Developer tools: paste something in, get something useful out (Visualize Postgres, Jsonify)
 - Live data: weather, mortgage rates, and launches, printed in a terminal
+- Sites for others: bring a business or nonprofit onto the internet and manage it ([Alpha11 Veterans](https://alpha11veterans.org), [Telep Remodeling](https://telepremodeling.com))
 
 ## Projects
 
@@ -34,6 +35,8 @@ Cleveland, Ohio, United States.
 - [seploy](https://github.com/Telep-IO/seploy) — deploy utility (live)
 - [skills](https://github.com/JonTelep/skills) — agent skills (live)
 - [Telep IO](https://telep.io) — studio
+- [Alpha11 Veterans](https://alpha11veterans.org) — IT for a veteran service organization
+- [Telep Remodeling](https://telepremodeling.com) — hosts his brother’s carpentry business
 
 ## Also online
 

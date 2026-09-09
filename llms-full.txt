@@ -36,11 +36,12 @@ He is a Senior Software Engineer at Red Hat. On the side he builds software, shi
 
 This is a side gig: clients get him, not a ticket queue.
 
-Three kinds of work, all running somewhere:
+Four kinds of work, all running somewhere:
 
 1. Products — small apps with one job.
 2. Developer tools — paste something in, get something useful out. No sign-up, no tracking.
 3. Live data — weather, mortgage rates, and launch feeds, proxied and printed in a terminal.
+4. Sites for others — stand up and manage websites for other businesses and organizations (Alpha11 Veterans, Telep Remodeling).
 
 Process: shape it, build it, launch it.
 
@@ -89,6 +90,13 @@ A collection of agent skills. Packaged instructions that make Claude better at s
 
 - GitHub: https://github.com/JonTelep/skills
 - Tags: AI, skills, open source
+
+## Services / sites for others
+
+Through Telep IO he puts other people’s work on the internet and manages the site. Not claimed as paid retainers here.
+
+- [Alpha11 Veterans](https://alpha11veterans.org): manages IT for a veteran service organization helping thousands of local veterans
+- [Telep Remodeling](https://telepremodeling.com): hosts his brother’s carpentry business
 
 ## Studio and other systems
 

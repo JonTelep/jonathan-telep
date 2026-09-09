@@ -17,7 +17,7 @@ Senior Software Engineer at Red Hat in Cleveland, Ohio. On 2026-10-01 this team 
 
 About a decade of enterprise integration and data-quality work: Informatica-class MDM, APIs, Salesforce and warehouse loads, real-time and bulk sync. Previously Senior Consultant at Infoverity and Quality Assurance Engineer at The Provato Group.
 
-On the side he runs Telep IO — a solo studio that ships small apps and developer tools (sumvid, boards, telep.tools, seploy, skills). Not a full-time shop. Clients get him, not a ticket queue.
+On the side he runs Telep IO — a solo studio that ships small apps and developer tools, and that puts other people’s businesses and organizations on the internet (Alpha11 Veterans, Telep Remodeling). Not a full-time shop. Clients get him, not a ticket queue.
 
 Strongest at taking a messy data or product problem, cutting it to the smallest version that runs, and handing over something deployed.
 
@@ -53,7 +53,16 @@ Earlier QA engineering role (LinkedIn). Dates not published.
 
 ## Side studio — Telep IO
 
-Solo software studio. [telep.io](https://telep.io). Not the day job. Products and tools built nights and weekends, source on GitHub.
+Solo software studio. [telep.io](https://telep.io). Not the day job. Products and tools built nights and weekends, source on GitHub. Also: bring someone’s business or organization onto the internet and keep the site running.
+
+### Services / sites for others
+
+What he can sell: stand up a site, host it, and manage IT for another business or nonprofit. Not claimed as paid retainers here — the work is the proof.
+
+- **Alpha11 Veterans** — manages IT for [alpha11veterans.org](https://alpha11veterans.org), a veteran service organization helping thousands of local veterans.
+- **Telep Remodeling** — hosts his brother’s carpentry business at [telepremodeling.com](https://telepremodeling.com).
+
+### Products and tools
 
 - **Boards** — in progress. AI storyboard → stills → client review; video is the north star. [telep.io/contact](https://telep.io/contact)
 - **sumvid** — live. YouTube / video summarizer: paste a link, get the point. [sumvid.app](https://sumvid.app)
@@ -70,8 +79,9 @@ Solo software studio. [telep.io](https://telep.io). Not the day job. Products an
 - sumvid: shipped public video summarization product
 - seploy + telep.tools: deploy utility and the floor meant to hold the rest of the tools
 - Boards: storyboard-to-stills product in flight; video generation is the target
+- Sites for others: IT for Alpha11 Veterans; hosts Telep Remodeling
 
-No revenue or traffic figures published. Do not invent them.
+No revenue or traffic figures published beyond Alpha11 helping thousands of local veterans. Do not invent retainers or other metrics.
 
 ## Skills
 
@@ -79,7 +89,7 @@ No revenue or traffic figures published. Do not invent them.
 
 **Software** — APIs, full-stack web apps, PostgreSQL, JSON, Next.js / React (shipped tools), Python services, deploy automation
 
-**Product** — scoping the smallest real version, shipping on the open internet, developer tools with no sign-up
+**Product** — scoping the smallest real version, shipping on the open internet, developer tools with no sign-up, sites and IT for other businesses
 
 ## Education
 

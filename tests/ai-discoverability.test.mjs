@@ -35,6 +35,8 @@ test('llms-full.txt is a hireable markdown profile', async () => {
   assert.match(text, /https:\/\/www\.linkedin\.com\/in\/jonathan-telep-576750115\//);
   assert.match(text, /https:\/\/telep\.io\/llms\.txt/);
   assert.match(text, /https:\/\/jonathantelep\.com\/resume\.md/);
+  assert.match(text, /https:\/\/alpha11veterans\.org/);
+  assert.match(text, /https:\/\/telepremodeling\.com/);
   assert.doesNotMatch(text, /wikidata\.org/i);
 });
 
@@ -45,6 +47,8 @@ test('about.md is a plain profile', async () => {
   assert.match(text, /https:\/\/telep\.io\/contact/);
   assert.match(text, /https:\/\/jonathantelep\.com\/resume\.md/);
   assert.match(text, /Red Hat/);
+  assert.match(text, /alpha11veterans\.org/);
+  assert.match(text, /telepremodeling\.com/);
 });
 
 test('resume.md frames Red Hat as day job and Telep IO as side studio', async () => {
@@ -62,7 +66,9 @@ test('resume.md frames Red Hat as day job and Telep IO as side studio', async ()
   assert.doesNotMatch(text, /Andrew Mitchell/i);
   assert.doesNotMatch(text, /open to work/i);
   assert.doesNotMatch(text, /Stripe/i);
-  assert.doesNotMatch(text, /Alpha11/i);
+  assert.match(text, /Services \/ sites for others/);
+  assert.match(text, /https:\/\/alpha11veterans\.org/);
+  assert.match(text, /https:\/\/telepremodeling\.com/);
   assert.doesNotMatch(text, /MRR|ARR|\$\d/i);
   const dayJob = text.indexOf('### Red Hat');
   const side = text.indexOf('## Side studio');
