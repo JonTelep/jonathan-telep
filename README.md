@@ -3,6 +3,7 @@
 Personal site for Jonathan Telep, senior software engineer in Cleveland, Ohio.
 
 - `/` — the v1 landing page (`index.html`, `landing.css`, `js/landing.js`): hero, about (with a live embedded terminal), what I build, projects, a **Systems** directory of everything online, and contact. Live Cleveland weather, mortgage rate, and next-launch ticker.
+- `/request` — short business-inquiry form. Posts to `/api/request`, delivered by Resend to `jon@telep.io` (same inbox as [telep.io/contact](https://telep.io/contact)).
 - `/terminal` — the full terminal + Notepad++-style editor desktop (`terminal.html`, `style.css`, `js/main.js`). Same virtual filesystem and commands as before.
 
 Both pages share `js/modules/terminal.js` and `js/modules/filesystem.js`.
@@ -119,9 +120,9 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 
 Coolify should use the **Dockerfile** build pack, the repository root as its base directory, `/Dockerfile` as the Dockerfile location, and port **3000**. A push to its configured deployment branch rebuilds all frontends and the Python parser together. No new Coolify service or port is required. Existing `POSTGRES_HOST` values can be removed; they are ignored.
 
-The image waits for the parser before starting Nginx. If either process exits, the container exits rather than silently leaving a broken tool online. The Docker health check exercises `/postgres/api/health` through Nginx. Only `FRED_API_KEY` is optional runtime configuration; no secrets belong in Git.
+The image waits for the parser before starting Nginx. If either process exits, the container exits rather than silently leaving a broken tool online. The Docker health check exercises `/postgres/api/health` through Nginx. `FRED_API_KEY` is optional. The `/request` form needs **`RESEND_API_KEY`** (copy the same Coolify secret from TelepIO) so submissions go to `jon@telep.io`. Optional `RESEND_FROM_EMAIL` defaults to `TelepIO Contact <hello@contact.telep.io>` — the same verified from-address TelepIO uses. Optional `TELEP_CONTACT_URL` forwards to `https://telep.io/api/contact` if Resend is unset. No secrets belong in Git. See `.env.example`.
 
-Before pushing, run `npm run lint --workspace=@telep/postgres`, `node --test tests/*.test.mjs`, and `podman build --format docker -t jonathan-telep .`. For a production smoke test, run that image and confirm `/`, `/jsonify/`, `/postgres/`, and `/postgres/api/health`.
+Before pushing, run `npm run lint --workspace=@telep/postgres`, `node --test tests/*.test.mjs`, and `podman build --format docker -t jonathan-telep .`. For a production smoke test, run that image and confirm `/`, `/request`, `/jsonify/`, `/postgres/`, and `/postgres/api/health`.
 
 
 ## Project Structure

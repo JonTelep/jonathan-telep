@@ -28,27 +28,95 @@
     <!-- social-preview:end -->
     <meta name="keywords" content="Jonathan Telep, software engineer, Cleveland, Ohio, Telep IO, sumvid, telep.tools, boards, web developer, API developer">
     <meta name="author" content="Jonathan Telep">
+    <link rel="describedby" href="https://jonathantelep.com/llms.txt" type="text/plain">
+    <link rel="alternate" type="text/markdown" href="https://jonathantelep.com/about.md" title="Plain-text profile">
+    <link rel="alternate" type="text/markdown" href="https://jonathantelep.com/resume.md" title="Resume">
+    <link rel="alternate" type="text/plain" href="https://jonathantelep.com/llms-full.txt" title="Full hireable profile">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jonathan Telep",
-      "jobTitle": "Software Engineer",
-      "worksFor": [
-        { "@type": "Organization", "name": "Telep IO", "url": "https://telep.io" }
-      ],
-      "url": "https://jonathantelep.com",
-      "image": "https://jonathantelep.com/public/jon.png",
-      "sameAs": [
-        "https://x.com/telep_io",
-        "https://github.com/JonTelep",
-        "https://telep.io",
-        "https://sumvid.app"
-      ],
-      "knowsAbout": ["Software Engineering", "API Development", "Web Development", "AI/ML", "Video Summarization"],
-      "address": { "@type": "PostalAddress", "addressLocality": "Cleveland", "addressRegion": "Ohio", "addressCountry": "US" }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jonathantelep.com/#person",
+          "name": "Jonathan Telep",
+          "alternateName": ["Jon Telep", "jon telep"],
+          "jobTitle": "Senior Software Engineer",
+          "description": "Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio. Builds and ships independent products including sumvid, telep.tools, boards, Easy Data Quality, seploy, and agent skills.",
+          "url": "https://jonathantelep.com",
+          "image": "https://jonathantelep.com/public/jon.png",
+          "worksFor": { "@id": "https://www.redhat.com/#organization" },
+          "founder": { "@id": "https://telep.io/#organization" },
+          "sameAs": [
+            "https://github.com/JonTelep",
+            "https://x.com/telep_io",
+            "https://www.linkedin.com/in/jonathan-telep-576750115/",
+            "https://telep.io",
+            "https://sumvid.app",
+            "https://telep.tools"
+          ],
+          "knowsAbout": [
+            "Master Data Management",
+            "Informatica",
+            "Enterprise Integration",
+            "Software Engineering",
+            "Web Development",
+            "API Development",
+            "AI/ML",
+            "Video Summarization",
+            "Image-to-Video Generation",
+            "Developer Tools",
+            "PostgreSQL",
+            "JSON",
+            "Data Quality",
+            "Deployment Tooling",
+            "Agent Skills",
+            "SaaS",
+            "Live Data APIs"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cleveland",
+            "addressRegion": "Ohio",
+            "addressCountry": "US"
+          },
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Cleveland, Ohio",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 41.4993,
+              "longitude": -81.6944
+            }
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "professional",
+            "url": "https://jonathantelep.com/request",
+            "email": "jon@telep.io"
+          },
+          "email": "jon@telep.io"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.redhat.com/#organization",
+          "name": "Red Hat",
+          "url": "https://www.redhat.com"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://telep.io/#organization",
+          "name": "Telep IO",
+          "url": "https://telep.io",
+          "founder": { "@id": "https://jonathantelep.com/#person" },
+          "sameAs": [
+            "https://x.com/telep_io",
+            "https://telep.tools"
+          ]
+        }
+      ]
     }
     </script>
     <link rel="icon" type="image/png" href="public/grapevine.png" media="(prefers-color-scheme: light)">
@@ -56,7 +124,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing.css?v=3">
+    <link rel="stylesheet" href="landing.css?v=4">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -89,6 +157,7 @@
             <a href="#projects"><span>04</span>projects</a>
             <a href="#systems"><span>05</span>systems</a>
             <a href="#contact"><span>06</span>contact</a>
+            <a href="/request"><span>07</span>request</a>
         </nav>
 
         <div class="signals" aria-label="live signals">
@@ -99,6 +168,7 @@
         </div>
 
         <div class="side-foot">
+            <a href="/request">request</a>
             <a href="https://x.com/telep_io" target="_blank" rel="noopener">x</a>
             <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github</a>
             <a href="https://telep.io" target="_blank" rel="noopener">telep.io</a>
@@ -134,7 +204,7 @@
                         the thing i'm building toward right now is <a href="https://telep.tools" target="_blank" rel="noopener">telep.tools</a>.
                     </p>
                     <div class="cta-row">
-                        <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">work with me <span>↗</span></a>
+                        <a class="btn" href="/request">work with me <span>→</span></a>
                         <a class="btn ghost" href="#sun-section">keep scrolling <span>↓</span></a>
                     </div>
                     <ul class="facts">
@@ -177,7 +247,7 @@
                     </div>
                 </div>
                 <div class="cta-row">
-                    <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">start something <span>↗</span></a>
+                    <a class="btn" href="/request">request time <span>→</span></a>
                 </div>
             </div>
         </section>
@@ -390,18 +460,18 @@
             <h2 class="h-big"><span class="line">still</span><span class="line">in range.</span></h2>
             <p class="lede">thirty au out and the signal still reaches. tell me what you're building and let me help you achieve it.</p>
             <div class="cta-row">
-                <a class="btn" href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact <span>↗</span></a>
-                <a class="btn ghost" href="https://x.com/telep_io" target="_blank" rel="noopener">dm me on x <span>↗</span></a>
+                <a class="btn" href="/request">request time <span>→</span></a>
+                <a class="btn ghost" href="https://telep.io/contact" target="_blank" rel="noopener">or studio contact <span>↗</span></a>
             </div>
-            <p class="contact-foot">or where the code lives: <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github.com/JonTelep</a></p>
+            <p class="contact-foot">or where the code lives: <a href="https://github.com/JonTelep" target="_blank" rel="noopener">github.com/JonTelep</a> · <a href="mailto:jon@telep.io">jon@telep.io</a></p>
         </section>
 
         <footer>
             <span>jonathan telep · cleveland, oh · v1</span>
-            <span><a href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact</a> · <a href="https://x.com/telep_io" target="_blank" rel="noopener">@telep_io</a></span>
+            <span><a href="/request">/request</a> · <a href="https://telep.io/contact" target="_blank" rel="noopener">telep.io/contact</a> · <a href="https://x.com/telep_io" target="_blank" rel="noopener">@telep_io</a></span>
         </footer>
     </main>
 
-    <script type="module" src="js/landing.js?v=3"></script>
+    <script type="module" src="js/landing.js?v=4"></script>
 </body>
 </html>

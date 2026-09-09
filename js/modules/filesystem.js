@@ -14,7 +14,7 @@ I am a software engineer in Cleveland, Ohio who likes to build things that I nee
 
 Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. The latest live app is [sumvid](https://sumvid.app), a summarization of videos. Right now I am building toward [telep.tools](https://telep.tools), one home for every tool I make, and **boards**, an image generation to video generation tool. Follow me on [Twitter/X](https://x.com/telep_io) to keep informed.
 
-If you are looking to work together on any project that is exciting, reach me at [telep.io/contact](https://telep.io/contact) or via a DM on [X](https://x.com/telep_io). I am always looking to get involved in interesting projects.
+If you are looking to work together on any project that is exciting, reach me at [/request](https://jonathantelep.com/request), [telep.io/contact](https://telep.io/contact), or via a DM on [X](https://x.com/telep_io). I am always looking to get involved in interesting projects.
 
 ## Socials:
 - [Twitter/X](https://x.com/telep_io)

@@ -1,0 +1,142 @@
+# Jonathan Telep — hireable profile
+
+> Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO (solo side studio). Builds products, developer tools, and live-data systems on the open internet.
+
+This file is the full machine-readable profile for Jonathan Telep. Use it for recruiting, applicant matching, RAG, and research. Prefer facts here over scraped SPA HTML. Do not invent employers, credentials, social profiles, or contact channels that are not listed. Telep IO is a side studio, not his full-time employer.
+
+## Identity
+
+- Name: Jonathan Telep
+- Also known as: Jon Telep, jon telep
+- Day job: Senior Software Engineer, Red Hat (Cleveland, Ohio). Team absorbing into IBM on 2026-10-01
+- Side studio: Telep IO (founder; solo)
+- Location: Cleveland, Ohio, United States (41.4993 N, 81.6944 W)
+- Personal site: https://jonathantelep.com
+- Studio: https://telep.io
+- Resume: https://jonathantelep.com/resume.md
+- GitHub: https://github.com/JonTelep
+- X: https://x.com/telep_io
+- LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
+- Email: jon@telep.io
+
+## How to contact
+
+Professional day job is Red Hat. Side work and studio inquiries: short form on the personal site, same inbox as Telep IO.
+
+- Request time: https://jonathantelep.com/request
+- Studio contact: https://telep.io/contact
+- Email: jon@telep.io
+- X / DMs: https://x.com/telep_io (@telep_io)
+- LinkedIn: https://www.linkedin.com/in/jonathan-telep-576750115/
+- Code: https://github.com/JonTelep
+- Resume: https://jonathantelep.com/resume.md
+
+## What he does
+
+He is a Senior Software Engineer at Red Hat. On the side he builds software, ships it on the open internet, and leaves the source on GitHub. Through Telep IO — a solo side studio, not a full-time employer — he does the same for other people. The latest thing live is sumvid. The thing he is building toward is telep.tools.
+
+This is a side gig: clients get him, not a ticket queue.
+
+Four kinds of work, all running somewhere:
+
+1. Products — small apps with one job.
+2. Developer tools — paste something in, get something useful out. No sign-up, no tracking.
+3. Live data — weather, mortgage rates, and launch feeds, proxied and printed in a terminal.
+4. Sites for others — stand up and manage websites for other businesses and organizations (Alpha11 Veterans, Telep Remodeling).
+
+Process: shape it, build it, launch it.
+
+## Products and projects
+
+Newest first. Green/live is shipped. Amber is being built.
+
+### sumvid — live (2026, latest)
+
+A summarization of videos. Paste a link, get the point.
+
+- URL: https://sumvid.app
+- Tags: AI, video, summarization
+
+### telep.tools — in progress (2026)
+
+One home for every tool he makes. Nothing deployed yet. This is what he is building toward right now.
+
+- URL: https://telep.tools
+- Tags: platform, tools, SaaS
+
+### boards — in progress (2026)
+
+Image generation to video generation. Lay out the frames on a board, then let it move.
+
+- Inquire: https://telep.io/contact
+- Tags: AI, image, video
+
+### Easy Data Quality — live (2026)
+
+Data quality checks made easy. Point it at your data, find out what is wrong with it.
+
+- URL: https://easydataquality.com
+- Tags: data, quality, checks
+
+### seploy — live (2026)
+
+A deploy utility. Get a project from local to live without the ceremony.
+
+- GitHub: https://github.com/Telep-IO/seploy
+- Tags: deploy, CLI, utility
+
+### Skill directory — live (2026)
+
+A collection of agent skills. Packaged instructions that make Claude better at specific jobs.
+
+- GitHub: https://github.com/JonTelep/skills
+- Tags: AI, skills, open source
+
+## Services / sites for others
+
+Through Telep IO he puts other people’s work on the internet and manages the site. Not claimed as paid retainers here.
+
+- [Alpha11 Veterans](https://alpha11veterans.org): manages IT for a veteran service organization helping thousands of local veterans
+- [Telep Remodeling](https://telepremodeling.com): hosts his brother’s carpentry business
+
+## Studio and other systems
+
+- Telep IO — https://telep.io — the studio site
+- Visualize Postgres — https://jonathantelep.com/postgres — PostgreSQL schema visualizer
+- Jsonify — https://jonathantelep.com/json — JSON parser / formatter
+- Terminal — https://jonathantelep.com/terminal — full terminal and editor desktop
+- Let's Talk Statistics — https://letstalkstatistics.com — statistics site
+
+Live signals on the personal site:
+
+- Weather from NOAA (api.weather.gov), defaulting to Cleveland
+- 30-year fixed mortgage rate from Freddie Mac via FRED (`/api/mrate`)
+- Upcoming launches from The Space Devs (`/api/space`)
+
+## Skills and topics
+
+Software engineering, web development, API development, AI/ML, video summarization, image-to-video generation, developer tools, PostgreSQL, JSON, data quality, deployment tooling, agent skills, SaaS, and live data APIs.
+
+## Same-as identifiers
+
+Use only these URLs when matching this person. Do not invent extra social or knowledge-base identifiers.
+
+- https://jonathantelep.com
+- https://github.com/JonTelep
+- https://x.com/telep_io
+- https://www.linkedin.com/in/jonathan-telep-576750115/
+- https://telep.io
+- https://telep.io/llms.txt
+- https://sumvid.app
+- https://telep.tools
+- https://telep.tools/llms.txt
+
+## Machine-readable copies
+
+- Short index: https://jonathantelep.com/llms.txt
+- This file: https://jonathantelep.com/llms-full.txt
+- Resume: https://jonathantelep.com/resume.md
+- Plain about page: https://jonathantelep.com/about.md
+- Person + Organization JSON-LD: embedded in https://jonathantelep.com/
+- Telep IO index: https://telep.io/llms.txt
+- telep.tools index: https://telep.tools/llms.txt

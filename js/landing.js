@@ -140,7 +140,11 @@ function initSun() {
 /* ---------- sidebar nav: highlight the section in view ---------- */
 function initNav() {
     const links = [...document.querySelectorAll('.sidenav a')];
-    const byId = Object.fromEntries(links.map(a => [a.getAttribute('href').slice(1), a]));
+    const byId = {};
+    links.forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        if (href.startsWith('#') && href.length > 1) byId[href.slice(1)] = a;
+    });
     const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (!e.isIntersecting) return;

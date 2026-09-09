@@ -1,0 +1,68 @@
+# jonathantelep.com
+#
+# Allow search engines and AI crawlers used for search, RAG, and applicant
+# matching. Do not Disallow GPTBot, ClaudeBot, Google-Extended,
+# Applebot-Extended, CCBot, or similar agents.
+#
+# Cloudflare note: if AI Crawl Control is enabled, Cloudflare injects
+# Disallow rules for those user-agents into the response regardless of
+# this file. Turn that off (or allow those bots) in the Cloudflare
+# dashboard or this Allow list will be overridden at the edge.
+
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes, use=full
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /

@@ -1,0 +1,51 @@
+# Jonathan Telep
+
+> Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio. Builds and ships independent products on the open internet.
+
+Jonathan Telep (Jon) is a Senior Software Engineer at Red Hat. Through [Telep IO](https://telep.io) — a side studio, not a full-time employer — he ships public products and does the same kind of work for other people. The latest live product is sumvid. The thing he is building toward is [telep.tools](https://telep.tools), the public tool shipyard.
+
+Work with him via [jonathantelep.com/request](https://jonathantelep.com/request), [telep.io/contact](https://telep.io/contact) (studio), [jon@telep.io](mailto:jon@telep.io), or [@telep_io](https://x.com/telep_io) on X.
+
+## Profile
+
+- [Full hireable profile](https://jonathantelep.com/llms-full.txt): complete markdown profile for recruiting, RAG, and LLM applicants
+- [Resume](https://jonathantelep.com/resume.md): day job vs side studio, experience, skills
+- [About](https://jonathantelep.com/about.md): plain-text biography
+- [Homepage](https://jonathantelep.com/): personal site, Cleveland, Ohio
+
+## Related sites
+
+- [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [Telep IO llms.txt](https://telep.io/llms.txt): studio index for AI crawlers (sibling)
+- [telep.tools](https://telep.tools): tool shipyard / launcher
+- [telep.tools llms.txt](https://telep.tools/llms.txt): tools index for AI crawlers (sibling)
+
+## Work and products
+
+- [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [sumvid](https://sumvid.app): video summarization — paste a link, get the point (live)
+- [telep.tools](https://telep.tools): one home for every tool he makes (in progress)
+- [Easy Data Quality](https://easydataquality.com): data quality checks (live)
+- [seploy](https://github.com/Telep-IO/seploy): deploy utility from local to live (live)
+- [skills](https://github.com/JonTelep/skills): agent skills that make Claude better at specific jobs (live)
+- [boards](https://telep.io/contact): image generation to video generation (in progress)
+
+## Services / sites for others
+
+- [Alpha11 Veterans](https://alpha11veterans.org): manages IT for a veteran service organization helping thousands of local veterans
+- [Telep Remodeling](https://telepremodeling.com): hosts his brother’s carpentry business
+
+## Developer tools
+
+- [Visualize Postgres](https://jonathantelep.com/postgres): PostgreSQL schema visualizer
+- [Jsonify](https://jonathantelep.com/json): JSON formatter
+- [Terminal](https://jonathantelep.com/terminal): interactive terminal and editor
+
+## Contact and code
+
+- [Request time](https://jonathantelep.com/request): business inquiry form (same inbox as the studio)
+- [Studio contact](https://telep.io/contact): telep.io/contact
+- [X / @telep_io](https://x.com/telep_io): DMs
+- [GitHub / JonTelep](https://github.com/JonTelep): source
+- [Email](mailto:jon@telep.io): jon@telep.io
+- [LinkedIn](https://www.linkedin.com/in/jonathan-telep-576750115/): jonathan-telep-576750115
