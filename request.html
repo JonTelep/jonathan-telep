@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing.css?v=5">
+    <link rel="stylesheet" href="landing.css?v=6">
 </head>
 <body class="request-page">
     <div id="space" aria-hidden="true"></div>
@@ -36,24 +36,24 @@
 
     <aside id="side">
         <a class="brand" href="/">jon telep</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="side-menu" aria-label="toggle menu"><b><i></i><i></i><i></i></b><span>menu</span></button>
 
         <dl class="meta">
             <div><dt>build:</dt><dd>v1</dd></div>
             <div><dt>focus:</dt><dd><a href="https://telep.tools" target="_blank" rel="noopener">telep.tools</a></dd></div>
-            <div><dt>latest:</dt><dd><a href="https://sumvid.app" target="_blank" rel="noopener">sumvid</a></dd></div>
+            <div><dt>latest:</dt><dd><a href="https://bark.telep.io" target="_blank" rel="noopener">barkmarks</a></dd></div>
             <div><dt>base:</dt><dd>cleveland, oh</dd></div>
             <div><dt>clock:</dt><dd id="clock">--:--:--</dd></div>
             <div><dt>path:</dt><dd>/request</dd></div>
         </dl>
 
-        <nav class="sidenav" aria-label="sections">
+        <nav id="side-menu" class="sidenav" aria-label="sections">
             <a href="/#hello"><span>01</span>hello</a>
             <a href="/#sun-section"><span>02</span>the sun</a>
             <a href="/#build"><span>03</span>what i build</a>
             <a href="/#projects"><span>04</span>projects</a>
             <a href="/#systems"><span>05</span>systems</a>
-            <a href="/#contact"><span>06</span>contact</a>
-            <a href="/request" aria-current="page"><span>07</span>request</a>
+            <a href="/#contact" aria-current="page"><span>06</span>contact</a>
         </nav>
 
         <div class="side-foot">
@@ -129,6 +129,6 @@
         </footer>
     </main>
 
-    <script type="module" src="js/request.js?v=3"></script>
+    <script type="module" src="js/request.js?v=4"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import { initRequestForm } from './modules/request-form.js';
+import { initNavToggle } from './modules/nav-toggle.js';
 
 function tickClock() {
     const el = document.getElementById('clock');
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
     tickClock();
     setInterval(tickClock, 1000);
     initRequestForm();
+    initNavToggle();
 });

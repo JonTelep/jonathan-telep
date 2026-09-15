@@ -1,5 +1,6 @@
 import { initializeTerminal, updatePrompt, handleCommand, addNewPrompt } from './modules/terminal.js';
 import { initRequestForm } from './modules/request-form.js';
+import { initNavToggle } from './modules/nav-toggle.js';
 
 const CLE = { lat: 41.4993, lon: -81.6944 };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -287,6 +288,7 @@ function initCommandLinks() {
 document.addEventListener('DOMContentLoaded', () => {
     tickClock();
     setInterval(tickClock, 1000);
+    initNavToggle();
     initTyped();
     initPortrait();
     initSystems();
