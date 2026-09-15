@@ -405,6 +405,21 @@ body::before {
 @keyframes frame { 0% { opacity: 0; transform: translateY(8px); } 20%, 60% { opacity: 1; transform: none; } 70%, 100% { opacity: 0.2; transform: translateX(-12px); } }
 .art-boards .play { position: absolute; right: 22px; bottom: 16px; width: 0; height: 0; border-left: 14px solid var(--amber); border-top: 9px solid transparent; border-bottom: 9px solid transparent; animation: blink 1.6s ease-in-out infinite; }
 
+/* barkmarks: a bark meter (quiet → full bark) over a timeline of trigger marks */
+.art-bark { display: flex; align-items: flex-end; justify-content: center; }
+.art-bark .meter { position: absolute; left: 22px; right: 22px; top: 18px; height: 52px; display: flex; align-items: flex-end; gap: 10px; }
+.art-bark .meter i { flex: 1; border-radius: 3px 3px 0 0; background: var(--green); opacity: 0.85; transform-origin: bottom; animation: bark 3.2s var(--ease) infinite; }
+.art-bark .meter i:nth-child(1) { height: 22%; }
+.art-bark .meter i:nth-child(2) { height: 40%; animation-delay: 0.15s; }
+.art-bark .meter i:nth-child(3) { height: 58%; background: var(--amber); animation-delay: 0.3s; }
+.art-bark .meter i:nth-child(4) { height: 78%; background: var(--amber); animation-delay: 0.45s; }
+.art-bark .meter i:nth-child(5) { height: 100%; background: var(--red); animation-delay: 0.6s; }
+.art-bark .track { position: absolute; left: 22px; right: 22px; bottom: 22px; height: 2px; background: var(--line-2); }
+.art-bark .track b { position: absolute; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--red); box-shadow: 0 0 8px rgba(255, 95, 87, 0.6); animation: blink 1.6s ease-in-out infinite; }
+.art-bark .track b:nth-child(1) { left: 12%; } .art-bark .track b:nth-child(2) { left: 38%; animation-delay: 0.4s; }
+.art-bark .track b:nth-child(3) { left: 61%; animation-delay: 0.8s; } .art-bark .track b:nth-child(4) { left: 86%; animation-delay: 1.2s; }
+@keyframes bark { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1); } }
+
 .art-postgres svg { width: 80%; height: 80%; }
 .art-postgres .nodes rect { fill: var(--bg-2); stroke: var(--cyan); stroke-width: 1; }
 .art-postgres .edges line { stroke: var(--cyan); stroke-width: 1; stroke-dasharray: 6 4; animation: dash 2s linear infinite; opacity: 0.7; }
@@ -511,6 +526,8 @@ body::before {
 
 /* ---------- 06 contact ---------- */
 #contact { padding-bottom: 60px; }
+#contact .request-form { margin-top: 40px; }
+#contact .request-success { margin-top: 32px; }
 .contact-foot { font-size: 12px; color: var(--dim); margin-top: 30px; }
 .contact-foot a { color: var(--mist); text-decoration: none; border-bottom: 1px solid var(--line-2); }
 .contact-foot a:hover { color: var(--sun); border-color: var(--sun); }

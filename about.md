@@ -2,7 +2,7 @@
 
 Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio — not a full-time employer.
 
-Day job is Red Hat (team absorbing into IBM on 2026-10-01). On the side I build software, ship it on the open internet, and leave the source on GitHub. Through Telep IO I do the same for other people. The latest thing live is [sumvid](https://sumvid.app). The thing I am building toward right now is [telep.tools](https://telep.tools).
+Day job is Red Hat (team absorbing into IBM on 2026-10-01). On the side I build software, ship it on the open internet, and leave the source on GitHub. Through Telep IO I do the same for other people. The latest thing live is [BarkMarks](https://bark.telep.io). The thing I am building toward right now is [telep.tools](https://telep.tools).
 
 This is a side gig, which means you get me, not a ticket queue. We figure out the smallest version that is real, build it, deploy it, and hand over the keys.
 
@@ -22,13 +22,14 @@ Cleveland, Ohio, United States.
 
 ## What I build
 
-- Products: small apps with one job (sumvid, boards, telep.tools, Easy Data Quality)
+- Products: small apps with one job (BarkMarks, sumvid, boards, telep.tools, Easy Data Quality)
 - Developer tools: paste something in, get something useful out (Visualize Postgres, Jsonify)
 - Live data: weather, mortgage rates, and launches, printed in a terminal
 - Sites for others: bring a business or nonprofit onto the internet and manage it ([Alpha11 Veterans](https://alpha11veterans.org), [Telep Remodeling](https://telepremodeling.com))
 
 ## Projects
 
+- [BarkMarks](https://bark.telep.io) — know when the dog will bark: bark grades and timestamps for movies and TV (live)
 - [sumvid](https://sumvid.app) — video summarization (live)
 - [telep.tools](https://telep.tools) — home for the tools (in progress)
 - [boards](https://telep.io/contact) — image generation to video generation (in progress)

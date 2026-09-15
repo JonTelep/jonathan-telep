@@ -1,4 +1,5 @@
 import { initializeTerminal, updatePrompt, handleCommand, addNewPrompt } from './modules/terminal.js';
+import { initRequestForm } from './modules/request-form.js';
 
 const CLE = { lat: 41.4993, lon: -81.6944 };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -145,14 +146,20 @@ function initNav() {
         const href = a.getAttribute('href') || '';
         if (href.startsWith('#') && href.length > 1) byId[href.slice(1)] = a;
     });
+    const ids = Object.keys(byId).filter(id => document.getElementById(id));
+    const setActive = (id) => {
+        links.forEach(a => a.classList.remove('active'));
+        byId[id]?.classList.add('active');
+    };
     const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (!e.isIntersecting) return;
-            links.forEach(a => a.classList.remove('active'));
-            byId[e.target.id]?.classList.add('active');
-        });
+        entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
     }, { rootMargin: '-40% 0px -55% 0px' });
-    Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) io.observe(s); });
+    ids.forEach(id => io.observe(document.getElementById(id)));
+    // the last section may never cross the observer band when the page runs out of scroll,
+    // so light it up once we are at (or near) the bottom
+    const last = ids[ids.length - 1];
+    const atBottom = () => window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    window.addEventListener('scroll', () => { if (last && atBottom()) setActive(last); }, { passive: true });
 }
 
 /* ---------- systems directory: leds + counts ---------- */
@@ -299,5 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .observe(document.getElementById('output'), { childList: true, subtree: true, characterData: true });
     }
     initCommandLinks();
+    initRequestForm();
     initSun();
 });
