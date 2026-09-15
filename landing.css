@@ -611,6 +611,18 @@ body.request-page #sun {
     margin: 0;
 }
 .request-success { max-width: 640px; margin-top: 12px; }
+.request-success.in .kicker, .request-success.in .h2, .request-success.in .lede, .request-success.in .cta-row { animation: rx-in 0.6s var(--ease) both; }
+.request-success.in .lede { animation-delay: 0.9s; }
+.request-success.in .cta-row { animation-delay: 1.2s; }
+@keyframes rx-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* in flight: fields dim, the transmit line runs under the buttons */
+.request-form.sending label, .request-form.sending .cta-row { opacity: 0.45; pointer-events: none; transition: opacity 0.3s; }
+.tx { display: flex; flex-direction: column; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--sun); }
+.tx-bar { position: relative; display: block; height: 2px; background: var(--line); overflow: hidden; border-radius: 2px; }
+.tx-bar i { position: absolute; top: 0; bottom: 0; width: 38%; background: linear-gradient(90deg, transparent, var(--sun), transparent); animation: tx-sweep 1.1s linear infinite; }
+.tx-text::after { content: ''; display: inline-block; width: 0.5em; height: 0.9em; margin-left: 4px; background: var(--sun); vertical-align: -0.1em; animation: blink 0.8s step-end infinite; }
+@keyframes tx-sweep { from { left: -40%; } to { left: 100%; } }
 .request-success .h2 { margin-top: 8px; }
 .sidenav a[aria-current="page"] { color: var(--fg); }
 .sidenav a[aria-current="page"] span { color: var(--sun); }
