@@ -125,7 +125,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing.css?v=5">
+    <link rel="stylesheet" href="landing.css?v=6">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -141,6 +141,7 @@
     <!-- ================= sidebar ================= -->
     <aside id="side">
         <a class="brand" href="/">jon telep</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="side-menu" aria-label="toggle menu"><b><i></i><i></i><i></i></b><span>menu</span></button>
 
         <dl class="meta">
             <div><dt>build:</dt><dd>v1</dd></div>
@@ -151,7 +152,7 @@
             <div><dt>sun:</dt><dd id="au">0.00 au</dd></div>
         </dl>
 
-        <nav class="sidenav" aria-label="sections">
+        <nav id="side-menu" class="sidenav" aria-label="sections">
             <a href="#hello"><span>01</span>hello</a>
             <a href="#sun-section"><span>02</span>the sun</a>
             <a href="#build"><span>03</span>what i build</a>
@@ -534,6 +535,6 @@
         </footer>
     </main>
 
-    <script type="module" src="js/landing.js?v=5"></script>
+    <script type="module" src="js/landing.js?v=6"></script>
 </body>
 </html>

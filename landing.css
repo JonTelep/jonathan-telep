@@ -125,6 +125,7 @@ body::before {
     scrollbar-width: none;
 }
 #side::-webkit-scrollbar { display: none; }
+.nav-toggle { display: none; }
 .brand {
     font-family: var(--sans);
     font-weight: 600;
@@ -640,27 +641,66 @@ body.request-page #sun {
     .build-grid, .pitch { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 960px) {
-    :root { --side: 0px; --gutter: 24px; }
+    :root { --side: 0px; --gutter: 20px; }
+    html, body { overflow-x: clip; }
+
+    /* the sidebar becomes a sticky top bar: brand + menu button, with the nav folded underneath */
     #side {
         position: sticky; top: 0; bottom: auto; width: auto;
-        flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px 18px;
-        padding: 12px 20px; border-right: 0; border-bottom: 1px solid var(--line);
-        background: rgba(11, 13, 16, 0.9);
+        display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0 12px;
+        padding: 10px 16px; border-right: 0; border-bottom: 1px solid var(--line);
+        background: rgba(11, 13, 16, 0.94);
+        max-height: 100svh; overflow-y: auto;
     }
     .brand { font-size: 20px; }
-    .meta { display: none; }
-    .sidenav { display: flex; gap: 2px; flex: 1; overflow-x: auto; scrollbar-width: none; }
-    .sidenav a { padding: 6px 8px; margin: 0; white-space: nowrap; }
-    .sidenav a::before { display: none; }
-    .signals, .side-foot { display: none; }
+    .nav-toggle {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 7px 10px; border: 1px solid var(--line-2); border-radius: 6px;
+        background: transparent; color: var(--mist);
+        font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+        cursor: pointer;
+    }
+    .nav-toggle b { display: grid; width: 14px; height: 12px; place-items: center; }
+    .nav-toggle i { grid-area: 1 / 1; display: block; width: 14px; height: 1px; background: currentColor; transition: transform 0.25s var(--ease), opacity 0.2s; }
+    .nav-toggle i:nth-child(1) { transform: translateY(-4px); }
+    .nav-toggle i:nth-child(3) { transform: translateY(4px); }
+    .nav-toggle[aria-expanded="true"] { color: var(--sun); border-color: var(--sun); }
+    .nav-toggle[aria-expanded="true"] i:nth-child(1) { transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] i:nth-child(3) { transform: rotate(-45deg); }
+
+    .meta, .sidenav, .signals, .side-foot { grid-column: 1 / -1; display: none; }
+    #side.open .sidenav { display: grid; gap: 0; margin-top: 12px; border-top: 1px solid var(--line); }
+    #side.open .sidenav a { padding: 12px 4px; margin: 0; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    #side.open .sidenav a::before { display: none; }
+    #side.open .sidenav a:hover { transform: none; background: transparent; }
+    #side.open .sidenav a.active { background: transparent; }
+    #side.open .signals { display: block; margin-top: 14px; }
+    #side.open .side-foot { display: flex; padding-top: 14px; margin-top: 14px; padding-bottom: 6px; }
+
     #sun { left: 50%; }
     #content { margin-left: 0; }
-    .hello-grid { grid-template-columns: 1fr; gap: 30px; }
-    .portrait-wrap { max-width: 300px; }
+    .sec { padding: 56px 0; }
+    #hello { padding-top: 32px; min-height: auto; }
+    .hello-grid { grid-template-columns: 1fr; gap: 28px; }
+    .portrait-wrap { max-width: 280px; }
+    .h1 { font-size: clamp(38px, 11vw, 56px); }
+    .h2 { font-size: clamp(30px, 9vw, 44px); }
+    .h-big { font-size: clamp(42px, 13vw, 84px); }
+    .h-sub { font-size: clamp(19px, 5.5vw, 26px); }
+    .lede { font-size: 16px; }
+    .facts { gap: 20px 28px; }
+    .cta-row { gap: 10px; }
+    .btn { padding-left: 16px; padding-right: 16px; }
     .cards, .build-grid, .pitch { grid-template-columns: 1fr; }
-    .sys { grid-template-columns: 14px 1fr; gap: 6px 12px; }
+    .sun-copy::before { inset: -20px -20px; }
+    #terminal { height: 340px; font-size: 12.5px; }
+    .term-hints { gap: 6px; }
+    .sys { grid-template-columns: 14px 1fr; gap: 4px 12px; padding: 12px 6px; }
     .sys-url, .sys-desc { grid-column: 2; }
-    .sec { padding: 72px 0; }
+    .sys:hover { transform: none; }
+    .request-form { max-width: none; }
+    footer { flex-direction: column; gap: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
