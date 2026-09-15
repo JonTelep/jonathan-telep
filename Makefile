@@ -2,7 +2,7 @@
 
 IMAGE_NAME = jonathan-telep
 CONTAINER_NAME = jonathan-telep
-PORT = 3000
+PORT ?= 3000
 
 help:
 	@echo "Available targets:"
@@ -12,7 +12,7 @@ help:
 	@echo "  make clean       - Stop and remove container and image"
 	@echo "  make all         - Build and run (default)"
 	@echo "  make restart     - Stop, build, and run"
-	@echo "  make dev         - Run the local dev server (node) on http://localhost:8000"
+	@echo "  make dev         - Run the site and sibling tools on http://localhost:8000"
 
 all: build run
 
@@ -24,7 +24,7 @@ dev:
 
 build:
 	@echo "Building container image..."
-	podman build --format docker -t $(IMAGE_NAME) .
+	podman build --format docker --build-context postgres=../visualize-postgres --build-context jsonify=../jsonify -t $(IMAGE_NAME) .
 
 run:
 	@echo "Running container..."

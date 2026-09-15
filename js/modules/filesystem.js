@@ -23,8 +23,8 @@ If you are looking to work together on any project that is exciting, reach me at
 
 ## Current Projects:
 - The website you are reading this on ([jonathantelep.com](https://jonathantelep.com))
-- [Visualize Postgres](https://jonathantelep.com/postgres); A PostgreSQL CREATE SQL to ER Diagram web application.
-- [JSONIFY](https://jonathantelep.com/json); A JSON parser that can parse JSON files and return the data in a readable format.
+- [Visualize Postgres](/postgres/); A PostgreSQL CREATE SQL to ER Diagram web application.
+- [JSONIFY](/jsonify/); A JSON parser that can parse JSON files and return the data in a readable format.
 - [Let's Talk Statistics](https://letstalkstatistics.com); An interactive data visualization platform designed to make statistical concepts accessible and engaging for students, researchers, and data enthusiasts.
 `
             },
@@ -33,7 +33,7 @@ If you are looking to work together on any project that is exciting, reach me at
                 contents: {
                     'visualize-postgres.md': {
                         type: 'file',
-                        url: 'https://jonathantelep.com/postgres',
+                        url: '/postgres/',
                         github: 'https://github.com/JonTelep/visualize-postgres',
                         content: `# Visualize Postgres
 
@@ -58,7 +58,7 @@ The source code is available on GitHub: [https://github.com/JonTelep/visualize-p
                     },
                     'json.md': {
                         type: 'file',
-                        url: 'https://jonathantelep.com/json',
+                        url: '/jsonify/',
                         github: 'https://github.com/JonTelep/jsonify',
                         content: `# JSON Parser
 

@@ -2,10 +2,11 @@ import { createServer, request as httpRequest } from 'node:http';
 import { connect } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
-import { join, extname } from 'node:path';
+import { join, extname, resolve } from 'node:path';
 
 const PORT = Number(process.env.PORT || 8000);
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
+const JSONIFY_ROOT = resolve(ROOT, '../jsonify');
 const FRONTEND = process.env.POSTGRES_FRONTEND_ORIGIN;
 const API = process.env.POSTGRES_API_ORIGIN;
 
@@ -88,18 +89,20 @@ const server = createServer(async (req, res) => {
     }
 
     let route;
+    let assetRoot = ROOT;
     try {
         const decoded = decodeURIComponent(pathname);
         if (decoded.split('/').some((part) => part === '..' || part.startsWith('.'))) throw new Error('Invalid path');
         if (decoded.startsWith('/jsonify/')) {
             const asset = decoded.slice('/jsonify/'.length);
             if (asset && !asset.startsWith('public/')) throw new Error('Unknown asset');
-            route = 'apps/jsonify/' + (asset || 'index.html');
+            assetRoot = JSONIFY_ROOT;
+            route = asset || 'index.html';
         } else if (decoded === '/') route = 'index.html';
         else if (decoded === '/terminal') route = 'terminal.html';
         else if (/^\/(?:index\.html|terminal\.html|landing\.css|style\.css|script\.js)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
         else throw new Error('Unknown route');
-        const data = await readFile(join(ROOT, route));
+        const data = await readFile(join(assetRoot, route));
         res.writeHead(200, { 'Content-Type': MIME_TYPES[extname(route)] || 'application/octet-stream' });
         res.end(data);
     } catch {

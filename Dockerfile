@@ -1,10 +1,31 @@
+# Tool sources. Coolify builds this file with no extra flags, so the default
+# stages clone the public tool repositories at the pinned refs below. Local
+# builds override them with sibling checkouts (see `make build`):
+#   --build-context postgres=../visualize-postgres --build-context jsonify=../jsonify
+ARG POSTGRES_REF=b0ed258
+ARG JSONIFY_REF=b2d8f1b
+
+FROM docker.io/alpine/git:2.47.2 AS tool-sources
+ARG POSTGRES_REF
+ARG JSONIFY_REF
+RUN git clone --quiet https://github.com/JonTelep/visualize-postgres.git /src/postgres \
+    && git -C /src/postgres checkout --quiet "$POSTGRES_REF" \
+    && git clone --quiet https://github.com/JonTelep/jsonify.git /src/jsonify \
+    && git -C /src/jsonify checkout --quiet "$JSONIFY_REF" \
+    && rm -rf /src/postgres/.git /src/jsonify/.git
+
+FROM scratch AS postgres
+COPY --from=tool-sources /src/postgres/ /
+
+FROM scratch AS jsonify
+COPY --from=tool-sources /src/jsonify/ /
+
 FROM docker.io/library/node:22-alpine AS tools-build
 WORKDIR /app
-COPY package.json package-lock.json ./
-COPY apps/postgres/frontend/package.json ./apps/postgres/frontend/package.json
+COPY --from=postgres frontend/package.json frontend/package-lock.json ./
 RUN npm ci
-COPY apps/postgres/frontend/ ./apps/postgres/frontend/
-RUN npm run build --workspace=@telep/postgres
+COPY --from=postgres frontend/ ./
+RUN npm run build
 
 FROM docker.io/library/python:3.11-slim-bookworm
 RUN apt-get update && apt-get install -y --no-install-recommends nginx tini \
@@ -12,9 +33,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends nginx tini \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 WORKDIR /app
-COPY apps/postgres/backend/requirements.txt /app/backend/requirements.txt
+COPY --from=postgres backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
-COPY apps/postgres/backend/*.py /app/backend/
+COPY --from=postgres backend/*.py /app/backend/
 COPY scripts/production.py /app/production.py
 
 COPY nginx.conf.template /etc/nginx/templates/nginx.conf.template
@@ -26,9 +47,9 @@ COPY style.css /usr/share/nginx/html/
 COPY landing.css /usr/share/nginx/html/
 COPY js/ /usr/share/nginx/html/js/
 COPY public/ /usr/share/nginx/html/public/
-COPY apps/jsonify/index.html /usr/share/nginx/html/jsonify/index.html
-COPY apps/jsonify/public/ /usr/share/nginx/html/jsonify/public/
-COPY --from=tools-build /app/apps/postgres/frontend/dist/ /usr/share/nginx/html/postgres/
+COPY --from=jsonify index.html /usr/share/nginx/html/jsonify/index.html
+COPY --from=jsonify public/ /usr/share/nginx/html/jsonify/public/
+COPY --from=tools-build /app/dist/ /usr/share/nginx/html/postgres/
 
 EXPOSE 3000
 

@@ -58,17 +58,38 @@ make dev        # http://localhost:8000
 - http://localhost:8000/postgres/ — SQL editor and working parser
 - http://localhost:8000/jsonify/ — JSON formatter (`/json` redirects here)
 
-Requires Node.js 22+ and Podman or Docker. If Node is installed with mise but not selected, the Makefile uses Node 26.7.0 through mise. On first launch, the runner installs JavaScript dependencies from the root lockfile and builds the Python parser image. Subsequent launches reuse dependencies and container build caches. No PostgreSQL database or sibling repository is needed.
+Keep the three independent repositories next to each other:
 
-The site proxies Vite, its hot-reload WebSocket, and the parser through one origin. The parser runs in a container with source mounted for reload; Ctrl+C stops the site, Vite, and that container. Startup fails clearly if a required port is occupied. Set `PORT` (default 8000), `POSTGRES_API_PORT` (6005), or `CONTAINER_ENGINE` (`podman` or `docker`) to override defaults.
+```text
+Projects/
+├── jonathan-telep/
+├── jsonify/
+└── visualize-postgres/
+```
 
-Optional `.env` values are loaded by Node. `FRED_API_KEY` enables the mortgage-rate feed; it is not required for either embedded tool. `POSTGRES_HOST` is no longer used; production runs its own parser.
+Requires Node.js 22+ and Podman or Docker. If Node is installed with mise but
+not selected, the Makefile uses Node 26.7.0 through mise. On first launch, the
+runner installs dependencies using `../visualize-postgres/frontend/package-lock.json`
+and builds that repository's Python parser image. Subsequent launches reuse
+those dependencies and container build caches. No PostgreSQL database is needed.
+Missing sibling checkouts produce an explicit startup error.
 
-Postgres diagrams default to aligned dependency columns. Use **Auto-arrange** to reset dragged tables or switch between horizontal and vertical layouts. **Export PDF document** opens a separate report with an editable title, vector overview, relationship register, and full data dictionary. Click **Print / Save PDF**, select landscape paper, and disable browser headers/footers. Large dictionaries continue across pages with repeated column headings.
+The site proxies Vite, hot reload, and the parser through one origin. Jsonify is
+served directly from `../jsonify`. Tool links in the landing page and terminal
+stay on the current host. Ctrl+C stops all services. Set `PORT` (default 8000),
+`POSTGRES_API_PORT` (6005), or `CONTAINER_ENGINE` (`podman` or `docker`) to override
+defaults. Run `PORT=8080 make dev` to use another site port.
 
-Source lives under `apps/`; see [import notes](apps/README.md). The production image builds and serves both embedded tool frontends. The same image includes the Python parser, listening internally on port 6005. Nginx proxies it through `/postgres/api/`. The former standalone frontend and parser services are no longer needed by this site.
+Optional `.env` values are loaded by Node. `FRED_API_KEY` enables the mortgage-rate
+feed; neither tool requires it. `POSTGRES_HOST` is unused.
 
-Run routing checks with `node --test tests/routes.test.mjs`, frontend checks with `npm run build --workspace=@telep/postgres` and `npm run lint --workspace=@telep/postgres`.
+Each tool owns its source and dependencies in its own repository; the personal
+site has no npm workspaces or frontend dependencies. Run site integration checks
+with `npm test`. In `../visualize-postgres/frontend`, run `npm run build`,
+`npm run lint`, and `npm test` for frontend checks.
+
+The production image still serves the three apps together, taking the tool source
+from separate build contexts. `make build` supplies the sibling paths automatically.
 
 Other options (static only, no API proxies):
 
@@ -117,11 +138,28 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 - **Deployment platform**: Coolify on VPS
 - **Container port**: 3000
 
-Coolify should use the **Dockerfile** build pack, the repository root as its base directory, `/Dockerfile` as the Dockerfile location, and port **3000**. A push to its configured deployment branch rebuilds all frontends and the Python parser together. No new Coolify service or port is required. Existing `POSTGRES_HOST` values can be removed; they are ignored.
+The Dockerfile is self-contained: its first stage clones the two public tool
+repositories at the commits pinned by `POSTGRES_REF` and `JSONIFY_REF`, so
+Coolify needs no extra flags. Keep the **Dockerfile** build pack, the repository
+root as base directory, `/Dockerfile` as the Dockerfile location, and port **3000**.
+The old separate `jsonify` and `visualize-postgres` Coolify applications are no
+longer needed; this image serves all three.
 
-The image waits for the parser before starting Nginx. If either process exits, the container exits rather than silently leaving a broken tool online. The Docker health check exercises `/postgres/api/health` through Nginx. Only `FRED_API_KEY` is optional runtime configuration; no secrets belong in Git.
+To ship a tool change: commit and push it in its own repository, update the
+matching `ARG ..._REF` in the Dockerfile to the new commit, then push this
+repository. Coolify rebuilds on push.
 
-Before pushing, run `npm run lint --workspace=@telep/postgres`, `node --test tests/*.test.mjs`, and `podman build --format docker -t jonathan-telep .`. For a production smoke test, run that image and confirm `/`, `/jsonify/`, `/postgres/`, and `/postgres/api/health`.
+`make build` overrides the clone stages with the local sibling checkouts
+(`--build-context postgres=../visualize-postgres --build-context jsonify=../jsonify`),
+so local images always reflect uncommitted tool changes. Build without those
+flags to reproduce exactly what Coolify builds.
+
+The image waits for the parser before starting Nginx and exits if either service
+stops. Its health check exercises `/postgres/api/health` through Nginx.
+Only `FRED_API_KEY` is optional runtime configuration.
+
+Before deploying, run `npm test`, the sibling frontend checks, and `make build`.
+Smoke-test `/`, `/jsonify/`, `/postgres/`, and `/postgres/api/health` in the image.
 
 
 ## Project Structure
@@ -157,6 +195,6 @@ To add or modify projects and content:
 
 The homepage, `/terminal`, `/postgres/`, and `/jsonify/` have distinct, static Open Graph and Twitter large-image cards. `/json` redirects to Jsonify. Metadata is in the initial HTML, so link unfurlers do not need JavaScript. Card URLs are absolute HTTPS URLs on `jonathantelep.com`.
 
-The 1200×630 PNGs are committed under `public/social/`. Update the page definitions and artwork in `scripts/social-cards.mjs`, then run `npm run social:build` (requires Chromium, or set `CHROMIUM` to its executable). The command regenerates the images and metadata together. Change the image version in the generator when replacing published art to avoid stale image caches.
+The 1200×630 PNGs are committed under `public/social/`. Update the page definitions and artwork in `scripts/social-cards.mjs`, then run `npm run social:build` (requires Chromium, or set `CHROMIUM` to its executable). The command regenerates the images and metadata together, including tool HTML in the sibling repositories. Change the image version in the generator when replacing published art to avoid stale image caches.
 
 Deploy the updated site image to publish the cards. Social platforms may retain previously fetched previews; their refresh timing and final card presentation are outside the site's control. Private SQL/JSON editor contents are never included in previews; links identify the tool, not the local document. URL fragments such as `/#about` use the homepage card.

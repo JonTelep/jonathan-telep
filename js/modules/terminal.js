@@ -157,12 +157,12 @@ export function handleCommand(command) {
 
         case 'postgres':
             output.innerHTML += 'Opening Postgres schema visualizer...\n';
-            window.open('https://www.jonathantelep.com/postgres/', '_blank');
+            window.open('/postgres/', '_blank');
             break;
 
         case 'json':
             output.innerHTML += 'Opening JSON parser...\n';
-            window.open('https://www.jonathantelep.com/json', '_blank');
+            window.open('/jsonify/', '_blank');
             break;
 
         default:
@@ -177,10 +177,10 @@ const PROJECTS = [
     { url: 'https://easydataquality.com', description: 'easy data quality — data quality checks made easy', category: 'products' },
     { url: 'https://www.telep.io', description: "My company's site", category: 'work' },
     { url: 'https://www.jonathantelep.com', description: 'Personal site (v1)', category: 'info' },
-    { url: 'https://www.jonathantelep.com/terminal', description: 'This terminal', category: 'dev' },
+    { url: '/terminal', description: 'This terminal', category: 'dev' },
     { url: 'https://www.letstalkstatistics.com', description: 'Statistics site', category: 'info' },
-    { url: 'https://www.jonathantelep.com/postgres', description: 'Postgres schema visualizer', category: 'dev' },
-    { url: 'https://www.jonathantelep.com/json', description: 'JSON parser', category: 'dev' },
+    { url: '/postgres/', description: 'Postgres schema visualizer', category: 'dev' },
+    { url: '/jsonify/', description: 'JSON parser', category: 'dev' },
 ];
 
 const CATEGORY_LABELS = {

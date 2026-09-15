@@ -2,10 +2,14 @@ import { spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { join, resolve } from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 process.chdir(root);
+const postgres = resolve(root, '../visualize-postgres');
+const frontend = join(postgres, 'frontend');
+const jsonify = resolve(root, '../jsonify');
 const port = Number(process.env.PORT || 8000);
 const apiPort = Number(process.env.POSTGRES_API_PORT || 6005);
 const engine = process.env.CONTAINER_ENGINE || ['podman', 'docker'].find((name) => spawnSync(name, ['--version'], { stdio: 'ignore' }).status === 0);
@@ -15,8 +19,8 @@ let stopping = false;
 let vite;
 let parserStarted = false;
 
-function run(command, args, background = false, env = process.env) {
-  const child = spawn(command, args, { cwd: root, stdio: 'inherit', env });
+function run(command, args, background = false, env = process.env, cwd = root) {
+  const child = spawn(command, args, { cwd, stdio: 'inherit', env });
   children.add(child);
   const finished = new Promise((resolve, reject) => {
     child.once('error', reject);
@@ -61,22 +65,25 @@ async function ready(url) {
 
 try {
   if (Number(process.versions.node.split('.')[0]) < 22) throw new Error('Node.js 22+ is required.');
+  for (const file of [join(frontend, 'package-lock.json'), join(postgres, 'backend/Dockerfile'), join(jsonify, 'index.html')]) {
+    if (!existsSync(file)) throw new Error(`Missing sibling repository file: ${file}. Clone jsonify and visualize-postgres beside this project.`);
+  }
   if (!engine) throw new Error('Install Podman or Docker to run the Postgres parser.');
   if (port === apiPort) throw new Error('PORT and POSTGRES_API_PORT must differ.');
   await checkPort(port);
   await checkPort(apiPort);
-  const fingerprint = () => createHash('sha256').update(readFileSync('package-lock.json')).digest('hex');
-  const marker = 'node_modules/.telep-dev-lock';
+  const fingerprint = () => createHash('sha256').update(readFileSync(join(frontend, 'package-lock.json'))).digest('hex');
+  const marker = join(frontend, 'node_modules/.telep-dev-lock');
   if (!existsSync(marker) || readFileSync(marker, 'utf8') !== fingerprint()) {
-    await run('npm', ['ci']);
+    await run('npm', ['ci'], false, process.env, frontend);
     writeFileSync(marker, fingerprint());
   }
-  await run(engine, ['build', '-t', 'localhost/telep-dev-parser', 'apps/postgres/backend']);
+  await run(engine, ['build', '-t', 'localhost/telep-dev-parser', join(postgres, 'backend')]);
   parserStarted = true;
-  run(engine, ['run', '--rm', '--name', container, '-p', `127.0.0.1:${apiPort}:6005`, '-v', `${root}apps/postgres/backend:/app:ro`, 'localhost/telep-dev-parser', 'uvicorn', 'main:app', '--host', '0.0.0.0', '--port', '6005', '--reload'], true);
+  run(engine, ['run', '--rm', '--name', container, '-p', `127.0.0.1:${apiPort}:6005`, '-v', `${join(postgres, 'backend')}:/app:ro`, 'localhost/telep-dev-parser', 'uvicorn', 'main:app', '--host', '0.0.0.0', '--port', '6005', '--reload'], true);
   await ready(`http://127.0.0.1:${apiPort}/api/health`);
-  const { createServer: createViteServer } = await import('vite');
-  vite = await createViteServer({ root: `${root}apps/postgres/frontend`, server: { host: '127.0.0.1', port: 0, strictPort: false } });
+  const { createServer: createViteServer } = await import(pathToFileURL(join(frontend, 'node_modules/vite/dist/node/index.js')).href);
+  vite = await createViteServer({ root: frontend, base: '/postgres/', define: { 'import.meta.env.VITE_API_BASE_URL': JSON.stringify('/postgres/api') }, server: { host: '127.0.0.1', port: 0, strictPort: false } });
   await vite.listen();
   const vitePort = vite.httpServer.address().port;
   run(process.execPath, ['server.js'], true, { ...process.env, PORT: String(port), POSTGRES_API_ORIGIN: `http://127.0.0.1:${apiPort}`, POSTGRES_FRONTEND_ORIGIN: `http://127.0.0.1:${vitePort}` });
