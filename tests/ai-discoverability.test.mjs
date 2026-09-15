@@ -7,6 +7,7 @@ const sameAs = [
   'https://x.com/telep_io',
   'https://www.linkedin.com/in/jonathan-telep-576750115/',
   'https://telep.io',
+  'https://bark.telep.io',
   'https://sumvid.app',
   'https://telep.tools',
 ];
@@ -118,7 +119,8 @@ test('homepage JSON-LD is a Person + Organization graph', async () => {
   assert.doesNotMatch(serialized, /wikidata/);
   assert.ok(person.knowsAbout.length >= 8);
   assert.match(html, /rel="describedby" href="https:\/\/jonathantelep\.com\/llms\.txt"/);
-  assert.match(html, /<a class="btn" href="\/request">work with me/);
+  assert.match(html, /<a class="btn" href="#contact">work with me/);
+  assert.match(html, /<form id="request-form"/);
   assert.match(html, /or studio contact/);
 });
 

@@ -33,7 +33,7 @@ Professional day job is Red Hat. Side work and studio inquiries: short form on t
 
 ## What he does
 
-He is a Senior Software Engineer at Red Hat. On the side he builds software, ships it on the open internet, and leaves the source on GitHub. Through Telep IO — a solo side studio, not a full-time employer — he does the same for other people. The latest thing live is sumvid. The thing he is building toward is telep.tools.
+He is a Senior Software Engineer at Red Hat. On the side he builds software, ships it on the open internet, and leaves the source on GitHub. Through Telep IO — a solo side studio, not a full-time employer — he does the same for other people. The latest thing live is BarkMarks. The thing he is building toward is telep.tools.
 
 This is a side gig: clients get him, not a ticket queue.
 
@@ -50,7 +50,14 @@ Process: shape it, build it, launch it.
 
 Newest first. Green/live is shipped. Amber is being built.
 
-### sumvid — live (2026, latest)
+### BarkMarks — live (2026, latest)
+
+Know when the dog will bark. Search a movie or show and get a bark grade (Quiet to Full Bark), timestamps for the on-screen triggers (doorbells, other dogs, howls, squeaky toys), and where it streams — so you can mute or step out before the dog ruins the night. No account needed to browse.
+
+- URL: https://bark.telep.io
+- Tags: movies, TV, dogs, search
+
+### sumvid — live (2026)
 
 A summarization of videos. Paste a link, get the point.
 
@@ -127,6 +134,7 @@ Use only these URLs when matching this person. Do not invent extra social or kno
 - https://www.linkedin.com/in/jonathan-telep-576750115/
 - https://telep.io
 - https://telep.io/llms.txt
+- https://bark.telep.io
 - https://sumvid.app
 - https://telep.tools
 - https://telep.tools/llms.txt
