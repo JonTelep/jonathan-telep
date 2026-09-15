@@ -3,6 +3,7 @@
 Personal site for Jonathan Telep, senior software engineer in Cleveland, Ohio.
 
 - `/` — the v1 landing page (`index.html`, `landing.css`, `js/landing.js`): hero, about (with a live embedded terminal), what I build, projects, a **Systems** directory of everything online, and contact. Live Cleveland weather, mortgage rate, and next-launch ticker.
+- `/request` — short business-inquiry form. Posts to `/api/request`, delivered by Resend to `jon@telep.io` (same inbox as [telep.io/contact](https://telep.io/contact)).
 - `/terminal` — the full terminal + Notepad++-style editor desktop (`terminal.html`, `style.css`, `js/main.js`). Same virtual filesystem and commands as before.
 
 Both pages share `js/modules/terminal.js` and `js/modules/filesystem.js`.
@@ -156,10 +157,15 @@ flags to reproduce exactly what Coolify builds.
 
 The image waits for the parser before starting Nginx and exits if either service
 stops. Its health check exercises `/postgres/api/health` through Nginx.
-Only `FRED_API_KEY` is optional runtime configuration.
+`FRED_API_KEY` is optional. The `/request` form needs `RESEND_API_KEY` (copy the
+same Coolify secret from TelepIO) so submissions reach `jon@telep.io`. Optional
+`RESEND_FROM_EMAIL` defaults to the TelepIO from-address, and optional
+`TELEP_CONTACT_URL` forwards to `https://telep.io/api/contact` if Resend is unset.
+See `.env.example`.
 
 Before deploying, run `npm test`, the sibling frontend checks, and `make build`.
-Smoke-test `/`, `/jsonify/`, `/postgres/`, and `/postgres/api/health` in the image.
+Smoke-test `/`, `/request`, `/llms.txt`, `/jsonify/`, `/postgres/`, and
+`/postgres/api/health` in the image.
 
 
 ## Project Structure

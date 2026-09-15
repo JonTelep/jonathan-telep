@@ -518,6 +518,86 @@ footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8p
 footer a { color: var(--dim); text-decoration: none; }
 footer a:hover { color: var(--sun); }
 
+button.btn {
+    cursor: pointer;
+    font: inherit;
+    color: var(--fg);
+}
+button.btn:disabled {
+    opacity: 0.55;
+    cursor: wait;
+    transform: none;
+}
+button.btn:disabled:hover { transform: none; color: var(--fg); }
+button.btn:disabled:hover::before { transform: translateX(-101%); }
+
+/* ---------- /request ---------- */
+body.request-page { --p: 0.55; --s: 0.35; }
+body.request-page #sun {
+    top: 22vh;
+    transform: scale(0.38);
+}
+.request-sec { min-height: calc(100vh - 80px); padding-top: 70px; }
+.request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 560px;
+    margin-top: 36px;
+}
+.request-form label { display: flex; flex-direction: column; gap: 8px; }
+.request-form label span {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--dim);
+}
+.request-form label span em {
+    font-style: normal;
+    color: var(--dimmer);
+    letter-spacing: 0;
+    margin-left: 8px;
+}
+.request-form input:not(.hp),
+.request-form select,
+.request-form textarea {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--fg);
+    background: rgba(18, 22, 29, 0.72);
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.request-form textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+.request-form select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--mist) 50%), linear-gradient(135deg, var(--mist) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+.request-form input:not(.hp):focus,
+.request-form select:focus,
+.request-form textarea:focus {
+    border-color: var(--sun);
+    box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.15);
+}
+.request-form .hp {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.form-error {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--red);
+    margin: 0;
+}
+.request-success { max-width: 640px; margin-top: 12px; }
+.request-success .h2 { margin-top: 8px; }
+.sidenav a[aria-current="page"] { color: var(--fg); }
+.sidenav a[aria-current="page"] span { color: var(--sun); }
+
 /* ---------- reveal ---------- */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
