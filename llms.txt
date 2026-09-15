@@ -37,8 +37,8 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 
 ## Developer tools
 
-- [Visualize Postgres](https://jonathantelep.com/postgres): PostgreSQL schema visualizer
-- [Jsonify](https://jonathantelep.com/json): JSON formatter
+- [Visualize Postgres](https://jonathantelep.com/postgres/): PostgreSQL schema visualizer
+- [Jsonify](https://jonathantelep.com/jsonify/): JSON formatter
 - [Terminal](https://jonathantelep.com/terminal): interactive terminal and editor
 
 ## Contact and code

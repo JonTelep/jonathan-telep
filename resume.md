@@ -71,7 +71,7 @@ What he can sell: stand up a site, host it, and manage IT for another business o
 - **Easy Data Quality** — early / parked. Data-quality checks. [easydataquality.com](https://easydataquality.com)
 - **seploy** — live. Local-to-live deploy utility. [github.com/Telep-IO/seploy](https://github.com/Telep-IO/seploy)
 - **skills** — live. Agent skills for Claude. [github.com/JonTelep/skills](https://github.com/JonTelep/skills)
-- **Visualize Postgres** / **Jsonify** — paste-in developer tools on [jonathantelep.com/postgres](https://jonathantelep.com/postgres) and [jonathantelep.com/json](https://jonathantelep.com/json)
+- **Visualize Postgres** / **Jsonify** — paste-in developer tools on [jonathantelep.com/postgres](https://jonathantelep.com/postgres/) and [jonathantelep.com/jsonify](https://jonathantelep.com/jsonify/)
 
 ## Selected work
 

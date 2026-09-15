@@ -102,8 +102,8 @@ Through Telep IO he puts other people’s work on the internet and manages the s
 ## Studio and other systems
 
 - Telep IO — https://telep.io — the studio site
-- Visualize Postgres — https://jonathantelep.com/postgres — PostgreSQL schema visualizer
-- Jsonify — https://jonathantelep.com/json — JSON parser / formatter
+- Visualize Postgres — https://jonathantelep.com/postgres/ — PostgreSQL schema visualizer
+- Jsonify — https://jonathantelep.com/jsonify/ — JSON parser / formatter
 - Terminal — https://jonathantelep.com/terminal — full terminal and editor desktop
 - Let's Talk Statistics — https://letstalkstatistics.com — statistics site
 

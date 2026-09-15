@@ -47,6 +47,6 @@ Cleveland, Ohio, United States.
 - https://telep.tools
 - https://telep.tools/llms.txt
 - https://jonathantelep.com/postgres
-- https://jonathantelep.com/json
+- https://jonathantelep.com/jsonify/
 - https://jonathantelep.com/terminal
 - https://letstalkstatistics.com

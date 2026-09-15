@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-const pages = [ ['index.html', 'home', '/'], ['terminal.html', 'terminal', '/terminal'], ['apps/postgres/frontend/index.html', 'postgres', '/postgres/'], ['apps/jsonify/index.html', 'jsonify', '/jsonify/'] ];
+const pages = [ ['index.html', 'home', '/'], ['terminal.html', 'terminal', '/terminal'], ['../visualize-postgres/frontend/index.html', 'postgres', '/postgres/'], ['../jsonify/index.html', 'jsonify', '/jsonify/'] ];
 for (const [file, slug, route] of pages) test(`${slug} exposes a distinct, crawler-readable social preview`, async () => {
   const html = await readFile(file, 'utf8');
   const head = html.split('</head>')[0];

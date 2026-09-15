@@ -6,10 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
-    "social:build": "node scripts/social-cards.mjs"
+    "social:build": "node scripts/social-cards.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
-  "private": true,
-  "workspaces": [
-    "apps/postgres/frontend"
-  ]
+  "private": true
 }
