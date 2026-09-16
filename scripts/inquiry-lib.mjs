@@ -8,8 +8,12 @@ export const NEEDS = {
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const TO_EMAIL = 'jon@telep.io';
-const DEFAULT_FROM = 'TelepIO Contact <hello@contact.telep.io>';
+export const TO_EMAIL = 'jon@telep.io';
+export const DEFAULT_FROM = 'TelepIO Contact <hello@contact.telep.io>';
+
+function nonempty(value) {
+  return typeof value === 'string' && value.trim() ? value.trim() : '';
+}
 
 export function parseInquiryJson(raw) {
   try {
@@ -41,9 +45,10 @@ export function normalizeInquiry(body) {
   return { fields: { name, email, need: NEEDS[need], needKey: need, message, times } };
 }
 
-export function composeContent({ name, need, message, times }) {
+export function composeContent({ name, email, need, message, times }) {
   return [
     `Name: ${name}`,
+    `Email: ${email}`,
     `Need: ${need}`,
     times ? `Preferred times: ${times}` : null,
     'Source: jonathantelep.com/request',
@@ -68,14 +73,18 @@ async function postJson(url, payload, headers = {}) {
   const text = await response.text();
   let data = {};
   try { data = JSON.parse(text); } catch { /* empty or non-json */ }
-  return { ok: response.ok, status: response.status, data };
+  return { ok: response.ok, status: response.status, data, text };
+}
+
+function resendFrom(env) {
+  return nonempty(env.RESEND_FROM_EMAIL) || DEFAULT_FROM;
 }
 
 async function sendResend(fields, content, env) {
-  const key = env.RESEND_API_KEY;
+  const key = nonempty(env.RESEND_API_KEY);
   if (!key) return { ok: false, missing: true };
-  const from = env.RESEND_FROM_EMAIL || DEFAULT_FROM;
-  const url = env.RESEND_API_URL || 'https://api.resend.com/emails';
+  const from = resendFrom(env);
+  const url = nonempty(env.RESEND_API_URL) || 'https://api.resend.com/emails';
   const sent = await postJson(url, {
     from,
     to: [TO_EMAIL],
@@ -84,18 +93,38 @@ async function sendResend(fields, content, env) {
     text: `From: ${fields.email}\n\n${content}`,
     html: `<p><strong>From:</strong> ${escapeHtml(fields.email)}</p><pre style="font-family:inherit;white-space:pre-wrap">${escapeHtml(content)}</pre>`,
   }, { Authorization: `Bearer ${key}` });
+  if (!sent.ok) {
+    const detail = sent.text?.slice(0, 2000) || JSON.stringify(sent.data);
+    console.error(`Inquiry Resend HTTP ${sent.status}: ${detail}`);
+  }
   return { ok: sent.ok, status: sent.status };
 }
 
+export function telepContactPayload(fields, content) {
+  // TelepIO /api/contact validates { email, content, website } — extra `name` is ignored,
+  // empty `content` is rejected as "note is too short", honeypot is `website`.
+  return { email: fields.email, content, website: '' };
+}
+
 async function forwardTelep(fields, content, env) {
-  const studio = env.TELEP_CONTACT_URL;
+  const studio = nonempty(env.TELEP_CONTACT_URL);
   if (!studio || studio === 'off') return { ok: false, skipped: true };
-  const forwarded = await postJson(studio, {
-    email: fields.email,
-    content,
-    website: '',
-  });
+  const forwarded = await postJson(studio, telepContactPayload(fields, content));
+  if (!forwarded.ok || forwarded.data.ok !== true) {
+    const detail = forwarded.text?.slice(0, 2000) || JSON.stringify(forwarded.data);
+    console.error(`Inquiry telep.io forward HTTP ${forwarded.status}: ${detail}`);
+  }
   return { ok: forwarded.ok && forwarded.data.ok === true, status: forwarded.status };
+}
+
+export function inquiryHealth(env = process.env) {
+  const studio = nonempty(env.TELEP_CONTACT_URL);
+  return {
+    ok: true,
+    service: 'inquiry',
+    resend: Boolean(nonempty(env.RESEND_API_KEY)),
+    fallback: Boolean(studio && studio !== 'off'),
+  };
 }
 
 export async function deliverInquiry(fields, env = process.env) {
@@ -106,12 +135,13 @@ export async function deliverInquiry(fields, env = process.env) {
     if (!resend.missing) {
       const fallback = await forwardTelep(fields, content, env);
       if (fallback.ok) return { ok: true, via: 'telep.io' };
-      return { error: 'failed to send message', status: 502 };
+      // 500 not 502: Cloudflare replaces origin 502 with a generic HTML/text page.
+      return { error: 'failed to send message', status: 500 };
     }
     const forwarded = await forwardTelep(fields, content, env);
     if (forwarded.ok) return { ok: true, via: 'telep.io' };
     if (forwarded.skipped) return { error: 'contact form not configured', status: 500 };
-    return { error: 'failed to send message', status: 502 };
+    return { error: 'failed to send message', status: 500 };
   } catch (err) {
     console.error('Inquiry delivery error:', err);
     return { error: 'something went wrong', status: 500 };
