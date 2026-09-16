@@ -3,7 +3,7 @@ import { connect } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
-import { handleInquiryBody } from './scripts/inquiry-lib.mjs';
+import { handleInquiryBody, inquiryHealth } from './scripts/inquiry-lib.mjs';
 
 const PORT = Number(process.env.PORT || 8000);
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
@@ -57,6 +57,12 @@ const server = createServer(async (req, res) => {
     }
     if (pathname.startsWith('/postgres/api/')) return proxy(req, res, API, req.url.slice('/postgres'.length));
     if (pathname.startsWith('/postgres/')) return proxy(req, res, FRONTEND, req.url);
+
+    if (pathname === '/api/request/health') {
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+        res.end(JSON.stringify(inquiryHealth()));
+        return;
+    }
 
     if (pathname === '/api/request') {
         if (req.method !== 'POST') {

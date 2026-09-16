@@ -133,4 +133,8 @@ test('nginx serves crawler files as text/plain without SPA fallback', async () =
   assert.match(conf, /try_files \/request\.html =404;/);
   assert.match(conf, /location = \/api\/request/);
   assert.match(conf, /proxy_pass http:\/\/127\.0\.0\.1:6006\/api\/request/);
+  assert.match(conf, /location = \/api\/request\/health/);
+  assert.match(conf, /proxy_pass http:\/\/127\.0\.0\.1:6006\/health/);
+  assert.match(conf, /error_page 502 503 504 = @inquiry_unavailable/);
+  assert.match(conf, /return 500 '\{"error":"failed to send message"\}'/);
 });

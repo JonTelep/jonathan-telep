@@ -155,17 +155,18 @@ repository. Coolify rebuilds on push.
 so local images always reflect uncommitted tool changes. Build without those
 flags to reproduce exactly what Coolify builds.
 
-The image waits for the parser before starting Nginx and exits if either service
-stops. Its health check exercises `/postgres/api/health` through Nginx.
+The image waits for the parser and inquiry sidecar before starting Nginx and exits if any of those services stop. Its health check exercises `/postgres/api/health` and `/api/request/health` through Nginx.
 `FRED_API_KEY` is optional. The `/request` form needs `RESEND_API_KEY` (copy the
-same Coolify secret from TelepIO) so submissions reach `jon@telep.io`. Optional
-`RESEND_FROM_EMAIL` defaults to the TelepIO from-address, and optional
-`TELEP_CONTACT_URL` forwards to `https://telep.io/api/contact` if Resend is unset.
-See `.env.example`.
+same Coolify secret from TelepIO) so submissions reach `jon@telep.io`. Visitor
+email is free-form: it is `reply_to` and appears in the message, never Resend
+`from`, and is never required to equal `jon@telep.io`. Optional
+`RESEND_FROM_EMAIL` defaults to the TelepIO from-address (empty values count as
+unset). Optional `TELEP_CONTACT_URL` forwards to `https://telep.io/api/contact`
+if Resend is unset or fails. See `.env.example`.
 
 Before deploying, run `npm test`, the sibling frontend checks, and `make build`.
-Smoke-test `/`, `/request`, `/llms.txt`, `/jsonify/`, `/postgres/`, and
-`/postgres/api/health` in the image.
+Smoke-test `/`, `/request`, `/llms.txt`, `/jsonify/`, `/postgres/`,
+`/postgres/api/health`, and `/api/request/health` in the image.
 
 
 ## Project Structure

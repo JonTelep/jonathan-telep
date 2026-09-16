@@ -56,11 +56,8 @@ COPY --from=tools-build /app/dist/ /usr/share/nginx/html/postgres/
 EXPOSE 3000
 
 ENV FRED_API_KEY=""
-ENV RESEND_API_KEY=""
-ENV RESEND_FROM_EMAIL=""
-ENV TELEP_CONTACT_URL=""
 ENV PYTHONUNBUFFERED=1
-HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
-    CMD python -c "import json, urllib.request; r=urllib.request.urlopen('http://127.0.0.1:3000/postgres/api/health', timeout=3); assert json.load(r)['status'] == 'healthy'"
+HEALTHCHECK --interval=30s --timeout=8s --start-period=40s --retries=3 \
+    CMD python -c "import json, urllib.request; r=urllib.request.urlopen('http://127.0.0.1:3000/postgres/api/health', timeout=3); assert json.load(r)['status'] == 'healthy'; r=urllib.request.urlopen('http://127.0.0.1:3000/api/request/health', timeout=3); assert json.load(r).get('ok') is True"
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["python", "/app/production.py"]
