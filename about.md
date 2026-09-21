@@ -36,6 +36,7 @@ Cleveland, Ohio, United States.
 - [Easy Data Quality](https://easydataquality.com) — data quality checks (live)
 - [seploy](https://github.com/Telep-IO/seploy) — deploy utility (live)
 - [skills](https://github.com/JonTelep/skills) — agent skills (live)
+- [omusey](https://github.com/Telep-IO/omusey) — open source Omarchy plugin: Muse chat in the bar (live)
 - [Telep IO](https://telep.io) — studio
 - [Alpha11 Veterans](https://alpha11veterans.org) — IT for a veteran service organization
 - [Telep Remodeling](https://telepremodeling.com) — hosts his brother’s carpentry business

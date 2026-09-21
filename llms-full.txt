@@ -99,6 +99,14 @@ A collection of agent skills. Packaged instructions that make Claude better at s
 - GitHub: https://github.com/JonTelep/skills
 - Tags: AI, skills, open source
 
+### omusey — live (2026)
+
+An open source Omarchy plugin (MIT). Click the avatar in the Omarchy bar and the Muse chat drops down from the top of the screen; click again and it tucks away, still loaded.
+
+- Plugin page: https://plugins.omarchy.org/plugin.html?id=telep.muse
+- GitHub: https://github.com/Telep-IO/omusey
+- Tags: Omarchy, plugin, open source
+
 ## Services / sites for others
 
 Through Telep IO he puts other people’s work on the internet and manages the site. Not claimed as paid retainers here.

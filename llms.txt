@@ -29,6 +29,7 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 - [Easy Data Quality](https://easydataquality.com): data quality checks (live)
 - [seploy](https://github.com/Telep-IO/seploy): deploy utility from local to live (live)
 - [skills](https://github.com/JonTelep/skills): agent skills that make Claude better at specific jobs (live)
+- [omusey](https://github.com/Telep-IO/omusey): open source Omarchy plugin that puts Muse chat in the bar (live)
 - [boards](https://telep.io/contact): image generation to video generation (in progress)
 
 ## Services / sites for others
