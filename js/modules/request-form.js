@@ -101,8 +101,11 @@ export function initRequestForm() {
         } catch (err) {
             stopTransmit();
             const message = err instanceof Error ? err.message : 'failed to send message';
-            showError(message === 'failed to send message' || message === 'contact form not configured'
-                ? 'could not send. email jon@telep.io instead.'
+            const deliveryFailed = message === 'failed to send message'
+                || message === 'contact form not configured'
+                || message === 'something went wrong';
+            showError(deliveryFailed
+                ? 'could not send right now — email jon@telep.io'
                 : message);
         } finally {
             if (submitBtn) submitBtn.disabled = false;

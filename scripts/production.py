@@ -55,6 +55,7 @@ def main():
             return 0
         web = subprocess.Popen(['nginx', '-g', 'daemon off;'])
         children.append(web)
+        wait_ready('http://127.0.0.1:3000/api/request/health', 'Inquiry via nginx', inquiry)
         print('Site, SQL parser, and inquiry form ready; listening on port 3000.', flush=True)
         while not stopping:
             for name, child in [('SQL parser', parser), ('Inquiry', inquiry), ('Nginx', web)]:
