@@ -23,6 +23,7 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 ## Work and products
 
 - [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [minesSwept](https://minesswept.com): one minesweeper board, a million cells, everyone digs together. Built with Cloudflare Workers and Durable Objects; real-time multiplayer over WebSockets ([source](https://github.com/JonTelep/mines-swept))
 - [BarkMarks](https://bark.telep.io): know when the dog will bark — bark grades, timestamps, and streaming info for movies and TV (live)
 - [sumvid](https://sumvid.app): video summarization — paste a link, get the point (live)
 - [telep.tools](https://telep.tools): one home for every tool he makes (in progress)
@@ -30,7 +31,6 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 - [seploy](https://github.com/Telep-IO/seploy): deploy utility from local to live (live)
 - [skills](https://github.com/JonTelep/skills): agent skills that make Claude better at specific jobs (live)
 - [omusey](https://github.com/Telep-IO/omusey): open source Omarchy plugin that puts Muse chat in the bar (live)
-- [boards](https://telep.io/contact): image generation to video generation (in progress)
 
 ## Services / sites for others
 

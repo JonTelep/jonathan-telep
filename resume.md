@@ -65,7 +65,7 @@ What he can sell: stand up a site, host it, and manage IT for another business o
 
 ### Products and tools
 
-- **Boards** — in progress. AI storyboard → stills → client review; video is the north star. [telep.io/contact](https://telep.io/contact)
+- **minesSwept** — live. One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone. Cloudflare Workers, Durable Objects, and WebSockets. [minesswept.com](https://minesswept.com) · [source](https://github.com/JonTelep/mines-swept)
 - **BarkMarks** — live. Know when the dog will bark: bark grades and timestamps for movies and TV. [bark.telep.io](https://bark.telep.io)
 - **sumvid** — live. YouTube / video summarizer: paste a link, get the point. [sumvid.app](https://sumvid.app)
 - **telep.tools** — in progress. Shipyard / launcher for every tool. [telep.tools](https://telep.tools)
@@ -82,7 +82,7 @@ What he can sell: stand up a site, host it, and manage IT for another business o
 - BarkMarks: shipped public movie/TV bark-trigger search
 - sumvid: shipped public video summarization product
 - seploy + telep.tools: deploy utility and the floor meant to hold the rest of the tools
-- Boards: storyboard-to-stills product in flight; video generation is the target
+- minesSwept: shared live minesweeper on Cloudflare Workers and Durable Objects
 - Sites for others: IT for Alpha11 Veterans; hosts Telep Remodeling
 
 No revenue or traffic figures published beyond Alpha11 helping thousands of local veterans. Do not invent retainers or other metrics.

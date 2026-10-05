@@ -384,6 +384,8 @@ body::before {
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; font-size: 10.5px; }
 .tags span { padding: 3px 8px; border-radius: 4px; background: rgba(199, 211, 220, 0.06); color: var(--dim); }
 .open { margin-top: 14px; font-size: 12px; color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+.open a { color: inherit; text-decoration: underline; text-underline-offset: 3px; margin-right: 16px; }
+.open:has(a) { text-decoration: none; }
 
 /* card art animations */
 .art-sumvid .film { position: absolute; left: 0; right: 0; top: 24px; display: flex; gap: 8px; padding: 0 12px; animation: slide 6s linear infinite; width: 200%; }
@@ -400,11 +402,11 @@ body::before {
 .art-tools .tiles i:nth-child(3n) { animation-delay: 0.6s; } .art-tools .tiles i:nth-child(3n+1) { animation-delay: 1.4s; } .art-tools .tiles i:nth-child(5n) { animation-delay: 2.2s; }
 @keyframes fill { 45%, 55% { background: var(--amber); border-style: solid; opacity: 1; } }
 
-.art-boards .frames { display: grid; grid-template-columns: repeat(4, 34px); gap: 8px; }
-.art-boards .frames i { width: 34px; height: 46px; border-radius: 4px; background: linear-gradient(160deg, #3a2a4a, #6a3f5a); border: 1px solid rgba(255,179,71,0.4); animation: frame 4s var(--ease) infinite; }
-.art-boards .frames i:nth-child(2) { animation-delay: 0.25s; } .art-boards .frames i:nth-child(3) { animation-delay: 0.5s; } .art-boards .frames i:nth-child(4) { animation-delay: 0.75s; }
-@keyframes frame { 0% { opacity: 0; transform: translateY(8px); } 20%, 60% { opacity: 1; transform: none; } 70%, 100% { opacity: 0.2; transform: translateX(-12px); } }
-.art-boards .play { position: absolute; right: 22px; bottom: 16px; width: 0; height: 0; border-left: 14px solid var(--amber); border-top: 9px solid transparent; border-bottom: 9px solid transparent; animation: blink 1.6s ease-in-out infinite; }
+.art-mine .grid { display: grid; grid-template-columns: repeat(6, 18px); gap: 5px; }
+.art-mine .grid i { width: 18px; height: 18px; border-radius: 2px; background: #1c2633; border: 1px solid rgba(90,209,255,0.28); }
+.art-mine .grid i.on { background: rgba(53,208,127,0.18); border-color: rgba(53,208,127,0.7); }
+.art-mine .grid i.flag { background: var(--amber); border-color: var(--amber); }
+.art-mine .grid i.mine { background: var(--red); border-color: var(--red); box-shadow: 0 0 10px rgba(255,95,87,0.65); }
 
 /* barkmarks: a bark meter (quiet → full bark) over a timeline of trigger marks */
 .art-bark { display: flex; align-items: flex-end; justify-content: center; }

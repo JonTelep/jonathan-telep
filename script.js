@@ -39,7 +39,7 @@ You will find some of my projects are silly and just were built from an idea tha
 
 ## Current Projects:
 - The website you are reading this on; A website to share my projects and thoughts.
-- MinesSwept; A social experiment created on a single page app of a giant minesweeper game where everyone works together to solve the minesweeper board.
+- minesSwept; One minesweeper board. A million cells. Everyone digs together, live. https://minesswept.com
 ## Future Projects:
 - LetsTalkStatistics; My personal collection of statistics I've found interesting. Around Finance, Economics, Politics
 
@@ -59,19 +59,20 @@ You will find some of my projects are silly and just were built from an idea tha
                 contents: {
                     'letstalkstatistics.md': { 
                         type: 'file',
-                        content: `# Let's Talk Statistics (To be shipped Q2 2025)
+                        content: `# Let's Talk Statistics
 
-A collection of statistics I've found interesting. Around Crypto,Finance, Economics, Politics`
+A collection of statistics I've found interesting. Around Crypto,Finance, Economics, Politics. Live at https://letstalkstatistics.com`
                     },
-                    'mineswept.md': {
+                    'minesswept.md': {
                         type: 'file',
-                        content: `# Mineswept (To be shipped soon)
+                        content: `# minesSwept
 
-Mineswept is a social experiment created on a single page app of a giant minesweeper game where everyone works together to solve the minesweeper board.
+One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone.
 
-## How to play`
+Built with Cloudflare Workers and Durable Objects, with real-time multiplayer over WebSockets.
 
-
+Live: https://minesswept.com
+Source: https://github.com/JonTelep/mines-swept`
                     }
                 }
             }
