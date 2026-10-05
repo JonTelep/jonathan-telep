@@ -40,7 +40,9 @@ Or connect the GitHub repo in the Cloudflare dashboard (**Workers & Pages → Cr
 
 Use the **Free** plan. Do not enable Workers Paid, and do not add R2, D1, KV, Images, Stream, or any other product binding. `wrangler.toml` has no bindings on purpose.
 
-Smoke-test the `*.pages.dev` URL before changing DNS: `/`, `/terminal`, `/request`, `/llms.txt`, `/jsonify/`, `/json` (308 to `/jsonify/`), `POST /api/request`, `/api/request/health`, `/api/mrate`, `/api/space`. `/postgres/` will 404 on Pages; that tool stays on Coolify until you roll back or host the parser somewhere else.
+Smoke-test the `*.pages.dev` URL before changing DNS: `/`, `/terminal`, `/request`, `/llms.txt`, `/jsonify/`, `/json` (308 to `/jsonify/`), `POST /api/request`, `/api/request/health`, `/api/mrate`, `/api/space`.
+
+Pages serves `terminal.html` and `request.html` at `/terminal` and `/request`, and redirects `/terminal.html` and `/request.html` to those extensionless paths. Trailing `/terminal/` and `/request/` also redirect to the extensionless page. There is no top-level `404.html`, so Pages uses its SPA fallback and unknown paths return the homepage, same as nginx `try_files`. That includes `/postgres/` until the parser is hosted again. Rollback to Coolify restores the visualizer.
 
 ## Environment variable names
 

@@ -32,10 +32,9 @@ const STATIC_FILES = [
   'resume.md',
 ];
 
-export const REDIRECTS = `# Extensionless pages. 200 proxies the static file (Cloudflare Pages).
-/terminal /terminal.html 200
-/request /request.html 200
-# Same redirects nginx serves today. /postgres/ is not in this output.
+export const REDIRECTS = `# Pages serves terminal.html and request.html at /terminal and /request, and
+# redirects the .html URL to the extensionless one. A 200 proxy back to the
+# file loops. /postgres/ is not in this output (the parser stays on Coolify).
 /postgres /postgres/ 308
 /jsonify /jsonify/ 308
 /json /jsonify/ 308
