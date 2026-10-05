@@ -32,7 +32,7 @@ If you are looking to work together on any project that is exciting, reach me at
             'projects': {
                 type: 'directory',
                 contents: {
-                    'mineswept.md': {
+                    'minesswept.md': {
                         type: 'file',
                         url: 'https://minesswept.com',
                         github: 'https://github.com/JonTelep/mines-swept',

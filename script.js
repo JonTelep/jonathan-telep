@@ -63,7 +63,7 @@ You will find some of my projects are silly and just were built from an idea tha
 
 A collection of statistics I've found interesting. Around Crypto,Finance, Economics, Politics. Live at https://letstalkstatistics.com`
                     },
-                    'mineswept.md': {
+                    'minesswept.md': {
                         type: 'file',
                         content: `# minesSwept
 
