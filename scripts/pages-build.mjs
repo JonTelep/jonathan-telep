@@ -2,8 +2,8 @@
  * Assemble the Cloudflare Pages output directory.
  * Static personal-site files stay in this repo. Jsonify is the pinned sibling
  * snapshot already served by the Coolify image (Dockerfile ARG JSONIFY_REF).
- * The Postgres visualizer is not included: its parser is Python and stays on
- * the Coolify image (see DEPLOY.md).
+ * /postgres is not copied. Pages redirects it home. Nginx on Coolify still
+ * serves the visualizer (see DEPLOY.md).
  */
 import { execFile } from 'node:child_process';
 import { cp, mkdir, rm, writeFile, access } from 'node:fs/promises';
@@ -19,7 +19,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const JSONIFY_REF = 'b2d8f1b243bfa450afc19c615f54e3236a53a3d9';
 export const JSONIFY_REPO = 'https://github.com/JonTelep/jsonify.git';
 
-const STATIC_FILES = [
+export const STATIC_FILES = [
   'index.html',
   'request.html',
   'terminal.html',
@@ -34,8 +34,10 @@ const STATIC_FILES = [
 
 export const REDIRECTS = `# Pages serves terminal.html and request.html at /terminal and /request, and
 # redirects the .html URL to the extensionless one. A 200 proxy back to the
-# file loops. /postgres/ is not in this output (the parser stays on Coolify).
-/postgres /postgres/ 308
+# file loops. The visualizer is dropped on Pages; old URLs go home.
+/postgres / 308
+/postgres/ / 308
+/postgres/* / 308
 /jsonify /jsonify/ 308
 /json /jsonify/ 308
 /json/ /jsonify/ 308

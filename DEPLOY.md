@@ -2,7 +2,7 @@
 
 Static hosting for the personal site, plus one Pages Worker for the few routes that are not files. The Coolify image (`Dockerfile`, `nginx.conf.template`, `make build`) is unchanged and remains the rollback origin.
 
-Confirmed against production on 2026-10-05: `https://telep.dev` is a Cloudflare 301 to `https://jonathantelep.com` (path preserved). The homepage HTML matches this repo aside from Cloudflare email obfuscation. `www.jonathantelep.com` serves the same site. `/jsonify/` matches the pinned `jsonify` commit. `/postgres/` is the Python parser baked into the Coolify image and is **not** part of the Pages output.
+Confirmed against production on 2026-10-05: `https://telep.dev` is a Cloudflare 301 to `https://jonathantelep.com` (path preserved). The homepage HTML matches this repo aside from Cloudflare email obfuscation. `www.jonathantelep.com` serves the same site. `/jsonify/` matches the pinned `jsonify` commit. The Postgres visualizer is dropped from this site. Pages redirects `/postgres`, `/postgres/`, and `/postgres/*` to `/`. Nginx in the Coolify image still serves the visualizer; that path is unchanged for rollback.
 
 ## Build
 
@@ -42,7 +42,7 @@ Use the **Free** plan. Do not enable Workers Paid, and do not add R2, D1, KV, Im
 
 Smoke-test the `*.pages.dev` URL before changing DNS: `/`, `/terminal`, `/request`, `/llms.txt`, `/jsonify/`, `/json` (308 to `/jsonify/`), `POST /api/request`, `/api/request/health`, `/api/mrate`, `/api/space`.
 
-Pages serves `terminal.html` and `request.html` at `/terminal` and `/request`, and redirects `/terminal.html` and `/request.html` to those extensionless paths. Trailing `/terminal/` and `/request/` also redirect to the extensionless page. There is no top-level `404.html`, so Pages uses its SPA fallback and unknown paths return the homepage, same as nginx `try_files`. That includes `/postgres/` until the parser is hosted again. Rollback to Coolify restores the visualizer.
+Pages serves `terminal.html` and `request.html` at `/terminal` and `/request`, and redirects `/terminal.html` and `/request.html` to those extensionless paths. Trailing `/terminal/` and `/request/` also redirect to the extensionless page. There is no top-level `404.html`, so Pages uses its SPA fallback and unknown paths return the homepage, same as nginx `try_files`. `/postgres` and `/postgres/*` are explicit redirects to `/`, not that fallback.
 
 ## Environment variable names
 
@@ -51,7 +51,7 @@ Set these in the Pages project under **Settings → Environment variables → Pr
 | Name | Required |
 | --- | --- |
 | `RESEND_API_KEY` | Yes, for the inquiry form |
-| `FRED_API_KEY` | Yes, for the mortgage ticker and `mrate` |
+| `FRED_API_KEY` | No. The mortgage ticker and `mrate` show offline when it is unset |
 | `RESEND_FROM_EMAIL` | No. Unset uses the TelepIO from-address |
 | `TELEP_CONTACT_URL` | No. Fallback POST if Resend is unset or fails |
 
@@ -71,7 +71,7 @@ Zones are already on Cloudflare (orange-cloud). Pages custom domains on the same
 4. Purge the cache for those hostnames if an old HTML response sticks.
 5. Check `https://jonathantelep.com/`, `/terminal`, `/request`, `/jsonify/`, and a real form submit. Check `curl -I https://telep.dev/request` is still `301` to `https://jonathantelep.com/request`.
 
-`/postgres/` and `/postgres/api/` stop working on these hostnames after the cutover. The links on the homepage still point there. Rollback brings them back.
+On Pages, `/postgres` and `/postgres/*` redirect to `/`. Nothing in the Pages output links there. Rollback to the existing Coolify origin brings the visualizer back, because that image and its nginx config are unchanged.
 
 ## Rollback
 
@@ -99,6 +99,6 @@ Relevant free limits (Cloudflare docs, checked 2026-10-05):
 | Files | 20,000 per project, 25 MiB each | Upload fails. Not a charge |
 | Custom domains | 100 per Pages project | Extra hostnames are refused. Not a charge |
 
-Homepage loads call `/api/mrate` and `/api/space`, so those two requests count toward the 100,000. The HTML itself does not. A failed function shows the ticker as offline; it does not bill the account.
+Successful `/api/mrate` responses are cached for 1 hour and `/api/space` for 15 minutes (`Cache-Control: public, max-age, s-maxage`, stored with `caches.default`). A browser that still has the response does not call the function again until that expires. An edge hit skips the FRED and Launch Library calls. The function still runs on an edge hit, so those requests count, but a reload inside the browser cache window does not. Workers Cache (`[cache] enabled` in wrangler) is left off: turning it on also counts normally free static asset requests against the Workers quota. The HTML itself does not count. A failed function shows the ticker as offline; it does not bill the account. `FRED_API_KEY` is optional — without it `/api/mrate` returns an error and the ticker shows offline.
 
 On the free plan, hitting one of these limits means the extra build or request fails (or the ticker shows offline). It does not create a usage charge. That is only true while the account stays on Free. Enabling Workers Paid, R2, Images, Stream, or any other metered add-on is what introduces a bill — don't.

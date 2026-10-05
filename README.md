@@ -22,7 +22,7 @@ I'm a senior software engineer on a journey to escape the 9-5 grind and build in
 - **Virtual Filesystem**: Navigate through projects and content using `cd`, `ls`, and `cat` commands
 - **Markdown Support**: Project documentation rendered beautifully in the terminal
 - **Live Data**: Real-time weather forecasts, mortgage rates, and rocket launch schedules
-- **Integrated Services**: Links to self-hosted tools like Postgres schema visualizer and JSON parser
+- **Integrated Services**: Link to the JSON parser
 - **Responsive Design**: Works on desktop and mobile devices
 
 ## Available Commands
@@ -38,7 +38,6 @@ Type `help` in the terminal to see all commands:
 - `mrate` - Show current 30-year fixed mortgage rate (via FRED API)
 - `space` - Show upcoming rocket launches (via The Space Devs Launch Library)
 - `list` - Show all projects and services
-- `postgres` - Open Postgres schema visualizer
 - `json` - Open JSON parser
 - `home` - Back to the landing page
 

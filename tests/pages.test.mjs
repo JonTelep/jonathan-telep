@@ -1,11 +1,12 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { mkdtemp, readFile, rm, mkdir, writeFile, access } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, mkdir, writeFile, access, readdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { once } from 'node:events';
-import { buildPages, JSONIFY_REF, REDIRECTS } from '../scripts/pages-build.mjs';
+import { buildPages, JSONIFY_REF, REDIRECTS, STATIC_FILES } from '../scripts/pages-build.mjs';
 import { onRequest as onRequestPost } from '../functions/api/request.js';
 import { onRequestGet as onHealth } from '../functions/api/request/health.js';
 import { onRequestGet as onMrate } from '../functions/api/mrate.js';
@@ -29,6 +30,31 @@ function jsonRequest(method, body) {
 }
 
 describe('cloudflare pages', { concurrency: 1 }, () => {
+
+async function filesUnder(dir) {
+  const out = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...await filesUnder(path));
+    else out.push(path);
+  }
+  return out;
+}
+
+test('pages sources do not point at /postgres, and old urls redirect home', async () => {
+  const root = fileURLToPath(new URL('..', import.meta.url));
+  const paths = [
+    ...STATIC_FILES.map((file) => join(root, file)),
+    ...await filesUnder(join(root, 'js')),
+  ];
+  for (const file of paths) {
+    const text = await readFile(file, 'utf8');
+    assert.doesNotMatch(text, /\/postgres\b/, file);
+  }
+  assert.match(REDIRECTS, /^\/postgres \/ 308$/m);
+  assert.match(REDIRECTS, /^\/postgres\/ \/ 308$/m);
+  assert.match(REDIRECTS, /^\/postgres\/\* \/ 308$/m);
+});
 
 test('pages build copies the static site and pinned redirects, not secrets or the parser', async () => {
   const dockerfile = await readFile(new URL('../Dockerfile', import.meta.url), 'utf8');
@@ -163,6 +189,7 @@ test('pages mrate and space proxies do not leak the FRED key', async (t) => {
   const rate = await onMrate({ env: { FRED_API_KEY: key } });
   const rateText = await rate.text();
   assert.equal(rate.status, 200);
+  assert.match(rate.headers.get('cache-control'), /s-maxage=3600/);
   assert.equal(rateText.includes(key), false);
   assert.match(rateText, /7\.28/);
   assert.equal(seen.some((url) => url.includes(`api_key=${key}`)), true);
@@ -180,7 +207,40 @@ test('pages mrate and space proxies do not leak the FRED key', async (t) => {
   const space = await onSpace();
   assert.equal(space.status, 200);
   assert.equal(space.headers.get('content-type'), 'application/json');
+  assert.match(space.headers.get('cache-control'), /s-maxage=900/);
   assert.deepEqual(await space.json(), { results: [] });
+
+  const puts = [];
+  const previousCaches = globalThis.caches;
+  globalThis.caches = {
+    default: {
+      async match(request) {
+        const hit = puts.find((item) => item.url === request.url);
+        return hit ? new Response(hit.body, { headers: { 'Content-Type': 'application/json' } }) : undefined;
+      },
+      async put(request, response) {
+        puts.push({ url: request.url, body: await response.text() });
+      },
+    },
+  };
+  t.after(() => {
+    globalThis.caches = previousCaches;
+  });
+  globalThis.fetch = async () => new Response('{"observations":[{"value":"1.00"}]}', { status: 200 });
+  const context = {
+    request: new Request('https://jonathantelep.com/api/mrate'),
+    env: { FRED_API_KEY: key },
+  };
+  const filled = await onMrate(context);
+  assert.match(filled.headers.get('cache-control'), /max-age=3600/);
+  assert.equal(puts.length, 1);
+  assert.equal(puts[0].url, 'https://jonathantelep.com/api/mrate');
+  assert.equal(puts[0].url.includes(key), false);
+  globalThis.fetch = async () => {
+    throw new Error('cache hit should not call upstream');
+  };
+  const again = await onMrate(context);
+  assert.equal(await again.text(), '{"observations":[{"value":"1.00"}]}');
 });
 
 });

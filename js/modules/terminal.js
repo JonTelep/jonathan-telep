@@ -49,7 +49,6 @@ export function handleCommand(command) {
             output.innerHTML += '- mrate: Show current 30-year fixed mortgage rate\n';
             output.innerHTML += '- space: Show upcoming rocket launches\n';
             output.innerHTML += '- list: Show all projects and services\n';
-            output.innerHTML += '- postgres: Open Postgres schema visualizer\n';
             output.innerHTML += '- json: Open JSON parser\n';
             output.innerHTML += '- home: Back to jonathantelep.com landing page\n';
             break;
@@ -155,11 +154,6 @@ export function handleCommand(command) {
             displayProjects(output);
             break;
 
-        case 'postgres':
-            output.innerHTML += 'Opening Postgres schema visualizer...\n';
-            window.open('/postgres/', '_blank');
-            break;
-
         case 'json':
             output.innerHTML += 'Opening JSON parser...\n';
             window.open('/jsonify/', '_blank');
@@ -179,7 +173,6 @@ const PROJECTS = [
     { url: 'https://www.jonathantelep.com', description: 'Personal site (v1)', category: 'info' },
     { url: '/terminal', description: 'This terminal', category: 'dev' },
     { url: 'https://www.letstalkstatistics.com', description: 'Statistics site', category: 'info' },
-    { url: '/postgres/', description: 'Postgres schema visualizer', category: 'dev' },
     { url: '/jsonify/', description: 'JSON parser', category: 'dev' },
 ];
 
