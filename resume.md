@@ -73,7 +73,7 @@ What he can sell: stand up a site, host it, and manage IT for another business o
 - **seploy** — live. Local-to-live deploy utility. [github.com/Telep-IO/seploy](https://github.com/Telep-IO/seploy)
 - **skills** — live. Agent skills for Claude. [github.com/JonTelep/skills](https://github.com/JonTelep/skills)
 - **omusey** — live. Open source Omarchy plugin that drops Muse chat down from the bar. [github.com/Telep-IO/omusey](https://github.com/Telep-IO/omusey)
-- **Visualize Postgres** / **Jsonify** — paste-in developer tools on [jonathantelep.com/postgres](https://jonathantelep.com/postgres/) and [jonathantelep.com/jsonify](https://jonathantelep.com/jsonify/)
+- **Jsonify** — paste-in JSON formatter on [jonathantelep.com/jsonify](https://jonathantelep.com/jsonify/)
 
 ## Selected work
 

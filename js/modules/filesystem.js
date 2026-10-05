@@ -24,7 +24,6 @@ If you are looking to work together on any project that is exciting, reach me at
 ## Current Projects:
 - [minesSwept](https://minesswept.com) ([source](https://github.com/JonTelep/mines-swept)); One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone.
 - The website you are reading this on ([jonathantelep.com](https://jonathantelep.com))
-- [Visualize Postgres](/postgres/); A PostgreSQL CREATE SQL to ER Diagram web application.
 - [JSONIFY](/jsonify/); A JSON parser that can parse JSON files and return the data in a readable format.
 - [Let's Talk Statistics](https://letstalkstatistics.com); An interactive data visualization platform designed to make statistical concepts accessible and engaging for students, researchers, and data enthusiasts.
 `
@@ -46,31 +45,6 @@ Built with Cloudflare Workers and Durable Objects, with real-time multiplayer ov
 
 - Live: [minesswept.com](https://minesswept.com)
 - Source: [github.com/JonTelep/mines-swept](https://github.com/JonTelep/mines-swept)`
-                    },
-                    'visualize-postgres.md': {
-                        type: 'file',
-                        url: '/postgres/',
-                        github: 'https://github.com/JonTelep/visualize-postgres',
-                        content: `# Visualize Postgres
-
-A web application that converts PostgreSQL CREATE SQL statements into Entity-Relationship (ER) Diagrams. This tool helps developers and database administrators visualize their database schema by parsing SQL CREATE TABLE statements and generating interactive ER diagrams.
-
-## Features
-
-- Parse PostgreSQL CREATE TABLE statements
-- Generate interactive ER diagrams
-- Visualize table relationships and foreign keys
-- Modern web-based interface
-
-## Source Code
-
-The source code is available on GitHub: [https://github.com/JonTelep/visualize-postgres](https://github.com/JonTelep/visualize-postgres)
-
-## Tech Stack
-
-- Frontend: React with Vite
-- Backend: Python with FastAPI
-- Diagram Rendering: Custom visualization engine`
                     },
                     'json.md': {
                         type: 'file',
@@ -141,9 +115,6 @@ Educational platform for interactive statistical learning and data visualization
 
 ### Capitol Trades
 Government transparency tool tracking congressional financial disclosures.
-
-### Visualize Postgres
-Database visualization tool for PostgreSQL schema management.
 
 ## Services Offered
 

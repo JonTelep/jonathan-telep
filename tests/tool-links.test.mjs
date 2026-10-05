@@ -16,9 +16,10 @@ test('terminal tools stay on the current origin in development and production', 
     globalThis.window = previousWindow;
     globalThis.document = previousDocument;
   });
-  handleCommand('postgres');
   handleCommand('json');
+  handleCommand('postgres');
+  assert.match(output.innerHTML, /Command not found: postgres/);
   for (const origin of ['http://localhost:8000', 'https://www.jonathantelep.com']) {
-    assert.deepEqual(opened.map(url => new URL(url, origin).href), [origin + '/postgres/', origin + '/jsonify/']);
+    assert.deepEqual(opened.map(url => new URL(url, origin).href), [origin + '/jsonify/']);
   }
 });

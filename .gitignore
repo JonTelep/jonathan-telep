@@ -8,6 +8,8 @@ CLAUDE.md
 
 node_modules/
 dist/
+.wrangler/
+.dev.vars
 .venv/
 __pycache__/
 .pytest_cache/

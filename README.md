@@ -22,7 +22,7 @@ I'm a senior software engineer on a journey to escape the 9-5 grind and build in
 - **Virtual Filesystem**: Navigate through projects and content using `cd`, `ls`, and `cat` commands
 - **Markdown Support**: Project documentation rendered beautifully in the terminal
 - **Live Data**: Real-time weather forecasts, mortgage rates, and rocket launch schedules
-- **Integrated Services**: Links to self-hosted tools like Postgres schema visualizer and JSON parser
+- **Integrated Services**: Link to the JSON parser
 - **Responsive Design**: Works on desktop and mobile devices
 
 ## Available Commands
@@ -38,7 +38,6 @@ Type `help` in the terminal to see all commands:
 - `mrate` - Show current 30-year fixed mortgage rate (via FRED API)
 - `space` - Show upcoming rocket launches (via The Space Devs Launch Library)
 - `list` - Show all projects and services
-- `postgres` - Open Postgres schema visualizer
 - `json` - Open JSON parser
 - `home` - Back to the landing page
 
@@ -135,9 +134,11 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 
 ## Deployment
 
-- **Production URL**: [JonathanTelep.com](https://www.jonathantelep.com)
+- **Production URL**: [JonathanTelep.com](https://www.jonathantelep.com) (`telep.dev` redirects here)
 - **Deployment platform**: Coolify on VPS
 - **Container port**: 3000
+
+Cloudflare Pages on the free plan is the cutover path in [DEPLOY.md](DEPLOY.md). This Docker/Coolify setup stays as the rollback origin.
 
 The Dockerfile is self-contained: its first stage clones the two public tool
 repositories at the commits pinned by `POSTGRES_REF` and `JSONIFY_REF`, so

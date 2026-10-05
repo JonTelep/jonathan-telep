@@ -23,7 +23,7 @@ Cleveland, Ohio, United States.
 ## What I build
 
 - Products: small apps with one job (minesSwept, BarkMarks, sumvid, telep.tools, Easy Data Quality)
-- Developer tools: paste something in, get something useful out (Visualize Postgres, Jsonify)
+- Developer tools: paste something in, get something useful out (Jsonify)
 - Live data: weather, mortgage rates, and launches, printed in a terminal
 - Sites for others: bring a business or nonprofit onto the internet and manage it ([Alpha11 Veterans](https://alpha11veterans.org), [Telep Remodeling](https://telepremodeling.com))
 
@@ -48,7 +48,6 @@ Cleveland, Ohio, United States.
 - https://telep.io/llms.txt
 - https://telep.tools
 - https://telep.tools/llms.txt
-- https://jonathantelep.com/postgres
 - https://jonathantelep.com/jsonify/
 - https://jonathantelep.com/terminal
 - https://letstalkstatistics.com
