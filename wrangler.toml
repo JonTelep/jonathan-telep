@@ -1,0 +1,7 @@
+# Cloudflare Pages on the Workers Free plan.
+# Static files come from `dist` (npm run pages:build). Pages compiles ./functions
+# into one Worker. Do not add KV, R2, D1, Durable Object, service, or image bindings.
+# Runtime secrets are Pages environment variables — never put values in this file.
+name = "jonathan-telep"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "dist"

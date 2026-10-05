@@ -135,9 +135,11 @@ Visit `http://127.0.0.1:3000` (use `127.0.0.1` instead of `localhost` to avoid I
 
 ## Deployment
 
-- **Production URL**: [JonathanTelep.com](https://www.jonathantelep.com)
+- **Production URL**: [JonathanTelep.com](https://www.jonathantelep.com) (`telep.dev` redirects here)
 - **Deployment platform**: Coolify on VPS
 - **Container port**: 3000
+
+Cloudflare Pages on the free plan is the cutover path in [DEPLOY.md](DEPLOY.md). This Docker/Coolify setup stays as the rollback origin.
 
 The Dockerfile is self-contained: its first stage clones the two public tool
 repositories at the commits pinned by `POSTGRES_REF` and `JSONIFY_REF`, so
