@@ -12,7 +12,7 @@ export const filesystem = {
 
 I am a software engineer in Cleveland, Ohio who likes to build things that I needed or always wanted, and I created this site to share my projects and thoughts. Much of my random personal projects will be public on [github](https://github.com/JonTelep).
 
-Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. The latest live app is [sumvid](https://sumvid.app), a summarization of videos. Right now I am building toward [telep.tools](https://telep.tools), one home for every tool I make, and **boards**, an image generation to video generation tool. Follow me on [Twitter/X](https://x.com/telep_io) to keep informed.
+Slowly but surely I am building [Telep IO LLC](https://telep.io/), a software company building SaaS solutions for a better future. The latest live app is [sumvid](https://sumvid.app), a summarization of videos. [minesSwept](https://minesswept.com) is one minesweeper board everyone digs together, live ([source](https://github.com/JonTelep/mines-swept)). Right now I am building toward [telep.tools](https://telep.tools), one home for every tool I make. Follow me on [Twitter/X](https://x.com/telep_io) to keep informed.
 
 If you are looking to work together on any project that is exciting, reach me at [/request](https://jonathantelep.com/request), [telep.io/contact](https://telep.io/contact), or via a DM on [X](https://x.com/telep_io). I am always looking to get involved in interesting projects.
 
@@ -22,6 +22,7 @@ If you are looking to work together on any project that is exciting, reach me at
 - [Github](https://github.com/JonTelep) 
 
 ## Current Projects:
+- [minesSwept](https://minesswept.com) ([source](https://github.com/JonTelep/mines-swept)); One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone.
 - The website you are reading this on ([jonathantelep.com](https://jonathantelep.com))
 - [Visualize Postgres](/postgres/); A PostgreSQL CREATE SQL to ER Diagram web application.
 - [JSONIFY](/jsonify/); A JSON parser that can parse JSON files and return the data in a readable format.
@@ -31,6 +32,21 @@ If you are looking to work together on any project that is exciting, reach me at
             'projects': {
                 type: 'directory',
                 contents: {
+                    'mineswept.md': {
+                        type: 'file',
+                        url: 'https://minesswept.com',
+                        github: 'https://github.com/JonTelep/mines-swept',
+                        content: `# minesSwept
+
+One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone.
+
+Built with Cloudflare Workers and Durable Objects, with real-time multiplayer over WebSockets.
+
+## Links
+
+- Live: [minesswept.com](https://minesswept.com)
+- Source: [github.com/JonTelep/mines-swept](https://github.com/JonTelep/mines-swept)`
+                    },
                     'visualize-postgres.md': {
                         type: 'file',
                         url: '/postgres/',

@@ -171,9 +171,9 @@ export function handleCommand(command) {
 }
 
 const PROJECTS = [
+    { url: 'https://minesswept.com', description: 'minesSwept — one board, everyone digs', category: 'products' },
     { url: 'https://sumvid.app', description: 'sumvid — video summarization (latest)', category: 'products' },
     { url: 'https://telep.tools', description: 'telep.tools — building', category: 'products' },
-    { url: 'https://telep.io/contact', description: 'boards — image → video gen (building)', category: 'products' },
     { url: 'https://easydataquality.com', description: 'easy data quality — data quality checks made easy', category: 'products' },
     { url: 'https://www.telep.io', description: "My company's site", category: 'work' },
     { url: 'https://www.jonathantelep.com', description: 'Personal site (v1)', category: 'info' },

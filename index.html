@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="https://jonathantelep.com/public/social/home-v1.png">
     <meta name="twitter:image:alt" content="JONATHAN TELEP / SOFTWARE ENGINEER: the universe is possible.">
     <!-- social-preview:end -->
-    <meta name="keywords" content="Jonathan Telep, software engineer, Cleveland, Ohio, Telep IO, BarkMarks, sumvid, telep.tools, boards, web developer, API developer">
+    <meta name="keywords" content="Jonathan Telep, software engineer, Cleveland, Ohio, Telep IO, BarkMarks, sumvid, telep.tools, minesSwept, web developer, API developer">
     <meta name="author" content="Jonathan Telep">
     <link rel="describedby" href="https://jonathantelep.com/llms.txt" type="text/plain">
     <link rel="alternate" type="text/markdown" href="https://jonathantelep.com/about.md" title="Plain-text profile">
@@ -44,7 +44,7 @@
           "name": "Jonathan Telep",
           "alternateName": ["Jon Telep", "jon telep"],
           "jobTitle": "Senior Software Engineer",
-          "description": "Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio. Builds and ships independent products including BarkMarks, sumvid, telep.tools, boards, Easy Data Quality, seploy, omusey, and agent skills.",
+          "description": "Senior Software Engineer at Red Hat in Cleveland, Ohio. Founder of Telep IO, a solo side studio. Builds and ships independent products including minesSwept, BarkMarks, sumvid, telep.tools, Easy Data Quality, seploy, omusey, and agent skills.",
           "url": "https://jonathantelep.com",
           "image": "https://jonathantelep.com/public/jon.png",
           "worksFor": { "@id": "https://www.redhat.com/#organization" },
@@ -56,7 +56,8 @@
             "https://telep.io",
             "https://bark.telep.io",
             "https://sumvid.app",
-            "https://telep.tools"
+            "https://telep.tools",
+            "https://minesswept.com"
           ],
           "knowsAbout": [
             "Master Data Management",
@@ -67,7 +68,7 @@
             "API Development",
             "AI/ML",
             "Video Summarization",
-            "Image-to-Video Generation",
+            "Real-time Multiplayer",
             "Developer Tools",
             "PostgreSQL",
             "JSON",
@@ -125,7 +126,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing.css?v=6">
+    <link rel="stylesheet" href="landing.css?v=7">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -264,7 +265,7 @@
                         <span></span><span></span><span></span><span></span><span></span><span></span>
                     </div>
                     <h3>products</h3>
-                    <p>small apps with one job. barkmarks tells you when the dog will bark at the movie. sumvid summarizes videos. boards turns generated images into generated video. telep.tools is where they'll all live.</p>
+                    <p>small apps with one job. mineswept is one minesweeper board everyone digs together. barkmarks tells you when the dog will bark at the movie. sumvid summarizes videos. telep.tools is where they'll all live.</p>
                     <a href="#projects" class="more">see projects →</a>
                 </article>
                 <article class="build-card">
@@ -293,13 +294,30 @@
             <p class="sec-sub">newest first. green is live, amber is being built.</p>
 
             <div class="cards">
+                <article class="card">
+                    <div class="card-art art-mine" aria-hidden="true">
+                        <div class="grid">
+                            <i></i><i class="on"></i><i></i><i class="flag"></i><i></i><i></i>
+                            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i class="on"></i>
+                            <i></i><i class="on"></i><i class="mine"></i><i class="on"></i><i></i><i></i>
+                            <i></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="flag"></i>
+                        </div>
+                        <span class="stamp shipped">live</span>
+                    </div>
+                    <p class="plate">plate 01 — mineswept — 2026</p>
+                    <h3>minesSwept</h3>
+                    <p>One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone.</p>
+                    <div class="tags"><span>cloudflare workers</span><span>durable objects</span><span>websockets</span></div>
+                    <span class="open"><a href="https://minesswept.com" target="_blank" rel="noopener">open ↗</a><a href="https://github.com/JonTelep/mines-swept" target="_blank" rel="noopener">source ↗</a></span>
+                </article>
+
                 <a class="card" href="https://bark.telep.io" target="_blank" rel="noopener">
                     <div class="card-art art-bark" aria-hidden="true">
                         <div class="meter"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="track"><b></b><b></b><b></b><b></b></div>
                         <span class="stamp shipped">shipped</span>
                     </div>
-                    <p class="plate">plate 01 — barkmarks — 2026 — latest</p>
+                    <p class="plate">plate 02 — barkmarks — 2026 — latest</p>
                     <h3>barkmarks</h3>
                     <p>know when the dog will bark. search a movie or show, get a bark grade and timestamps for the doorbells, howls, and squeaky toys on screen — so you can mute before the dog ruins the night.</p>
                     <div class="tags"><span>movies</span><span>dogs</span><span>search</span></div>
@@ -312,7 +330,7 @@
                         <div class="lines"><i></i><i></i><i></i></div>
                         <span class="stamp shipped">shipped</span>
                     </div>
-                    <p class="plate">plate 02 — sumvid-app — 2026</p>
+                    <p class="plate">plate 03 — sumvid-app — 2026</p>
                     <h3>sumvid</h3>
                     <p>a summarization of videos. paste a link, get the point.</p>
                     <div class="tags"><span>ai</span><span>video</span><span>summarization</span></div>
@@ -324,24 +342,11 @@
                         <div class="tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
                         <span class="stamp building">building</span>
                     </div>
-                    <p class="plate">plate 03 — telep-tools — 2026 — in progress</p>
+                    <p class="plate">plate 04 — telep-tools — 2026 — in progress</p>
                     <h3>telep.tools</h3>
                     <p>one home for every tool i make. nothing deployed yet. this is what i'm building toward right now.</p>
                     <div class="tags"><span>platform</span><span>tools</span><span>saas</span></div>
                     <span class="open">follow along ↗</span>
-                </a>
-
-                <a class="card" href="https://telep.io/contact" target="_blank" rel="noopener">
-                    <div class="card-art art-boards" aria-hidden="true">
-                        <div class="frames"><i></i><i></i><i></i><i></i></div>
-                        <div class="play"></div>
-                        <span class="stamp building">building</span>
-                    </div>
-                    <p class="plate">plate 04 — boards — 2026 — in progress</p>
-                    <h3>boards</h3>
-                    <p>image generation to video generation. lay out the frames on a board, then let it move.</p>
-                    <div class="tags"><span>ai</span><span>image</span><span>video</span></div>
-                    <span class="open">ask about it ↗</span>
                 </a>
 
                 <a class="card" href="https://easydataquality.com" target="_blank" rel="noopener">
@@ -433,6 +438,9 @@
             <div class="sys-groups">
                 <div class="sys-group">
                     <div class="sys-head"><span>products</span><span id="cnt-products">00</span></div>
+                    <a class="sys" href="https://minesswept.com" target="_blank" rel="noopener" data-group="products">
+                        <span class="sys-led"></span><span class="sys-name">minesSwept</span><span class="sys-url">minesswept.com</span><span class="sys-desc">one minesweeper board. a million cells. everyone digs together.</span>
+                    </a>
                     <a class="sys" href="https://bark.telep.io" target="_blank" rel="noopener" data-group="products">
                         <span class="sys-led"></span><span class="sys-name">barkmarks</span><span class="sys-url">bark.telep.io</span><span class="sys-desc">bark grades + timestamps for movies and tv. latest live app.</span>
                     </a>
@@ -441,9 +449,6 @@
                     </a>
                     <a class="sys" href="https://telep.tools" target="_blank" rel="noopener" data-group="products" data-state="building">
                         <span class="sys-led"></span><span class="sys-name">telep.tools</span><span class="sys-url">telep.tools</span><span class="sys-desc">home for all the tools. building.</span>
-                    </a>
-                    <a class="sys" href="https://telep.io/contact" target="_blank" rel="noopener" data-group="products" data-state="building">
-                        <span class="sys-led"></span><span class="sys-name">boards</span><span class="sys-url">soon</span><span class="sys-desc">image generation → video generation. building.</span>
                     </a>
                     <a class="sys" href="https://easydataquality.com" target="_blank" rel="noopener" data-group="products">
                         <span class="sys-led"></span><span class="sys-name">easy data quality</span><span class="sys-url">easydataquality.com</span><span class="sys-desc">data quality checks made easy</span>

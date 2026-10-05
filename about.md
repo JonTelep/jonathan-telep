@@ -22,17 +22,17 @@ Cleveland, Ohio, United States.
 
 ## What I build
 
-- Products: small apps with one job (BarkMarks, sumvid, boards, telep.tools, Easy Data Quality)
+- Products: small apps with one job (minesSwept, BarkMarks, sumvid, telep.tools, Easy Data Quality)
 - Developer tools: paste something in, get something useful out (Visualize Postgres, Jsonify)
 - Live data: weather, mortgage rates, and launches, printed in a terminal
 - Sites for others: bring a business or nonprofit onto the internet and manage it ([Alpha11 Veterans](https://alpha11veterans.org), [Telep Remodeling](https://telepremodeling.com))
 
 ## Projects
 
+- [minesSwept](https://minesswept.com) — one minesweeper board, a million cells, everyone digs together ([source](https://github.com/JonTelep/mines-swept))
 - [BarkMarks](https://bark.telep.io) — know when the dog will bark: bark grades and timestamps for movies and TV (live)
 - [sumvid](https://sumvid.app) — video summarization (live)
 - [telep.tools](https://telep.tools) — home for the tools (in progress)
-- [boards](https://telep.io/contact) — image generation to video generation (in progress)
 - [Easy Data Quality](https://easydataquality.com) — data quality checks (live)
 - [seploy](https://github.com/Telep-IO/seploy) — deploy utility (live)
 - [skills](https://github.com/JonTelep/skills) — agent skills (live)

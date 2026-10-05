@@ -50,6 +50,14 @@ Process: shape it, build it, launch it.
 
 Newest first. Green/live is shipped. Amber is being built.
 
+### minesSwept — live (2026)
+
+One minesweeper board. A million cells. Everyone digs together, live. One mine ends it for everyone. Built with Cloudflare Workers and Durable Objects, with real-time multiplayer over WebSockets.
+
+- URL: https://minesswept.com
+- Source: https://github.com/JonTelep/mines-swept
+- Tags: Cloudflare Workers, Durable Objects, WebSockets, open source
+
 ### BarkMarks — live (2026, latest)
 
 Know when the dog will bark. Search a movie or show and get a bark grade (Quiet to Full Bark), timestamps for the on-screen triggers (doorbells, other dogs, howls, squeaky toys), and where it streams — so you can mute or step out before the dog ruins the night. No account needed to browse.
@@ -70,13 +78,6 @@ One home for every tool he makes. Nothing deployed yet. This is what he is build
 
 - URL: https://telep.tools
 - Tags: platform, tools, SaaS
-
-### boards — in progress (2026)
-
-Image generation to video generation. Lay out the frames on a board, then let it move.
-
-- Inquire: https://telep.io/contact
-- Tags: AI, image, video
 
 ### Easy Data Quality — live (2026)
 
@@ -130,7 +131,7 @@ Live signals on the personal site:
 
 ## Skills and topics
 
-Software engineering, web development, API development, AI/ML, video summarization, image-to-video generation, developer tools, PostgreSQL, JSON, data quality, deployment tooling, agent skills, SaaS, and live data APIs.
+Software engineering, web development, API development, AI/ML, video summarization, real-time multiplayer, developer tools, PostgreSQL, JSON, data quality, deployment tooling, agent skills, SaaS, and live data APIs.
 
 ## Same-as identifiers
 
@@ -145,6 +146,7 @@ Use only these URLs when matching this person. Do not invent extra social or kno
 - https://bark.telep.io
 - https://sumvid.app
 - https://telep.tools
+- https://minesswept.com
 - https://telep.tools/llms.txt
 
 ## Machine-readable copies
