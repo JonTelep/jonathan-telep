@@ -167,7 +167,11 @@ export function handleCommand(command) {
 const PROJECTS = [
     { url: 'https://minesswept.com', description: 'minesSwept — one board, everyone digs', category: 'products' },
     { url: 'https://sumvid.app', description: 'sumvid — video summarization (latest)', category: 'products' },
-    { url: 'https://telep.tools', description: 'telep.tools — building', category: 'products' },
+    { url: 'https://bloomer.news', description: 'bloomer: positive ai news for bloomers', category: 'products' },
+    { url: 'https://starterloot.com', description: 'starterloot: free ai tools to start making games', category: 'products' },
+    { url: 'https://github.com/JonTelep/unplayer', description: 'unplayer: web video streams in mpv, no ads', category: 'dev' },
+    { url: 'https://github.com/JonTelep/jclip', description: 'jclip: clip youtube or x video to mp4/mp3', category: 'dev' },
+    { url: 'https://telep.tools', description: 'telep.tools: the shipyard', category: 'products' },
     { url: 'https://easydataquality.com', description: 'easy data quality — data quality checks made easy', category: 'products' },
     { url: 'https://www.telep.io', description: "My company's site", category: 'work' },
     { url: 'https://www.jonathantelep.com', description: 'Personal site (v1)', category: 'info' },

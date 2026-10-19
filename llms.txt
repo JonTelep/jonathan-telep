@@ -16,6 +16,14 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 ## Related sites
 
 - [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [unplayer](https://github.com/JonTelep/unplayer): watch any web video stream in mpv with no ads, popups or browser (open source CLI)
+- [Bloomer](https://bloomer.news): positive AI news for bloomers; real breakthroughs, helpful tools, and milestones of AI history, each linked to its source (live)
+- [StarterLoot](https://starterloot.com): free, curated library of AI tools for beginners starting game development (live)
+- [jclip](https://github.com/JonTelep/jclip): clip a section of a YouTube or X video to mp4 or mp3 in one command (open source CLI)
+- [oposse](https://github.com/Telep-IO/oposse): open source Omarchy plugin that puts Muse, ChatGPT Dots and Grok Bot behind one icon in the bar
+- [ai-studio](https://github.com/JonTelep/ai-studio): open source AI video studio that turns a shot list into a finished MP4 (bring your own keys)
+- [Local Library](https://github.com/JonTelep/local-library): ask questions answered from an offline Wikipedia by a local AI model
+- [Let's Talk Statistics](https://letstalkstatistics.com): charts of official U.S. government statistics, each with its source (live)
 - [Telep IO llms.txt](https://telep.io/llms.txt): studio index for AI crawlers (sibling)
 - [telep.tools](https://telep.tools): tool shipyard / launcher
 - [telep.tools llms.txt](https://telep.tools/llms.txt): tools index for AI crawlers (sibling)
@@ -23,6 +31,14 @@ Work with him via [jonathantelep.com/request](https://jonathantelep.com/request)
 ## Work and products
 
 - [Telep IO](https://telep.io): studio founded by Jonathan Telep
+- [unplayer](https://github.com/JonTelep/unplayer): watch any web video stream in mpv with no ads, popups or browser (open source CLI)
+- [Bloomer](https://bloomer.news): positive AI news for bloomers; real breakthroughs, helpful tools, and milestones of AI history, each linked to its source (live)
+- [StarterLoot](https://starterloot.com): free, curated library of AI tools for beginners starting game development (live)
+- [jclip](https://github.com/JonTelep/jclip): clip a section of a YouTube or X video to mp4 or mp3 in one command (open source CLI)
+- [oposse](https://github.com/Telep-IO/oposse): open source Omarchy plugin that puts Muse, ChatGPT Dots and Grok Bot behind one icon in the bar
+- [ai-studio](https://github.com/JonTelep/ai-studio): open source AI video studio that turns a shot list into a finished MP4 (bring your own keys)
+- [Local Library](https://github.com/JonTelep/local-library): ask questions answered from an offline Wikipedia by a local AI model
+- [Let's Talk Statistics](https://letstalkstatistics.com): charts of official U.S. government statistics, each with its source (live)
 - [minesSwept](https://minesswept.com): one minesweeper board, a million cells, everyone digs together. Built with Cloudflare Workers and Durable Objects; real-time multiplayer over WebSockets ([source](https://github.com/JonTelep/mines-swept))
 - [BarkMarks](https://bark.telep.io): know when the dog will bark — bark grades, timestamps, and streaming info for movies and TV (live)
 - [sumvid](https://sumvid.app): video summarization — paste a link, get the point (live)
