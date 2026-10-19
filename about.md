@@ -29,6 +29,14 @@ Cleveland, Ohio, United States.
 
 ## Projects
 
+- [unplayer](https://github.com/JonTelep/unplayer): watch any web video stream in mpv with no ads, popups or browser (open source)
+- [Bloomer](https://bloomer.news): positive AI news for bloomers (live)
+- [StarterLoot](https://starterloot.com): free AI tools for beginners starting game development (live)
+- [jclip](https://github.com/JonTelep/jclip): clip a section of a YouTube or X video to mp4 or mp3 in one command (open source)
+- [oposse](https://github.com/Telep-IO/oposse): Omarchy plugin, every personal assistant behind one icon in the bar (open source)
+- [ai-studio](https://github.com/JonTelep/ai-studio): open source AI video studio, shot list in, finished MP4 out
+- [Local Library](https://github.com/JonTelep/local-library): offline Wikipedia answered by a local AI model (open source)
+- [Let's Talk Statistics](https://letstalkstatistics.com): charts of official U.S. government statistics (live)
 - [minesSwept](https://minesswept.com) — one minesweeper board, a million cells, everyone digs together ([source](https://github.com/JonTelep/mines-swept))
 - [BarkMarks](https://bark.telep.io) — know when the dog will bark: bark grades and timestamps for movies and TV (live)
 - [sumvid](https://sumvid.app) — video summarization (live)
