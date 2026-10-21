@@ -66,3 +66,5 @@ Allow: /
 
 User-agent: FacebookBot
 Allow: /
+
+Sitemap: https://jonathantelep.com/sitemap.xml
