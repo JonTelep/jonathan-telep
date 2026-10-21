@@ -28,6 +28,7 @@ export const STATIC_FILES = [
   'llms.txt',
   'llms-full.txt',
   'robots.txt',
+  'sitemap.xml',
   'about.md',
   'resume.md',
 ];
@@ -51,6 +52,8 @@ export const HEADERS = `# Match nginx charset for the plain-text routes.
   Content-Type: text/plain; charset=utf-8
 /robots.txt
   Content-Type: text/plain; charset=utf-8
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
 /about.md
   Content-Type: text/plain; charset=utf-8
 /resume.md
