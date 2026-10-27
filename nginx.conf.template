@@ -34,6 +34,13 @@ http {
             try_files $uri =404;
         }
 
+        location = /sitemap.xml {
+            root /usr/share/nginx/html;
+            default_type application/xml;
+            charset utf-8;
+            try_files $uri =404;
+        }
+
         location / {
             root   /usr/share/nginx/html;
             index  index.html;

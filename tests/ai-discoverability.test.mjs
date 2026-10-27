@@ -127,6 +127,8 @@ test('homepage JSON-LD is a Person + Organization graph', async () => {
 test('nginx serves crawler files as text/plain without SPA fallback', async () => {
   const conf = await readFile('nginx.conf.template', 'utf8');
   assert.match(conf, /llms\\\.txt\|llms-full\\\.txt\|robots\\\.txt\|about\\\.md\|resume\\\.md/);
+  assert.match(conf, /location = \/sitemap\.xml/);
+  assert.match(conf, /default_type application\/xml;/);
   assert.match(conf, /default_type text\/plain;/);
   assert.match(conf, /try_files \$uri =404;/);
   assert.match(conf, /location = \/request/);

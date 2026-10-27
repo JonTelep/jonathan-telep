@@ -534,9 +534,12 @@ body::before {
 .contact-foot { font-size: 12px; color: var(--dim); margin-top: 30px; }
 .contact-foot a { color: var(--mist); text-decoration: none; border-bottom: 1px solid var(--line-2); }
 .contact-foot a:hover { color: var(--sun); border-color: var(--sun); }
-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 24px 0 36px; border-top: 1px solid var(--line); font-size: 11px; color: var(--dimmer); letter-spacing: 0.08em; }
+footer { display: flex; flex-direction: column; gap: 14px; padding: 24px 0 36px; border-top: 1px solid var(--line); font-size: 11px; color: var(--dimmer); letter-spacing: 0.08em; }
+.footer-bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 footer a { color: var(--dim); text-decoration: none; }
 footer a:hover { color: var(--sun); }
+.other-sites { margin: 0; text-align: center; font-size: 12px; line-height: 1.8; letter-spacing: 0.01em; color: var(--dim); }
+.other-sites a { color: inherit; }
 
 button.btn {
     cursor: pointer;
@@ -702,7 +705,7 @@ body.request-page #sun {
     .sys-url, .sys-desc { grid-column: 2; }
     .sys:hover { transform: none; }
     .request-form { max-width: none; }
-    footer { flex-direction: column; gap: 6px; }
+    .footer-bar { flex-direction: column; gap: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
