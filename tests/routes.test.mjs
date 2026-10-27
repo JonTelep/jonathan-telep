@@ -26,6 +26,12 @@ test('local app routes, proxy requests, redirects and missing assets', async (t)
     assert.equal(response.status, 200, path);
     assert.match(response.headers.get('content-type'), /text\/html/);
   }
+  const sitemap = await fetch(base + '/sitemap.xml');
+  assert.equal(sitemap.status, 200);
+  assert.match(sitemap.headers.get('content-type'), /application\/xml/);
+  const sitemapBody = await sitemap.text();
+  assert.match(sitemapBody, /<urlset/);
+  assert.doesNotMatch(sitemapBody, /<!DOCTYPE html>/i);
   for (const path of ['/llms.txt', '/llms-full.txt', '/robots.txt', '/about.md', '/resume.md']) {
     const response = await fetch(base + path);
     assert.equal(response.status, 200, path);

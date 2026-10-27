@@ -42,6 +42,7 @@ const MIME_TYPES = {
     '.ico': 'image/x-icon',
     '.txt': 'text/plain; charset=utf-8',
     '.md': 'text/plain; charset=utf-8',
+    '.xml': 'application/xml; charset=utf-8',
 };
 
 const server = createServer(async (req, res) => {
@@ -125,7 +126,7 @@ const server = createServer(async (req, res) => {
         } else if (decoded === '/') route = 'index.html';
         else if (decoded === '/terminal') route = 'terminal.html';
         else if (decoded === '/request') route = 'request.html';
-        else if (/^\/(?:index\.html|terminal\.html|request\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|about\.md|resume\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
+        else if (/^\/(?:index\.html|terminal\.html|request\.html|landing\.css|style\.css|script\.js|llms\.txt|llms-full\.txt|robots\.txt|sitemap\.xml|about\.md|resume\.md)$/.test(decoded) || /^\/(?:js|public)\//.test(decoded)) route = decoded;
         else throw new Error('Unknown route');
         const data = await readFile(join(assetRoot, route));
         res.writeHead(200, { 'Content-Type': MIME_TYPES[extname(route)] || 'application/octet-stream' });
