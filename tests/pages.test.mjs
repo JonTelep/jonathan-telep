@@ -72,7 +72,7 @@ test('pages build copies the static site and pinned redirects, not secrets or th
   const jsonify = await mkdtemp(join(tmpdir(), 'pages-jsonify-'));
   try {
     await writeFile(join(root, 'index.html'), '<title>home</title>');
-    for (const file of ['request.html', 'terminal.html', 'landing.css', 'style.css', 'llms.txt', 'llms-full.txt', 'robots.txt', 'sitemap.xml', 'about.md', 'resume.md']) {
+    for (const file of ['request.html', 'terminal.html', 'landing.css', 'style.css', 'llms.txt', 'llms-full.txt', 'robots.txt', 'sitemap.xml', 'about.md', 'resume.md', 'b26d1f2ab3e14314498c83feafc29088.txt']) {
       await writeFile(join(root, file), file);
     }
     await mkdir(join(root, 'js'));

@@ -31,6 +31,7 @@ export const STATIC_FILES = [
   'sitemap.xml',
   'about.md',
   'resume.md',
+  'b26d1f2ab3e14314498c83feafc29088.txt',
 ];
 
 export const REDIRECTS = `# Pages serves terminal.html and request.html at /terminal and /request, and
@@ -51,6 +52,8 @@ export const HEADERS = `# Match nginx charset for the plain-text routes.
 /llms-full.txt
   Content-Type: text/plain; charset=utf-8
 /robots.txt
+  Content-Type: text/plain; charset=utf-8
+/b26d1f2ab3e14314498c83feafc29088.txt
   Content-Type: text/plain; charset=utf-8
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
